@@ -40,7 +40,7 @@ const defaultItemSizeBigscreen:CarouselStyleConfigItemSize = {
 };
 
 const defaultStyleMediaTypes:CarouselStyleConfigMediaTypes = [];
-defaultStyleMediaTypes[GRID_STYLE_MEDIA_TYPE.SMALL] = {
+defaultStyleMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
     borderSizeActive: 1,
     borderRadiusSizeActive: 25,
     borderSizeOverrun: 0,
@@ -52,7 +52,7 @@ defaultStyleMediaTypes[GRID_STYLE_MEDIA_TYPE.SMALL] = {
     activeExtraPaddingBottom: 25,
 };
 
-defaultStyleMediaTypes[GRID_STYLE_MEDIA_TYPE.DESKTOP] = {
+defaultStyleMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP] = {
     borderSizeActive: 1,
     borderRadiusSizeActive: 25,
     borderSizeOverrun: 0,
@@ -64,7 +64,7 @@ defaultStyleMediaTypes[GRID_STYLE_MEDIA_TYPE.DESKTOP] = {
     activeExtraPaddingBottom: 5,
 };
 
-defaultStyleMediaTypes[GRID_STYLE_MEDIA_TYPE.BIGSCREEN] = {
+defaultStyleMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
     borderSizeActive: 1,
     borderRadiusSizeActive: 25,
     borderSizeOverrun: 0,
@@ -77,7 +77,7 @@ defaultStyleMediaTypes[GRID_STYLE_MEDIA_TYPE.BIGSCREEN] = {
 };
 
 const defaultStyleItemMediaTypes:CarouselItemStyleConfigMediaTypes = [];
-defaultStyleItemMediaTypes[GRID_STYLE_MEDIA_TYPE.SMALL] = {
+defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
     itemSelectionFontSize: 14,
     itemBorderSize: 1,
     itemSelectedBorderSize: 4,
@@ -99,7 +99,7 @@ defaultStyleItemMediaTypes[GRID_STYLE_MEDIA_TYPE.SMALL] = {
         topBorderShadowSize: 20
     }
 };
-defaultStyleItemMediaTypes[GRID_STYLE_MEDIA_TYPE.BIGSCREEN] = {
+defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
     itemSelectionFontSize: 14,
     itemBorderSize: 2,
     itemSelectedBorderSize: 6,
@@ -121,7 +121,7 @@ defaultStyleItemMediaTypes[GRID_STYLE_MEDIA_TYPE.BIGSCREEN] = {
         topBorderShadowSize: 20
     },
 };
-defaultStyleItemMediaTypes[GRID_STYLE_MEDIA_TYPE.DESKTOP] = {
+defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP] = {
     itemSelectionFontSize: 14,
     itemBorderSize: 2,
     itemSelectedBorderSize: 6,
