@@ -60,7 +60,16 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
                                                                 props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].activeExtraPaddingX}px;
             height: ${props => StyleUtils.calcActiveYSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP) + 
                                                            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].activeExtraPaddingBottom}px;
-        }                                                       
+        }
+        
+        @media (min-width: 1366px) {
+            margin-top: ${props => StyleUtils.calcOverrunYSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN) - 
+                                                                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].activeExtraPaddingTop}px;  
+            width: ${props => StyleUtils.calcActiveXSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN) + 
+                                                          props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].activeExtraPaddingX}px;
+            height: ${props => StyleUtils.calcActiveYSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN) + 
+                                                           props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].activeExtraPaddingBottom}px;
+        }
     }
 `;
 export default CarouselStyled;
