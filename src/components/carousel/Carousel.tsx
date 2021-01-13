@@ -156,7 +156,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
         }
     }
 
-    private handleNavLeft(offset:number): void {
+    private handleNavLeft(offset:number): void { 
     }
 
     private handleNavRight(offset:number): void {
@@ -199,6 +199,13 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
           .forEach((i:number) => itemStates[i].yOffset += offset);
         this.setState({itemStates: itemStates})
     }
+
+    private moveCurrentRow(offset: number) {
+        const itemStates:Array<ItemState> = this.state.itemStates;
+        CarouselUtils.getItemIndicesInRow(itemStates, this.state.activeDisplayRow)
+          .forEach((i:number) => itemStates[i].xOffset += offset);
+        this.setState({itemStates: itemStates})
+    }    
     
     componentDidMount() {
         this.navControllers.forEach((navController:NavController) => navController.init());
