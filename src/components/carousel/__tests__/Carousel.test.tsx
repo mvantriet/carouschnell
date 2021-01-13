@@ -150,3 +150,10 @@ test('nav row limit right', async () => {
     expect(scrollIntoViewMock).toBeCalled();
 });
 
+test('nav up', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    expect(getSelected()).toEqual('7');
+    navUp();
+    expect(getSelected()).toEqual('1');
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
+});
