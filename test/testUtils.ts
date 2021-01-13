@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import {screen, fireEvent} from '@testing-library/react';
 
 export function itemInView(name: string): boolean {
     try {
@@ -19,4 +19,9 @@ export function getSelectedItem(container: HTMLElement): string {
         return "";
     }
     return "";
+}
+
+export function keyPress(container: HTMLElement, keyCode: number) {
+  fireEvent.keyDown(container, { keyCode: keyCode })
+  fireEvent.keyUp(container, { keyCode: keyCode })
 }
