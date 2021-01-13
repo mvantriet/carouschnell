@@ -243,3 +243,17 @@ test('test no scroll', async () => {
     navDown();
     expect(scrollIntoViewMock).toBeCalledTimes(0);
 });
+
+test('test scroll view', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    // Nav till the end of the row
+    expect(getSelected()).toEqual('7');
+    let keepNavRight: boolean = true;
+    while (keepNavRight) {
+      const curSelectedItem = getSelected();
+      navRight();
+      const newSelectedItem = getSelected();
+      keepNavRight = (curSelectedItem !== newSelectedItem);
+    }
+    expect(scrollIntoViewMock).toHaveBeenCalled();
+});
