@@ -128,3 +128,14 @@ test('nav right', async () => {
     expect(getSelected()).toEqual('8');
     expect(scrollIntoViewMock).toBeCalledTimes(0);
 });
+
+test('nav row limit left', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    expect(getSelected()).toEqual('7');
+    navLeft();
+    expect(getSelected()).toEqual('6');
+    // End of row
+    navLeft();
+    expect(getSelected()).toEqual('6');
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
+});
