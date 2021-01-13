@@ -51,6 +51,29 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
                 props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.y}px;
             border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].borderRadius}px;
         }
+
+        @media (min-width: 1024px) {
+            height: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSizeOverrun.size.y : 
+                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size.y}px;
+            width: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSizeOverrun.size.x : 
+                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size.x}px;
+            border: ${props => props.selected ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSelectedBorderSize : 
+                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemBorderSize}px solid ${props => props.style.theme.itemSelectedBorderColor};
+            border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].borderRadius}px;
+            transform: translate(${props => (props.xNavOffset * 
+                (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size.x + 
+                 props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.margin.x)).toString()}px,
+                ${props => (props.yNavOffset * 
+                (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size.y +
+                 props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.margin.y)).toString()}px); 
+            img {
+                width: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSizeOverrun.size.x : 
+                    props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size.x}px;
+                height: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSizeOverrun.size.y : 
+                    props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size.y}px;
+                border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].borderRadius}px;
+            }
+        }
     }
 `;
 
