@@ -106,7 +106,10 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
         }      
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        this.navControllers.forEach((navController:NavController) => navController.init());
+        this.itemNavActionHandlers.forEach((navController:INavItemActionHandler) => navController.init());    
+    }
 
     render() {
     return <CarouselStyled
