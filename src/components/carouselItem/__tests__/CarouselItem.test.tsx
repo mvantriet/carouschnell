@@ -82,3 +82,19 @@ test('test click nav action', async () => {
       expect(navActionHandler.handleItemOnClick).toHaveBeenCalled();
     }
 });
+
+test('test hover nav actions', async () => {
+    const navActionHandler = mock<INavItemActionHandler>();
+    ReactDOM.render(createCarouselItem(navActionHandler, 
+      true, false, true, '1'), container);
+    expect(itemInView('1')).toEqual(true);
+    const el:HTMLElement | null  = screen.getByRole('img', {name: '1'}).closest('.item');
+    if (el !== null) {
+      fireEvent.mouseEnter(el);
+      fireEvent.mouseLeave(el);
+      fireEvent.mouseMove(el);
+      expect(navActionHandler.handleItemHoverEnter).toHaveBeenCalled();
+      expect(navActionHandler.handleItemHoverExit).toHaveBeenCalled();
+      expect(navActionHandler.handleItemHover).toHaveBeenCalled();
+    }
+  });
