@@ -102,6 +102,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
 
     private handleNavDown(offset:number): void {
         this.moveCurrentColumn(-1);
+        this.scrollSelected();
     }
 
     private handleNavUp(offset:number): void {
@@ -128,6 +129,15 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
         }      
     }
 
+    private scrollSelected() {
+        // Refs are not well suppored in type strong typed styled components
+        // Alternative is to use a forward ref or a query selection as is done below
+        const selectedItemDiv = document.querySelector('.selected > .item');
+        if(selectedItemDiv) {
+          selectedItemDiv.scrollIntoView({ block: "center", inline: 'center', behavior: 'smooth' })
+        }
+    }
+    
     private moveCurrentColumn(offset: number) {
         const itemStates:Array<ItemState> = this.state.itemStates;
         CarouselUtils.getItemIndicesInColumn(itemStates, this.state.activeDisplayColumn)
