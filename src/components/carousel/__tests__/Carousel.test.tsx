@@ -18,6 +18,10 @@ afterEach(() => {
   document.body.removeChild(container);
 });
 
+function getSelected(): string {
+    return getSelectedItem(container);
+}
+
 const carouselTestConfig:CarouselConfig = {
     rows: [
       { initialColumn: 3, label: "Row1", items: [
@@ -87,4 +91,5 @@ const carouselTestConfig:CarouselConfig = {
 test('initial setting', async () => {
   ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
   expect(itemInView('1')).toBe(true);
+  expect(getSelected()).toEqual('7');
 });
