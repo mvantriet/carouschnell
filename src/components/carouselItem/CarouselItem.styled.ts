@@ -1,9 +1,7 @@
 import * as styled from "styled-components";
 import {CarouselItemStyleConfig, CAROUSEL_STYLE_MEDIA_TYPE} from '../../config/CarouselConfig';
 
-export type CarouselItemStyledProps = {};
-
-export type CarouselItemSelectedOverlayStyledProps = {
+export type CarouselItemStyledProps = {
     selected:boolean,
     inView: boolean,
     inOverrun: boolean,
@@ -13,12 +11,47 @@ export type CarouselItemSelectedOverlayStyledProps = {
     style: CarouselItemStyleConfig
 };
 
-export type GridItemSelectedOverlayStyledProps = {
+export type CarouselItemSelectedOverlayStyledProps = {
     // TODO: Split into separate config
     style: CarouselItemStyleConfig
-}
+};
 
 export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
+    display: ${props => props.inView || props.inOverrun ? 'inline-block' : 'none'};
+    .item {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+        background-size: cover;
+        background-position: center; 
+        background-repeat: no-repeat;
+        box-shadow: 0px 1vh 2vh #000;      
+        text-align: center;
+        position: absolute;
+        height: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSizeOverrun.size.y : 
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.y}px;
+        width: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSizeOverrun.size.x : 
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.x}px;
+        background-color: ${props => props.style.theme.itemBackgroundColor};
+        border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].borderRadius}px;
+        border: ${props => props.selected ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSelectedBorderSize : 
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemBorderSize}px solid ${props => props.style.theme.itemSelectedBorderColor};
+        transition-duration: 200ms;
+        transform: translate(${props => (props.xNavOffset * 
+            (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.x + 
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.margin.x)).toString()}px,
+            ${props => (props.yNavOffset * 
+            (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.y +
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.margin.y)).toString()}px);
+        opacity: ${props => props.inOverrun ? props.style.theme.itemInOverrunOpacity : 100}%;
+        img {
+            width: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSizeOverrun.size.x : 
+                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.x}px;
+            height: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSizeOverrun.size.y : 
+                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.y}px;
+            border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].borderRadius}px;
+        }
+    }
 `;
 
 export const CarouselItemSelectedOverlayStyled = styled.default
