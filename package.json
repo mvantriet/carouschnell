@@ -37,6 +37,7 @@
         "prepare": "npm run build"
     },
     "dependencies": {
+        "body-scroll-lock": "^3.1.5",
         "lodash": "^4.17.20",
         "react-transition-group": "^4.4.1",
         "styled-components": "^5.2.1"
