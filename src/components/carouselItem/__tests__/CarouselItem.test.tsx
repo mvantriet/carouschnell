@@ -45,3 +45,8 @@ test('test in view', async () => {
     expect(itemInView('1')).toEqual(true);
 });
 
+test('test out view', async () => {
+    ReactDOM.render(createCarouselItem(mock<INavItemActionHandler>(), 
+      false, false, false, '1'), container);
+    expect(itemInView('1')).toEqual(false);
+});
