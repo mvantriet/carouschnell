@@ -8,6 +8,7 @@ import {INavItemActionHandler} from '../../navcontrols/common/INavItemActionHand
 import { NavController } from "../../navcontrols/common/NavController";
 import {KeyboardNavController, DEVICE_NAV_KEYCODES_DEFAULT} from '../../navcontrols/keyboard/KeyboardNavController';
 import {PointerNavController} from '../../navcontrols/pointer/PointerNavController';
+import {TouchNavController} from '../../navcontrols/touch/TouchNavController';
 import {CarouselUtils} from '../../utils/CarouselUtils';
 
 export type ItemState = {
@@ -99,6 +100,9 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
           this.navControllers.push(new KeyboardNavController(props.config.navControls.keyboard.keyMapping ? 
             props.config.navControls.keyboard.keyMapping : DEVICE_NAV_KEYCODES_DEFAULT, this));
         }
+        if (props.config.navControls.touch.enabled) {
+            this.navControllers.push(new TouchNavController(this, props.config.navControls.touch.eventBindElementId));
+        }      
         if (props.config.navControls.pointer.enabled) {
             const pointerNavController:PointerNavController = new PointerNavController(this, props.config.navControls.pointer.eventBindElementId);
             this.navControllers.push(pointerNavController);
