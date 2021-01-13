@@ -109,3 +109,10 @@ test('initial setting', async () => {
   expect(itemInView('1')).toBe(true);
   expect(getSelected()).toEqual('7');
 });
+
+test('nav left', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    expect(getSelected()).toEqual('7');
+    navLeft();
+    expect(getSelected()).toEqual('6');
+});
