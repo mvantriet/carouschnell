@@ -1,1 +1,1 @@
-export namespace Carouschnell {}
+export * from "./components/carousel/Carousel";
