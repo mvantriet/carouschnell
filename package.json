@@ -57,19 +57,21 @@
         "@semantic-release/gitlab": "^6.0.5",
         "@semantic-release/release-notes-generator": "^9.0.1",
         "@svgr/rollup": "^5.4.0",
+        "@testing-library/react": "^11.2.3",
         "@types/jest": "^26.0.15",
         "@types/lodash": "^4.14.167",
         "@types/react": "^16.9.53",
         "@types/react-dom": "^16.9.8",
         "@types/react-transition-group": "^4.4.0",
         "@types/styled-components": "^5.1.7",
-        "react": "^17.0.1",
-        "react-dom": "^17.0.1",
         "babel-core": "^6.26.3",
         "babel-runtime": "^6.26.0",
         "husky": "^4.3.0",
+        "jest-mock-extended": "^1.0.10",
         "lint-staged": "^10.4.2",
         "prettier": "^2.1.2",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
         "react-scripts": "4.0.0",
         "rollup": "^2.32.1",
         "rollup-plugin-babel": "^4.4.0",
@@ -83,11 +85,5 @@
         "*.{ts,tsx,js,jsx,json,css,html,md}": [
             "prettier --write"
         ]
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged && npm run test:ci",
-            "pre-push": "npm run test:ci"
-        }
     }
 }
