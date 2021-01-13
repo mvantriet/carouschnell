@@ -59,3 +59,10 @@ test('test selected', async () => {
   expect(itemInView('1')).toEqual(true);
   expect(getSelectedItem(container)).toEqual("1");
 });
+
+test('test in overrun', async () => {
+    ReactDOM.render(createCarouselItem(mock<INavItemActionHandler>(), 
+      false, true, false, '1'), container);
+    expect(itemInView('1')).toEqual(true);
+    expect(getSelectedItem(container)).toEqual("");
+});
