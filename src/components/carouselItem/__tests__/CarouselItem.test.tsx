@@ -6,6 +6,7 @@ import {darkStyle} from '../../../styles/defaultStyles';
 import {INavItemActionHandler} from "../../../navcontrols/common/INavItemActionHandler";
 import {mock} from 'jest-mock-extended';
 import {ReactElement} from 'react';
+import {itemInView} from '../../../../test/testUtils';
 
 let container: HTMLDivElement;
 
@@ -26,6 +27,7 @@ function createCarouselItem(navActionHandler: INavItemActionHandler, inView: boo
     caption: caption,
     url: ""
   };
+
   return <CarouselItem
           style={darkStyle.itemStyleConfig}
           navActionHandlers={[navActionHandler]}
@@ -40,6 +42,6 @@ function createCarouselItem(navActionHandler: INavItemActionHandler, inView: boo
 test('test in view', async () => {
     ReactDOM.render(createCarouselItem(mock<INavItemActionHandler>(), 
       true, false, false, '1'), container);
-    // TODO: 
+    expect(itemInView('1')).toEqual(true);
 });
 
