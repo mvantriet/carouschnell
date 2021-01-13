@@ -117,7 +117,21 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
         }
     }
     
-    private handleNavUp(offset:number): void {
+    private handleNavUp(offset:number) {
+        // TODO: Support offset > 1
+        if (offset !== 1) {
+          throw new Error('Nav offsets other than 1 are not yet supported')
+        }
+        const nofItemsInColumn = CarouselUtils.getItemsAboveRowInColumn(this.state.itemStates, 
+            this.state.activeDisplayColumn, this.state.activeDisplayRow);
+        if (nofItemsInColumn === 0) {
+          return;
+        } else if (this.enable2dNav && (nofItemsInColumn > this.state.activeDisplayRow - this.displayConfig.rowStart)) {
+          this.moveCurrentColumn(1);
+        } else {
+          this.setState({activeDisplayRow: this.state.activeDisplayRow-1});
+          this.scrollSelected();
+        }
     }
 
     private handleNavLeft(offset:number): void {
