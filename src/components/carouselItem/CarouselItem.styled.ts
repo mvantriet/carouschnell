@@ -142,4 +142,12 @@ export const CarouselItemSelectedOverlayStyled = styled.default
         border-bottom-right-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].selectionStyleConfig.bottomRadiusSize}px;
         font-size: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].selectionStyleConfig.fontSize}px;
     }
+
+    span {
+        position: relative;
+        top: 20%;
+        -webkit-transform: translateY(-20%);
+        -ms-transform: translateY(-20%);
+        transform: translateY(-20%);
+    }
 `;
