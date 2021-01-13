@@ -6,7 +6,7 @@ import {darkStyle} from '../../../styles/defaultStyles';
 import {INavItemActionHandler} from "../../../navcontrols/common/INavItemActionHandler";
 import {mock} from 'jest-mock-extended';
 import {ReactElement} from 'react';
-import {itemInView} from '../../../../test/testUtils';
+import {itemInView, getSelectedItem} from '../../../../test/testUtils';
 
 let container: HTMLDivElement;
 
@@ -43,10 +43,19 @@ test('test in view', async () => {
     ReactDOM.render(createCarouselItem(mock<INavItemActionHandler>(), 
       true, false, false, '1'), container);
     expect(itemInView('1')).toEqual(true);
+    expect(getSelectedItem(container)).toEqual("");
 });
 
 test('test out view', async () => {
-    ReactDOM.render(createCarouselItem(mock<INavItemActionHandler>(), 
-      false, false, false, '1'), container);
-    expect(itemInView('1')).toEqual(false);
+  ReactDOM.render(createCarouselItem(mock<INavItemActionHandler>(), 
+    false, false, false, '1'), container);
+  expect(itemInView('1')).toEqual(false);
+  expect(getSelectedItem(container)).toEqual("");
+});
+
+test('test selected', async () => {
+  ReactDOM.render(createCarouselItem(mock<INavItemActionHandler>(), 
+    true, false, true, '1'), container);
+  expect(itemInView('1')).toEqual(true);
+  expect(getSelectedItem(container)).toEqual("1");
 });
