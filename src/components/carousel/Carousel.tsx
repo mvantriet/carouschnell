@@ -4,8 +4,10 @@ import { CarouselItem } from "../carouselItem/CarouselItem";
 import {CarouselConfig, CarouselItemConfig, CarouselDisplayConfig, 
     CarouselStyleConfig, CarouselRowConfig} from "../../config/CarouselConfig";
 import {INavActionHandler, NAV_DIRECTION} from '../../navcontrols/common/INavActionHandler';
+import {INavItemActionHandler} from '../../navcontrols/common/INavItemActionHandler';
 import { NavController } from "../../navcontrols/common/NavController";
 import {KeyboardNavController, DEVICE_NAV_KEYCODES_DEFAULT} from '../../navcontrols/keyboard/KeyboardNavController';
+import {PointerNavController} from '../../navcontrols/pointer/PointerNavController';
 import {CarouselUtils} from '../../utils/CarouselUtils';
 
 export type ItemState = {
@@ -30,7 +32,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
     private enable2dNav: boolean;
     private styleConfig: CarouselStyleConfig;
     private navControllers: Array<NavController>;
-
+    private itemNavActionHandlers: Array<INavItemActionHandler>;
 
     constructor(props: CarouselProps) {
         super(props);
@@ -38,6 +40,9 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
         this.displayConfig = props.config.displayConfig;
         this.styleConfig = props.config.styleConfig;
         this.navControllers = [];
+        this.itemNavActionHandlers = [];
+        
+        this.initialiseNavControls(this.props);
 
         this.state = {
             activeDisplayColumn: props.config.displayConfig.initialDisplayColumn,
@@ -94,6 +99,11 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
           this.navControllers.push(new KeyboardNavController(props.config.navControls.keyboard.keyMapping ? 
             props.config.navControls.keyboard.keyMapping : DEVICE_NAV_KEYCODES_DEFAULT, this));
         }
+        if (props.config.navControls.pointer.enabled) {
+            const pointerNavController:PointerNavController = new PointerNavController(this, props.config.navControls.pointer.eventBindElementId);
+            this.navControllers.push(pointerNavController);
+            this.itemNavActionHandlers.push(pointerNavController);
+        }      
     }
 
     componentDidMount() {}
@@ -108,6 +118,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
                     this.state.itemStates.map((itemState:ItemState, index:number) => {
                     return <CarouselItem key={index.toString()}
                         style={this.styleConfig.itemStyleConfig}
+                        navActionHandlers={this.itemNavActionHandlers}
                         xNavOffset={itemState.xOffset} 
                         yNavOffset={itemState.yOffset}
                         inView={CarouselUtils.isItemInView(itemState.yOffset, itemState.xOffset, this.displayConfig)}
