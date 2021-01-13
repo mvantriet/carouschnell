@@ -190,3 +190,15 @@ test('non-active row', async () => {
     ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
     expect(itemInView('22')).toBe(false);
 });
+
+test('make active new row', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    expect(getSelected()).toEqual('7');
+    ['13','18','22'].forEach((expectedItemCaption: string) => {
+        navDown();
+        expect(getSelected()).toEqual(expectedItemCaption);
+    })
+    expect(itemInView('22')).toBe(true);
+    expect(itemInView('7')).toBe(false);
+    expect(itemInView('1')).toBe(false);
+});
