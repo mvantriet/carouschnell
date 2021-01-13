@@ -74,6 +74,29 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
                 border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].borderRadius}px;
             }
         }
+
+        @media (min-width: 1366px) {
+            height: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSizeOverrun.size.y : 
+                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size.y}px;
+            width: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSizeOverrun.size.x : 
+                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size.x}px;
+            border: ${props => props.selected ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSelectedBorderSize : 
+                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemBorderSize}px solid ${props => props.style.theme.itemSelectedBorderColor};
+            border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].borderRadius}px;
+            transform: translate(${props => (props.xNavOffset * 
+                (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size.x + 
+                 props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.margin.x)).toString()}px,
+                ${props => (props.yNavOffset * 
+                (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size.y +
+                 props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.margin.y)).toString()}px);
+            img {
+                width: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSizeOverrun.size.x : 
+                    props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size.x}px;
+                height: ${props => props.inOverrun ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSizeOverrun.size.y : 
+                    props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size.y}px;
+                border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].borderRadius}px;
+            }
+        }
     }
 `;
 
