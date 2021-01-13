@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import { screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import {CarouselItem} from '../CarouselItem';
 import {CarouselItemConfig} from '../../../config/CarouselConfig';
@@ -65,4 +66,19 @@ test('test in overrun', async () => {
       false, true, false, '1'), container);
     expect(itemInView('1')).toEqual(true);
     expect(getSelectedItem(container)).toEqual("");
+});
+
+test('test click nav action', async () => {
+    const navActionHandler = mock<INavItemActionHandler>();
+    ReactDOM.render(createCarouselItem(navActionHandler, 
+      true, false, true, '1'), container);
+    expect(itemInView('1')).toEqual(true);
+    const el:HTMLElement | null  = screen.getByRole('img', {name: '1'}).closest('.item');
+    if (el !== null) {
+      fireEvent(el, new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true
+      }))
+      expect(navActionHandler.handleItemOnClick).toHaveBeenCalled();
+    }
 });
