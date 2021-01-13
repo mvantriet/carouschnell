@@ -139,3 +139,14 @@ test('nav row limit left', async () => {
     expect(getSelected()).toEqual('6');
     expect(scrollIntoViewMock).toBeCalledTimes(0);
 });
+
+test('nav row limit right', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    expect(getSelected()).toEqual('7');
+    ['8','9','10','11','11'].forEach((expectedItemCaption: string) => {
+        navRight();
+        expect(getSelected()).toEqual(expectedItemCaption);
+    })
+    expect(scrollIntoViewMock).toBeCalled();
+});
+
