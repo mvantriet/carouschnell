@@ -102,6 +102,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
 
     private handleNavDown(offset:number): void {
         this.moveCurrentColumn(-1);
+        this.selectItemAt(this.state.activeDisplayRow+1, this.state.activeDisplayColumn);
         this.scrollSelected();
     }
 
@@ -129,6 +130,13 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
         }      
     }
 
+    private selectItemAt(row:number, column:number): void {
+        if (CarouselUtils.isItemInView(row, column, this.displayConfig)) {
+          this.setState({activeDisplayColumn: column, activeDisplayRow: row});
+          this.scrollSelected();
+        }
+    }
+    
     private scrollSelected() {
         // Refs are not well suppored in type strong typed styled components
         // Alternative is to use a forward ref or a query selection as is done below
