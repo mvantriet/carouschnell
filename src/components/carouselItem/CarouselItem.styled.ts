@@ -135,4 +135,11 @@ export const CarouselItemSelectedOverlayStyled = styled.default
         border-bottom-right-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].selectionStyleConfig.bottomRadiusSize}px;
         font-size: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].selectionStyleConfig.fontSize}px;
     }
+
+    @media (min-width: 1366px) {
+        box-shadow: 0px 0px 20px 5px ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].selectionStyleConfig.topBorderShadowSize}px; 
+        border-bottom-left-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].selectionStyleConfig.bottomRadiusSize}px;
+        border-bottom-right-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].selectionStyleConfig.bottomRadiusSize}px;
+        font-size: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].selectionStyleConfig.fontSize}px;
+    }
 `;
