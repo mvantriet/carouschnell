@@ -13,7 +13,6 @@ export type CarouselItemProps = {
 };
 
 export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (props: CarouselItemProps) => {
-
     return <CarouselItemStyled 
     className={props.selected ? "selected" : ""} 
     inView={props.inView} 
