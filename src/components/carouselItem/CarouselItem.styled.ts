@@ -97,6 +97,21 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
                 border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].borderRadius}px;
             }
         }
+
+        .item-enter {
+            opacity: 0;
+        }
+        .item-enter-active {
+            opacity: 1;
+            transition: opacity 200ms;
+        }
+        .item-exit {
+            opacity: 1;
+        }
+        .item-exit-active {
+            opacity: 0;
+            transition: opacity 200ms;
+        }
     }
 `;
 
