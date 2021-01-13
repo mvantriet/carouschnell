@@ -52,6 +52,15 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
                                                       props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].activeExtraPaddingX}px;
         height: ${props => StyleUtils.calcActiveYSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.SMALL) + 
                                                        props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].activeExtraPaddingBottom}px;
+
+        @media (min-width: 1024px) {
+            margin-top: ${props => StyleUtils.calcOverrunYSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP) - 
+                                                                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].activeExtraPaddingTop}px;  
+            width: ${props => StyleUtils.calcActiveXSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP) + 
+                                                                props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].activeExtraPaddingX}px;
+            height: ${props => StyleUtils.calcActiveYSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP) + 
+                                                           props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].activeExtraPaddingBottom}px;
+        }                                                       
     }
 `;
 export default CarouselStyled;
