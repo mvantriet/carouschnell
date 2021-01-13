@@ -174,4 +174,14 @@ test('nav column limit up', async () => {
     navUp();
     expect(getSelected()).toEqual('1');
     expect(scrollIntoViewMock).toBeCalledTimes(0);
-  });
+});
+
+test('nav column limit down', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    expect(getSelected()).toEqual('7');
+    ['13','18','22','22'].forEach((expectedItemCaption: string) => {
+        navDown();
+        expect(getSelected()).toEqual(expectedItemCaption);
+    })
+    expect(scrollIntoViewMock).toBeCalled();
+});
