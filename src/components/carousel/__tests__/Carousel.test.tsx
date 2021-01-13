@@ -7,11 +7,14 @@ import {darkStyle} from '../../../styles/defaultStyles';
 import {itemInView, getSelectedItem, keyPress} from '../../../../test/testUtils';
 
 let container: HTMLDivElement;
+let scrollIntoViewMock = jest.fn();
 
 beforeEach(() => {
   container = document.createElement('div');
   container.setAttribute("id", "root");
   document.body.appendChild(container);
+  scrollIntoViewMock = jest.fn();
+  window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
 });
 
 afterEach(() => {
@@ -115,4 +118,5 @@ test('nav left', async () => {
     expect(getSelected()).toEqual('7');
     navLeft();
     expect(getSelected()).toEqual('6');
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
 });
