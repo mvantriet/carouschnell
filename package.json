@@ -87,5 +87,11 @@
         "*.{ts,tsx,js,jsx,json,css,html,md}": [
             "prettier --write"
         ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged && npm run test:ci",
+            "pre-push": "npm run test:ci"
+        }
     }
 }
