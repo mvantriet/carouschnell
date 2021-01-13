@@ -202,3 +202,25 @@ test('make active new row', async () => {
     expect(itemInView('7')).toBe(false);
     expect(itemInView('1')).toBe(false);
 });
+
+test('nav last item', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    // Nav right as far as we can
+    let keepNavRight: boolean = true;
+    while (keepNavRight) {
+      const curSelectedItem = getSelected();
+      navRight();
+      const newSelectedItem = getSelected();
+      keepNavRight = (curSelectedItem !== newSelectedItem);
+    }
+    // Nav down as far as we can
+    let keepNavDown: boolean = true;
+    while (keepNavDown) {
+      const curSelectedItem = getSelected();
+      navDown();
+      const newSelectedItem = getSelected();
+      keepNavDown = (curSelectedItem !== newSelectedItem);
+    }
+    expect(itemInView('25')).toBe(true);
+    expect(getSelected()).toEqual('25');
+  });
