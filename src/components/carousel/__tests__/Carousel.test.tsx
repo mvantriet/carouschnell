@@ -223,4 +223,23 @@ test('nav last item', async () => {
     }
     expect(itemInView('25')).toBe(true);
     expect(getSelected()).toEqual('25');
-  });
+});
+
+test('test no scroll', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    // Nav one step right, left, up and down
+    // Since there are overrun items there should be no scroll
+    expect(getSelected()).toEqual('7');
+    navRight();
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
+    navLeft();
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
+    navLeft();
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
+    navUp();  
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
+    navDown();
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
+    navDown();
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
+});
