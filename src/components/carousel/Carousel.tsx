@@ -94,6 +94,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
     }
 
     handleNavControlSelect(row:number, column: number): void {
+        this.selectItemAt(row, column);
     }
 
     handleNavControlDeselect(): void {
