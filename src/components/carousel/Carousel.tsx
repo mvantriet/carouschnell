@@ -88,9 +88,11 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
     }
     
     handleNavControlEnterCurrentSelectionAction(): void {
+        this.handleItemAction(this.state.activeDisplayRow, this.state.activeDisplayColumn);
     }
 
     handleNavControlEnterSelectionAction(row:number, column: number): void {
+        this.handleItemAction(row, column);
     }
 
     handleNavControlSelect(row:number, column: number): void {
@@ -98,8 +100,27 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
     }
 
     handleNavControlDeselect(): void {
+        // TODO: Infer deselection based on dedicated flag rather than unreal values
         this.setState({activeDisplayColumn: -1, activeDisplayRow: -1});
     }
+
+    private handleItemAction(row:number, column: number): void {
+        if (row !== this.state.activeDisplayRow || column !== this.state.activeDisplayColumn) {
+          throw new Error("Unexpected action for non-selected item, this is not yet supported");
+        }
+        const activeItems:Array<ItemState> = this.state.itemStates.filter((itemState:ItemState) => {
+          return itemState.xOffset === this.state.activeDisplayColumn && itemState.yOffset === this.state.activeDisplayRow;
+        })
+        if (activeItems.length === 1) {
+          // TODO: Abstract action per item, only one supported now is redirect
+          window.location.href = activeItems[0].config.url;
+        } else if (activeItems.length > 1) {
+          throw new Error('Unexpected multiple active items found for: [' + 
+            this.state.activeDisplayRow.toString() + 
+            this.state.activeDisplayColumn.toString() + 
+            '] in itemStates');
+        }
+    } 
 
     private handleNavDown(offset:number) {
         // TODO: Support offset > 1
