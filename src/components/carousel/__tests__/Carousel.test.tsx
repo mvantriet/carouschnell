@@ -4,7 +4,7 @@ import {Carousel} from '../Carousel';
 import {CarouselConfig} from '../../../config/CarouselConfig';
 import {DEVICE_NAV_KEYCODES_DEFAULT} from '../../../navcontrols/keyboard/KeyboardNavController';
 import {darkStyle} from '../../../styles/defaultStyles';
-import {itemInView, getSelectedItem} from '../../../../test/testUtils';
+import {itemInView, getSelectedItem, keyPress} from '../../../../test/testUtils';
 
 let container: HTMLDivElement;
 
@@ -20,6 +20,22 @@ afterEach(() => {
 
 function getSelected(): string {
     return getSelectedItem(container);
+}
+
+function navUp(): void {
+    keyPress(container, DEVICE_NAV_KEYCODES_DEFAULT.UP);
+}
+
+function navDown(): void {
+    keyPress(container, DEVICE_NAV_KEYCODES_DEFAULT.DOWN);
+}
+
+function navLeft(): void {
+    keyPress(container, DEVICE_NAV_KEYCODES_DEFAULT.LEFT);
+}
+
+function navRight(): void {
+    keyPress(container, DEVICE_NAV_KEYCODES_DEFAULT.RIGHT);
 }
 
 const carouselTestConfig:CarouselConfig = {
