@@ -120,4 +120,12 @@ export const CarouselItemSelectedOverlayStyled = styled.default
     width: 100%;
     height: 20%;
     position: absolute;
+    box-shadow: 0px 0px 20px 5px ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].selectionStyleConfig.topBorderShadowSize}px; 
+    top: 80%;
+    left: 0;
+    color: ${props => props.style.theme.itemSelectionFontColor};
+    background-color: ${props => props.style.theme.itemSelectionBackgroundColor};
+    border-bottom-left-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].selectionStyleConfig.bottomRadiusSize}px;
+    border-bottom-right-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].selectionStyleConfig.bottomRadiusSize}px;
+    font-size: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].selectionStyleConfig.fontSize}px;
 `;
