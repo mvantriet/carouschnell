@@ -70,18 +70,22 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
 
     handleNavControlDirectionAction(direction:NAV_DIRECTION, offset:number): void {
         switch(direction) {
-          case NAV_DIRECTION.LEFT:
-            break;
-          case NAV_DIRECTION.RIGHT:
-            break;
-          case NAV_DIRECTION.UP:
-            break;
-          case NAV_DIRECTION.DOWN:
-            break;
-          default:
-            throw new Error('Unsupported NAV_DIRECTION action: ' + direction.toString());
+            case NAV_DIRECTION.LEFT:
+              this.handleNavLeft(offset);
+              break;
+            case NAV_DIRECTION.RIGHT:
+              this.handleNavRight(offset);
+              break;
+            case NAV_DIRECTION.UP:
+              this.handleNavUp(offset);
+              break;
+            case NAV_DIRECTION.DOWN:
+              this.handleNavDown(offset);
+              break;
+            default:
+              throw new Error('Unsupported NAV_DIRECTION action: ' + direction.toString());
         }
-      }
+    }
     
     handleNavControlEnterCurrentSelectionAction(): void {
     }
@@ -93,6 +97,19 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
     }
 
     handleNavControlDeselect(): void {
+
+    }
+
+    private handleNavDown(offset:number): void {
+    }
+
+    private handleNavUp(offset:number): void {
+    }
+
+    private handleNavLeft(offset:number): void {
+    }
+
+    private handleNavRight(offset:number): void {
     }
 
     private initialiseNavControls(props: CarouselProps): void {
