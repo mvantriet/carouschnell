@@ -1,0 +1,92 @@
+{
+    "name": "carouschnell",
+    "version": "0.3.1",
+    "description": "Responsive and Configurable Typescript based React component to make carousels schneller",
+    "keywords": [
+        "carousel",
+        "component",
+        "library",
+        "typescript"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mvantriet/carouschnell"
+    },
+    "author": "mvantriet",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/mvantriet/carouschnell/issues"
+    },
+    "homepage": "https://github.com/mvantriet/carouschnell",
+    "main": "dist/index.js",
+    "module": "dist/index.es.js",
+    "jsnext:main": "dist/index.es.js",
+    "files": [
+        "dist"
+    ],
+    "engines": {
+        "node": ">=8",
+        "npm": ">=5"
+    },
+    "scripts": {
+        "test": "react-scripts test",
+        "coverage": "npm test -- --coverage",
+        "build": "rollup -c",
+        "start": "rollup -c -w",
+        "prepare": "npm run build"
+    },
+    "dependencies": {
+        "lodash": "^4.17.20",
+        "react-transition-group": "^4.4.1",
+        "styled-components": "^5.2.1"
+    },
+    "peerDependencies": {
+        "react": ">=17.0.1",
+        "react-dom": ">=17.0.1"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^11.0.0",
+        "@commitlint/config-conventional": "^11.0.0",
+        "@rollup/plugin-commonjs": "^15.1.0",
+        "@rollup/plugin-node-resolve": "^9.0.0",
+        "@rollup/plugin-url": "^5.0.1",
+        "@semantic-release/changelog": "^5.0.1",
+        "@semantic-release/commit-analyzer": "^8.0.1",
+        "@semantic-release/git": "^9.0.0",
+        "@semantic-release/gitlab": "^6.0.5",
+        "@semantic-release/release-notes-generator": "^9.0.1",
+        "@svgr/rollup": "^5.4.0",
+        "@types/jest": "^26.0.15",
+        "@types/lodash": "^4.14.167",
+        "@types/react": "^16.9.53",
+        "@types/react-dom": "^16.9.8",
+        "@types/react-transition-group": "^4.4.0",
+        "@types/styled-components": "^5.1.7",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "babel-core": "^6.26.3",
+        "babel-runtime": "^6.26.0",
+        "husky": "^4.3.0",
+        "lint-staged": "^10.4.2",
+        "prettier": "^2.1.2",
+        "react-scripts": "4.0.0",
+        "rollup": "^2.32.1",
+        "rollup-plugin-babel": "^4.4.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "rollup-plugin-postcss": "^3.1.8",
+        "rollup-plugin-typescript2": "^0.28.0",
+        "semantic-release": "^17.2.1",
+        "typescript": "~4.0.3"
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js,jsx,json,css,html,md}": [
+            "prettier --write"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged && npm test",
+            "pre-push": "npm test"
+        }
+    }
+}
