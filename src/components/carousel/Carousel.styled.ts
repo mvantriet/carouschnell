@@ -31,5 +31,14 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
         border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].borderRadiusSizeOverrun}px;
         border: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].borderSizeOverrun}px solid ${props => props.style.theme.borderColorOverrun};
     }
+
+    @media (min-width: 1366px) {
+        padding-left: ${props => StyleUtils.calcOverrunXSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN) + 
+                                 props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].overrunExtraPaddingY}px;
+        width: ${props => StyleUtils.calcXSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN)}px;
+        height: ${props => StyleUtils.calcYSpace(props.style.itemStyleConfig, props.display, CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN)}px;    
+        border-radius: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].borderRadiusSizeOverrun}px;
+        border: ${props => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].borderSizeOverrun}px solid ${props => props.style.theme.borderColorOverrun};
+    }
 `;
 export default CarouselStyled;
