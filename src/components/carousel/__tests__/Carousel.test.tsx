@@ -185,3 +185,8 @@ test('nav column limit down', async () => {
     })
     expect(scrollIntoViewMock).toBeCalled();
 });
+
+test('non-active row', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    expect(itemInView('22')).toBe(false);
+});
