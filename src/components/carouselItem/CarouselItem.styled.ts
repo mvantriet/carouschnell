@@ -1,8 +1,22 @@
 import * as styled from "styled-components";
+import {CarouselItemStyleConfig, CAROUSEL_STYLE_MEDIA_TYPE} from '../../config/CarouselConfig';
 
 export type CarouselItemStyledProps = {};
 
-export type CarouselItemSelectedOverlayStyledProps = {};
+export type CarouselItemSelectedOverlayStyledProps = {
+    selected:boolean,
+    inView: boolean,
+    inOverrun: boolean,
+    xNavOffset:number,
+    yNavOffset: number,
+    thumbnailUrl: string,
+    style: CarouselItemStyleConfig
+};
+
+export type GridItemSelectedOverlayStyledProps = {
+    // TODO: Split into separate config
+    style: CarouselItemStyleConfig
+}
 
 export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
 `;
