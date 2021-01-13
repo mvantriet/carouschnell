@@ -4,6 +4,8 @@ import { CarouselItem } from "../carouselItem/CarouselItem";
 import {CarouselConfig, CarouselItemConfig, CarouselDisplayConfig, 
     CarouselStyleConfig, CarouselRowConfig} from "../../config/CarouselConfig";
 import {INavActionHandler, NAV_DIRECTION} from '../../navcontrols/common/INavActionHandler';
+import { NavController } from "../../navcontrols/common/NavController";
+import {KeyboardNavController, DEVICE_NAV_KEYCODES_DEFAULT} from '../../navcontrols/keyboard/KeyboardNavController';
 import {CarouselUtils} from '../../utils/CarouselUtils';
 
 export type ItemState = {
@@ -27,14 +29,16 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
     private displayConfig: CarouselDisplayConfig;
     private enable2dNav: boolean;
     private styleConfig: CarouselStyleConfig;
-  
+    private navControllers: Array<NavController>;
+
 
     constructor(props: CarouselProps) {
         super(props);
         this.enable2dNav = props.config.navControls.enable2dNav;
         this.displayConfig = props.config.displayConfig;
         this.styleConfig = props.config.styleConfig;
-    
+        this.navControllers = [];
+
         this.state = {
             activeDisplayColumn: props.config.displayConfig.initialDisplayColumn,
             activeDisplayRow: props.config.displayConfig.initialDisplayRow,
@@ -73,40 +77,47 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
         }
       }
     
-      handleNavControlEnterCurrentSelectionAction(): void {
-      }
-    
-      handleNavControlEnterSelectionAction(row:number, column: number): void {
-      }
-    
-      handleNavControlSelect(row:number, column: number): void {
-      }
-    
-      handleNavControlDeselect(): void {
-      }
+    handleNavControlEnterCurrentSelectionAction(): void {
+    }
+
+    handleNavControlEnterSelectionAction(row:number, column: number): void {
+    }
+
+    handleNavControlSelect(row:number, column: number): void {
+    }
+
+    handleNavControlDeselect(): void {
+    }
+
+    private initialiseNavControls(props: CarouselProps): void {
+        if (props.config.navControls.keyboard.enabled) {
+          this.navControllers.push(new KeyboardNavController(props.config.navControls.keyboard.keyMapping ? 
+            props.config.navControls.keyboard.keyMapping : DEVICE_NAV_KEYCODES_DEFAULT, this));
+        }
+    }
 
     componentDidMount() {}
 
     render() {
     return <CarouselStyled
-        style={this.styleConfig}
-        display={this.displayConfig}
-      >
-      <div className="grid">
-      {
-            this.state.itemStates.map((itemState:ItemState, index:number) => {
-              return <CarouselItem key={index.toString()}
-                style={this.styleConfig.itemStyleConfig}
-                xNavOffset={itemState.xOffset} 
-                yNavOffset={itemState.yOffset}
-                inView={CarouselUtils.isItemInView(itemState.yOffset, itemState.xOffset, this.displayConfig)}
-                inOverrun={CarouselUtils.isItemInOverrun(itemState, this.displayConfig).result}
-                selected={CarouselUtils.isItemSelected(itemState, this.state.activeDisplayRow, this.state.activeDisplayColumn)} 
-                config={itemState.config} />
-            })
-          }
-      <div id="grid-inner" className="grid-inner"/>
-    </div>
-  </CarouselStyled>
+                style={this.styleConfig}
+                display={this.displayConfig}
+            >
+            <div className="grid">
+            {
+                    this.state.itemStates.map((itemState:ItemState, index:number) => {
+                    return <CarouselItem key={index.toString()}
+                        style={this.styleConfig.itemStyleConfig}
+                        xNavOffset={itemState.xOffset} 
+                        yNavOffset={itemState.yOffset}
+                        inView={CarouselUtils.isItemInView(itemState.yOffset, itemState.xOffset, this.displayConfig)}
+                        inOverrun={CarouselUtils.isItemInOverrun(itemState, this.displayConfig).result}
+                        selected={CarouselUtils.isItemSelected(itemState, this.state.activeDisplayRow, this.state.activeDisplayColumn)} 
+                        config={itemState.config} />
+                    })
+                }
+            <div id="grid-inner" className="grid-inner"/>
+            </div>
+        </CarouselStyled>
     }
 }
