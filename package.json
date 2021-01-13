@@ -57,6 +57,7 @@
         "@semantic-release/gitlab": "^6.0.5",
         "@semantic-release/release-notes-generator": "^9.0.1",
         "@svgr/rollup": "^5.4.0",
+        "@testing-library/jest-dom": "^5.11.9",
         "@testing-library/react": "^11.2.3",
         "@types/jest": "^26.0.15",
         "@types/lodash": "^4.14.167",
