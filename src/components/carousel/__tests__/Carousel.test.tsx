@@ -157,3 +157,11 @@ test('nav up', async () => {
     expect(getSelected()).toEqual('1');
     expect(scrollIntoViewMock).toBeCalledTimes(0);
 });
+
+test('nav down', async () => {
+    ReactDOM.render(<Carousel config={carouselTestConfig}/>, container);
+    expect(getSelected()).toEqual('7');
+    navDown();
+    expect(getSelected()).toEqual('13');
+    expect(scrollIntoViewMock).toBeCalledTimes(0);
+});
