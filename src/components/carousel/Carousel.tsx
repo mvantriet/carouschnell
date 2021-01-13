@@ -98,7 +98,7 @@ export class Carousel extends React.Component<CarouselProps, CarouselState> impl
     }
 
     handleNavControlDeselect(): void {
-
+        this.setState({activeDisplayColumn: -1, activeDisplayRow: -1});
     }
 
     private handleNavDown(offset:number) {
