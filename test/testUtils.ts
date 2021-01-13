@@ -8,3 +8,15 @@ export function itemInView(name: string): boolean {
       return false;
     }
 }
+
+export function getSelectedItem(container: HTMLElement): string {
+    const selected = container.querySelector('.selected > .item > img');
+    if (selected) {
+        const alt = selected.getAttribute('alt');
+        if (alt) {
+            return alt;
+        }
+        return "";
+    }
+    return "";
+}
