@@ -22,11 +22,11 @@ export type CarouselDisplayConfig = {
 };
 
 export type DEVICE_NAV_KEYCODES = {
-    UP: number;
-    DOWN: number;
-    LEFT: number;
-    RIGHT: number;
-    ENTER: number;
+    UP: Array<number>;
+    DOWN: Array<number>;
+    LEFT: Array<number>;
+    RIGHT: Array<number>;
+    ENTER: Array<number>;
 };
 
 export type NavControlKeyBoardConfig = {
