@@ -4,10 +4,10 @@ import { INavActionHandler } from "../common/INavActionHandler";
 import { NAV_DIRECTION } from "../common/INavActionHandler";
 
 export const DEVICE_NAV_KEYCODES_DEFAULT: DEVICE_NAV_KEYCODES = {
-    LEFT: [37],
-    UP: [38],
-    RIGHT: [39],
-    DOWN: [40],
+    LEFT: [37, 65],
+    UP: [38, 87],
+    RIGHT: [39, 68],
+    DOWN: [40, 83],
     ENTER: [13],
 };
 
