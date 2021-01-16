@@ -1,7 +1,6 @@
-import {INavActionHandler} from "./INavActionHandler";
+import { INavActionHandler } from "./INavActionHandler";
 
 export abstract class NavController {
-
     protected handler: INavActionHandler;
 
     constructor(handler: INavActionHandler) {
@@ -9,5 +8,4 @@ export abstract class NavController {
     }
 
     abstract init(): void;
-
 }

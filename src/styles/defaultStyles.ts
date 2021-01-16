@@ -1,45 +1,49 @@
-import {CarouselStyleConfig, CarouselItemStyleConfigMediaTypes, 
-    CarouselStyleConfigMediaTypes, CarouselStyleConfigItemSize,
-    CAROUSEL_STYLE_MEDIA_TYPE} from '../config/CarouselConfig';
+import {
+    CarouselStyleConfig,
+    CarouselItemStyleConfigMediaTypes,
+    CarouselStyleConfigMediaTypes,
+    CarouselStyleConfigItemSize,
+    CAROUSEL_STYLE_MEDIA_TYPE,
+} from "../config/CarouselConfig";
 
 /**
  * Dark style
  */
 
-const defaultItemSizeSmall:CarouselStyleConfigItemSize = {
+const defaultItemSizeSmall: CarouselStyleConfigItemSize = {
     size: {
         x: 100,
-        y: 75
+        y: 75,
     },
     margin: {
         x: 10,
-        y: 10
-    }
-}; 
+        y: 10,
+    },
+};
 
-const defaultItemSizeDesktop:CarouselStyleConfigItemSize = {
+const defaultItemSizeDesktop: CarouselStyleConfigItemSize = {
     size: {
         x: 200,
-        y: 150
+        y: 150,
     },
     margin: {
         x: 20,
-        y: 20
-    }
+        y: 20,
+    },
 };
 
-const defaultItemSizeBigscreen:CarouselStyleConfigItemSize = {
+const defaultItemSizeBigscreen: CarouselStyleConfigItemSize = {
     size: {
         x: 200,
-        y: 150
+        y: 150,
     },
     margin: {
         x: 20,
-        y: 20
-    }
+        y: 20,
+    },
 };
 
-const defaultStyleMediaTypes:CarouselStyleConfigMediaTypes = [];
+const defaultStyleMediaTypes: CarouselStyleConfigMediaTypes = [];
 defaultStyleMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
     borderSizeActive: 1,
     borderRadiusSizeActive: 25,
@@ -76,7 +80,7 @@ defaultStyleMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
     activeExtraPaddingBottom: 25,
 };
 
-const defaultStyleItemMediaTypes:CarouselItemStyleConfigMediaTypes = [];
+const defaultStyleItemMediaTypes: CarouselItemStyleConfigMediaTypes = [];
 defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
     itemSelectionFontSize: 14,
     itemBorderSize: 1,
@@ -85,19 +89,19 @@ defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
     itemSize: defaultItemSizeSmall,
     itemSizeOverrun: {
         size: {
-            x: defaultItemSizeSmall.size.x-32,
-            y: defaultItemSizeSmall.size.y-24
+            x: defaultItemSizeSmall.size.x - 32,
+            y: defaultItemSizeSmall.size.y - 24,
         },
         margin: {
             x: defaultItemSizeSmall.margin.x,
-            y: defaultItemSizeSmall.margin.y
-        }
+            y: defaultItemSizeSmall.margin.y,
+        },
     },
     selectionStyleConfig: {
         bottomRadiusSize: 20,
         fontSize: 10,
-        topBorderShadowSize: 20
-    }
+        topBorderShadowSize: 20,
+    },
 };
 defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
     itemSelectionFontSize: 14,
@@ -107,18 +111,18 @@ defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
     itemSize: defaultItemSizeBigscreen,
     itemSizeOverrun: {
         size: {
-            x: defaultItemSizeBigscreen.size.x-64,
-            y: defaultItemSizeBigscreen.size.y-48
+            x: defaultItemSizeBigscreen.size.x - 64,
+            y: defaultItemSizeBigscreen.size.y - 48,
         },
         margin: {
             x: defaultItemSizeBigscreen.margin.x,
-            y: defaultItemSizeBigscreen.margin.y
-        }
+            y: defaultItemSizeBigscreen.margin.y,
+        },
     },
     selectionStyleConfig: {
         bottomRadiusSize: 20,
         fontSize: 16,
-        topBorderShadowSize: 20
+        topBorderShadowSize: 20,
     },
 };
 defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP] = {
@@ -129,25 +133,25 @@ defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP] = {
     itemSize: defaultItemSizeDesktop,
     itemSizeOverrun: {
         size: {
-            x: defaultItemSizeDesktop.size.x-32,
-            y: defaultItemSizeDesktop.size.y-24
+            x: defaultItemSizeDesktop.size.x - 32,
+            y: defaultItemSizeDesktop.size.y - 24,
         },
         margin: {
             x: defaultItemSizeDesktop.margin.x,
-            y: defaultItemSizeDesktop.margin.y
-        }
+            y: defaultItemSizeDesktop.margin.y,
+        },
     },
     selectionStyleConfig: {
         bottomRadiusSize: 20,
         fontSize: 16,
-        topBorderShadowSize: 20
-    }
+        topBorderShadowSize: 20,
+    },
 };
 
 /**
  * Dark style
  */
-export const darkStyle:CarouselStyleConfig = {
+export const darkStyle: CarouselStyleConfig = {
     itemStyleConfig: {
         theme: {
             itemBorderColor: "white",
@@ -157,9 +161,9 @@ export const darkStyle:CarouselStyleConfig = {
             itemSelectionFontColor: "white",
             itemSelectionBackgroundColor: "black",
             itemSelectionForegroundColor: "white",
-            itemInOverrunOpacity: 60
+            itemInOverrunOpacity: 60,
         },
-        mediaTypes: defaultStyleItemMediaTypes
+        mediaTypes: defaultStyleItemMediaTypes,
     },
     theme: {
         backgroundColorActive: "black",
@@ -167,9 +171,9 @@ export const darkStyle:CarouselStyleConfig = {
         backgroundColorOverrun: "black",
         borderColorOverrun: "green",
         fontFamily: "muli, sans-serif",
-        fontWeight: 300
+        fontWeight: 300,
     },
-    mediaTypes: defaultStyleMediaTypes
+    mediaTypes: defaultStyleMediaTypes,
 };
 
 /**

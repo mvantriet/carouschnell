@@ -3,13 +3,13 @@ export enum NAV_DIRECTION {
     RIGHT,
     UP,
     DOWN,
-    NA
+    NA,
 }
 
 export interface INavActionHandler {
-    handleNavControlDirectionAction(direction:NAV_DIRECTION, offset:number): void;
+    handleNavControlDirectionAction(direction: NAV_DIRECTION, offset: number): void;
     handleNavControlEnterCurrentSelectionAction(): void;
-    handleNavControlEnterSelectionAction(row:number, column: number): void;
-    handleNavControlSelect(row:number, column: number): void;
+    handleNavControlEnterSelectionAction(row: number, column: number): void;
+    handleNavControlSelect(row: number, column: number): void;
     handleNavControlDeselect(): void;
 }

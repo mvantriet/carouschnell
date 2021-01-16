@@ -1,13 +1,12 @@
-import {NavController} from "../common/NavController";
-import {INavActionHandler} from "../common/INavActionHandler";
-import {NAV_DIRECTION} from "../common/INavActionHandler";
-const bsl = require('body-scroll-lock');
+import { NavController } from "../common/NavController";
+import { INavActionHandler } from "../common/INavActionHandler";
+import { NAV_DIRECTION } from "../common/INavActionHandler";
+const bsl = require("body-scroll-lock");
 
 export class TouchNavController extends NavController {
-
-    private xDown:number;
-    private yDown:number;    
-    private waitForStart:boolean;
+    private xDown: number;
+    private yDown: number;
+    private waitForStart: boolean;
     private touchEventsRegistered: boolean;
     private swipeInTouchSequence: boolean;
     private nofTouchSequencesWithoutSwipe: number;
@@ -46,7 +45,12 @@ export class TouchNavController extends NavController {
         document.addEventListener("touchmove", (evt: TouchEvent) => {
             evt.preventDefault();
             evt.stopPropagation();
-            this.processSwipe(this.xDown, this.yDown, evt.touches[0].clientX, evt.touches[0].clientY);
+            this.processSwipe(
+                this.xDown,
+                this.yDown,
+                evt.touches[0].clientX,
+                evt.touches[0].clientY
+            );
             this.swipeInTouchSequence = true;
         });
         document.addEventListener("touchend", (evt: TouchEvent) => {
@@ -66,23 +70,23 @@ export class TouchNavController extends NavController {
                 }
             }
             this.lastTouchEndTimestamp = new Date().getTime();
-        }); 
+        });
     }
 
-    private processSwipe(xStart:number, yStart:number, xMove:number, yMove:number): void {
+    private processSwipe(xStart: number, yStart: number, xMove: number, yMove: number): void {
         if (this.waitForStart) {
             return;
         }
-        const xDiff:number = xStart - xMove;
-        const yDiff:number = yStart - yMove;
-        if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
-            if ( xDiff > 0 ) {
+        const xDiff: number = xStart - xMove;
+        const yDiff: number = yStart - yMove;
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+            if (xDiff > 0) {
                 this.handler.handleNavControlDirectionAction(NAV_DIRECTION.RIGHT, 1);
             } else {
                 this.handler.handleNavControlDirectionAction(NAV_DIRECTION.LEFT, 1);
             }
         } else {
-            if ( yDiff > 0 ) {
+            if (yDiff > 0) {
                 this.handler.handleNavControlDirectionAction(NAV_DIRECTION.DOWN, 1);
             } else {
                 this.handler.handleNavControlDirectionAction(NAV_DIRECTION.UP, 1);
