@@ -179,3 +179,8 @@ export const darkStyle: CarouselStyleConfig = {
 /**
  * TODO: Light style
  */
+
+export const defaultStyles = {
+    darkStyle: darkStyle,
+    // Add new default styles here
+};
