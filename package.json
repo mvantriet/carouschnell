@@ -33,7 +33,9 @@
         "test:ci": "CI=true react-scripts test --passWithNoTests",
         "coverage": "npm test -- --coverage",
         "build": "rollup -c",
+        "build:example": "(cd example && npm ci && npm run build)",
         "start": "rollup -c -w",
+        "start:example": "(cd example && npm ci && npm start)",
         "prepare": "npm run build"
     },
     "dependencies": {
