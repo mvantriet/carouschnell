@@ -36,6 +36,25 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
             props.inOverrun
                 ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSizeOverrun.size.x
                 : props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.x}px;
+        margin-top: ${(props) =>
+            props.inOverrun
+                ? Math.floor(
+                      (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.y -
+                          props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSizeOverrun
+                              .size.y) /
+                          2
+                  )
+                : 0}px;
+        margin-left: ${(props) =>
+            props.inOverrun
+                ? Math.floor(
+                      (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.x -
+                          props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSizeOverrun
+                              .size.x) /
+                          2
+                  )
+                : 0}px;
+
         background-color: ${(props) => props.style.theme.itemBackgroundColor};
         border-radius: ${(props) =>
             props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].borderRadius}px;
@@ -83,6 +102,27 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
                     ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSizeOverrun.size
                           .x
                     : props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size.x}px;
+            margin-top: ${(props) =>
+                props.inOverrun
+                    ? Math.floor(
+                          (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size
+                              .y -
+                              props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP]
+                                  .itemSizeOverrun.size.y) /
+                              2
+                      )
+                    : 0}px;
+            margin-left: ${(props) =>
+                props.inOverrun
+                    ? Math.floor(
+                          (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size
+                              .x -
+                              props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP]
+                                  .itemSizeOverrun.size.x) /
+                              2
+                      )
+                    : 0}px;
+
             border: ${(props) =>
                 props.selected
                     ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP]
@@ -136,6 +176,26 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
                           .size.x
                     : props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size
                           .x}px;
+            margin-top: ${(props) =>
+                props.inOverrun
+                    ? Math.floor(
+                          (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size
+                              .y -
+                              props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN]
+                                  .itemSizeOverrun.size.y) /
+                              2
+                      )
+                    : 0}px;
+            margin-left: ${(props) =>
+                props.inOverrun
+                    ? Math.floor(
+                          (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size
+                              .x -
+                              props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN]
+                                  .itemSizeOverrun.size.x) /
+                              2
+                      )
+                    : 0}px;
             border: ${(props) =>
                 props.selected
                     ? props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN]
