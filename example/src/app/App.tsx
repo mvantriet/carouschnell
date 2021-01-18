@@ -78,7 +78,7 @@ function App() {
             },
             pointer: {
                 enabled: true,
-                eventBindElementId: "content",
+                eventBindElementId: "carousel",
             },
             touch: {
                 enabled: true,
@@ -92,7 +92,7 @@ function App() {
         <div className="App">
             <h1>Welcome!</h1>
             <p>Navigation controls: LRUD | WASD | Mouse | Swipe Up and Down</p>
-            <div className="content">
+            <div className="content" id="carousel">
                 <carouschnell.Carousel config={config} />
             </div>
         </div>
