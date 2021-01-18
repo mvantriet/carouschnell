@@ -1,3 +1,15 @@
 #root {
     background-color: black;
+    color: white;
+}
+
+.App {
+    height: 100%;
+    width: 670px;
+    background-color: black;
+}
+@media (min-width: 1024px) {
+    .App {
+        width: 100%;
+    }
 }
