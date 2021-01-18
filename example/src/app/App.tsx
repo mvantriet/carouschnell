@@ -77,11 +77,11 @@ function App() {
                 keyMapping: carouschnell.DEVICE_NAV_KEYCODES_DEFAULT,
             },
             pointer: {
-                enabled: false,
+                enabled: true,
                 eventBindElementId: "content",
             },
             touch: {
-                enabled: false,
+                enabled: true,
                 eventBindElementId: "root",
             },
         },
@@ -90,6 +90,8 @@ function App() {
 
     return (
         <div className="App">
+            <h1>Welcome!</h1>
+            <p>Navigation controls: LRUD | WASD | Mouse | Swipe Up and Down</p>
             <div className="content">
                 <carouschnell.Carousel config={config} />
             </div>
