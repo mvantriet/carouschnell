@@ -3,7 +3,6 @@ import "./App.css";
 import * as carouschnell from "../../../src/index";
 
 function App() {
-
     const [itemWidth, itemHeight] = _getMaxItemDimensions();
 
     const config: any = {
@@ -117,7 +116,7 @@ function _getMaxItemDimensions(): Array<number> {
         if (itemStyles[mediaType].itemSize.size.y > maxHeight) {
             maxHeight = itemStyles[mediaType].itemSize.size.y;
         }
-    })
+    });
     maxWidth = maxWidth !== 0 ? maxWidth : defaultWidth;
     maxHeight = maxHeight !== 0 ? maxHeight : defaultHeight;
 
@@ -125,7 +124,9 @@ function _getMaxItemDimensions(): Array<number> {
 }
 
 function _randomthumbnail(width: number, height: number): string {
-    return `https://picsum.photos/${width}/${height}?image=${Math.floor(Math.random() * 100).toString()}`;
+    return `https://picsum.photos/${width}/${height}?image=${Math.floor(
+        Math.random() * 40
+    ).toString()}`;
 }
 
 export default App;
