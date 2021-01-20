@@ -30,7 +30,7 @@
     },
     "scripts": {
         "test": "react-scripts test",
-        "test:ci": "CI=true react-scripts test --passWithNoTests",
+        "test:ci": "CI=true react-scripts test",
         "coverage": "npm test -- --coverage",
         "build": "rollup -c",
         "build:example": "(cd example && npm ci && npm run build)",
