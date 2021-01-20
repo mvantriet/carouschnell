@@ -2,7 +2,8 @@
 
 Responsive and Configurable Typescript based React component to make carousels schnell (=quickly in German)
 
-![](doc/img/1dnav.gif)
+<div align="center"><img src="doc/img/1dnav.gif" alt="1dnav"
+	title="1D Navigation with Carouschnell" width="500" height="266" /></div>
 
 ## Motivation
 
