@@ -129,6 +129,11 @@ Using the example values as provided in comment in the code block above would re
 
 ### 2D Nav
 
+Carouschnell provides an option to enable 2D navigation. This means overrun exists in 2 dimensions, both in columns and rows. The picture above shows this concept, so does the example project that is part of this repo. 2D nav can be easily turned on or off through the CarouselConfig, see _navControls.enable2dNav_. When 2D navigation is turned off overrun is only supported in the column direction (left to right). This means that it does not make sense to define a _DisplayConfig_ referring to rows outside of the active area when having 2D navigation disabled. The gif below demonstrates 2D navigation.
+
+<div align="center"><img src="doc/img/2dnav.gif" alt="2Dnav"
+	title="2D Navigation with Carouschnell"/></div>
+
 ### Style
 
 # Examples
@@ -143,10 +148,6 @@ npm run start:example
 This will use react-app-rewired to wire the example with the carouschnell source code that is checked out locally on your machine. As such, changes you make locally will be automatically reflected in the example.
 
 In the subsections below you can find some examples of configurations showing what behaviour can be configured with carouschnell.
-
-## 1D nav
-
-## 2D nav
 
 # Device support
 
