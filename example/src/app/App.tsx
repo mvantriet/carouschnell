@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import * as carouschnell from "../../../src/index";
+import { string } from "prop-types";
 
 function App() {
     const [itemWidth, itemHeight] = _getMaxItemDimensions();
@@ -11,54 +12,150 @@ function App() {
                 initialColumn: 3,
                 label: "Row1",
                 items: [
-                    { caption: "4", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "3", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "2", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "1", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
+                    {
+                        caption: "4",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "4"),
+                        url: "",
+                    },
+                    {
+                        caption: "3",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "3"),
+                        url: "",
+                    },
+                    {
+                        caption: "2",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "2"),
+                        url: "",
+                    },
+                    {
+                        caption: "1",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "1"),
+                        url: "",
+                    },
                 ],
             },
             {
                 initialColumn: 4,
                 label: "Row2",
                 items: [
-                    { caption: "11", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "10", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "9", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "8", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "7", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "6", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
+                    {
+                        caption: "11",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "11"),
+                        url: "",
+                    },
+                    {
+                        caption: "10",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "10"),
+                        url: "",
+                    },
+                    {
+                        caption: "9",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "9"),
+                        url: "",
+                    },
+                    {
+                        caption: "8",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "8"),
+                        url: "",
+                    },
+                    {
+                        caption: "7",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "7"),
+                        url: "",
+                    },
+                    {
+                        caption: "6",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "6"),
+                        url: "",
+                    },
                 ],
             },
             {
                 initialColumn: 4,
                 label: "Row3",
                 items: [
-                    { caption: "17", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "16", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "15", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "14", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "13", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "12", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
+                    {
+                        caption: "17",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "17"),
+                        url: "",
+                    },
+                    {
+                        caption: "16",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "16"),
+                        url: "",
+                    },
+                    {
+                        caption: "15",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "15"),
+                        url: "",
+                    },
+                    {
+                        caption: "14",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "14"),
+                        url: "",
+                    },
+                    {
+                        caption: "13",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "13"),
+                        url: "",
+                    },
+                    {
+                        caption: "12",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "12"),
+                        url: "",
+                    },
                 ],
             },
             {
                 initialColumn: 3,
                 label: "Row4",
                 items: [
-                    { caption: "21", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "20", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "19", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "18", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
+                    {
+                        caption: "21",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "21"),
+                        url: "",
+                    },
+                    {
+                        caption: "20",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "20"),
+                        url: "",
+                    },
+                    {
+                        caption: "19",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "19"),
+                        url: "",
+                    },
+                    {
+                        caption: "18",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "18"),
+                        url: "",
+                    },
                 ],
             },
             {
                 initialColumn: 3,
                 label: "Row5",
                 items: [
-                    { caption: "25", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "24", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "23", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
-                    { caption: "22", thumbnail: _randomthumbnail(itemWidth, itemHeight), url: "" },
+                    {
+                        caption: "25",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "25"),
+                        url: "",
+                    },
+                    {
+                        caption: "24",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "24"),
+                        url: "",
+                    },
+                    {
+                        caption: "23",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "23"),
+                        url: "",
+                    },
+                    {
+                        caption: "22",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "22"),
+                        url: "",
+                    },
                 ],
             },
         ],
@@ -123,10 +220,8 @@ function _getMaxItemDimensions(): Array<number> {
     return [maxWidth, maxHeight];
 }
 
-function _randomthumbnail(width: number, height: number): string {
-    return `https://picsum.photos/${width}/${height}?image=${Math.floor(
-        Math.random() * 40
-    ).toString()}`;
+function _randomthumbnail(width: number, height: number, label: string): string {
+    return `https://dummyimage.com/${width}x${height}/ffffff?text=${label}`;
 }
 
 export default App;
