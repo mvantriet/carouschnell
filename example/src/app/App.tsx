@@ -38,11 +38,6 @@ function App() {
                 label: "Row2",
                 items: [
                     {
-                        caption: "11",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "11"),
-                        url: "",
-                    },
-                    {
                         caption: "10",
                         thumbnail: _randomthumbnail(itemWidth, itemHeight, "10"),
                         url: "",
@@ -67,17 +62,17 @@ function App() {
                         thumbnail: _randomthumbnail(itemWidth, itemHeight, "6"),
                         url: "",
                     },
+                    {
+                        caption: "5",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "5"),
+                        url: "",
+                    },
                 ],
             },
             {
                 initialColumn: 4,
                 label: "Row3",
                 items: [
-                    {
-                        caption: "17",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "17"),
-                        url: "",
-                    },
                     {
                         caption: "16",
                         thumbnail: _randomthumbnail(itemWidth, itemHeight, "16"),
@@ -103,17 +98,17 @@ function App() {
                         thumbnail: _randomthumbnail(itemWidth, itemHeight, "12"),
                         url: "",
                     },
+                    {
+                        caption: "11",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "11"),
+                        url: "",
+                    },
                 ],
             },
             {
                 initialColumn: 3,
                 label: "Row4",
                 items: [
-                    {
-                        caption: "21",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "21"),
-                        url: "",
-                    },
                     {
                         caption: "20",
                         thumbnail: _randomthumbnail(itemWidth, itemHeight, "20"),
@@ -129,17 +124,17 @@ function App() {
                         thumbnail: _randomthumbnail(itemWidth, itemHeight, "18"),
                         url: "",
                     },
+                    {
+                        caption: "17",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "17"),
+                        url: "",
+                    },
                 ],
             },
             {
                 initialColumn: 3,
                 label: "Row5",
                 items: [
-                    {
-                        caption: "25",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "25"),
-                        url: "",
-                    },
                     {
                         caption: "24",
                         thumbnail: _randomthumbnail(itemWidth, itemHeight, "24"),
@@ -153,6 +148,11 @@ function App() {
                     {
                         caption: "22",
                         thumbnail: _randomthumbnail(itemWidth, itemHeight, "22"),
+                        url: "",
+                    },
+                    {
+                        caption: "21",
+                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "21"),
                         url: "",
                     },
                 ],
