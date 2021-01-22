@@ -107,6 +107,26 @@ Carouschnell offers a versatile and customisable Carousel component. In order to
 
 ### Active/Overrun
 
+Each item that is displayed in each row and column of the carousel can be within the _active_ or _overrun_ view. The active view shows the items that are displayed to the user and wherein navigation is possbiel. The overrun view shows the items that fall outside the definition of the active view but are yet made visible in a specific way to the user, for example to indicate more items in certain navigational directions of the carousel. To configure this behaviour the developer must populate the _displayConfig_ field of the CarouselConfig. The type definition for the displayConfig can be found below, together with example values in comment.
+
+```typescript
+type CarouselDisplayConfig = {
+    rowStart: number; // 1
+    rowEnd: number; // 2
+    rowOverrun: number; // 1
+    columnStart: number; // 0
+    columnEnd: number; // 3
+    columnOverrun: number; // 1
+    initialDisplayRow: number; // 1
+    initialDisplayColumn: number; // 0
+};
+```
+
+Using the example values as provided in comment in the code block above would render a carousel grid as shown in the picture below. The active view uses a green background color, the overrun uses a blue background color. Note that a sufficient amount of carousel items must be provided through the config. It would not make sense to define row or column ranges that do not match the provided amount of items.
+
+<div align="center"><img src="doc/img/displayconfig.gif" alt="displayconfig"
+	title="DisplayConfig explanation of Carouschnell"/></div>
+
 ### 2D Nav
 
 ### Style
