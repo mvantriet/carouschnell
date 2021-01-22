@@ -12,7 +12,7 @@ I was in need of a component that could serve kind of like a navigable homescree
 # Installation
 
 ```bash
-TODO
+npm install carouschnell
 ```
 
 # Usage
@@ -135,9 +135,11 @@ Carouschnell provides an option to enable 2D navigation. This means overrun exis
 	title="2D Navigation with Carouschnell"/></div>
 
 ## Style
+
 The style for every aspect of the carousels can be configured through the CarouselConfig. Please consult the See the type definitions related to the style attribute of the See [CarouselConfig](src/config/CarouselConfig.ts) of this repo.
 
 ### Responsive
+
 Carouschell responsiveness is based on three breakpoints: small (767), desktop (1024) and large (1366). Using the JS-CSS config definitions of the CarouselConfig you can define the item and border sizes that are applicable for a particular breakpoint.
 
 <div align="center"><img src="doc/img/responsive.gif" alt="responsiveness"
@@ -170,13 +172,14 @@ const defaultItemSizeDesktop: CarouselStyleConfigItemSize = {
 ```
 
 ## Device support
-Carouschnell currently three controllers to support navigation: keyboard, pointer and swiping. Each can be individually configured through the CarouselConfig. An example of *navControl* definitions can be found in the [example](example/src/App.tsx) provided by this repo. Carouschnell includes a configurable implementation for each controller.  
 
-The keyboard navigation controller registers to *keydown* and *keyup* events and associates keypresses with a navigation action, i.e.: LEFT, RIGHT, UP, DOWN, ENTER. In order to realise this a keymapping must be provided through the CarouselConfig. A default keymapping is provided by the navigation controller for ease of use. This default keymapping maps the **L**eft **R**ight **U**p, **D**own, **W A S D** and the **E**nter keys to the associated navigation actions in Carouschnell. See the [example](example/src/App.tsx) in this repo which demonstrates how to use the default keymapping. Naturally, a custom keymapping can be provided. Long keypresses are handled by injecting a navigation action every 300ms, enabling the user to press down on a supported key and navigating continously.
+Carouschnell currently three controllers to support navigation: keyboard, pointer and swiping. Each can be individually configured through the CarouselConfig. An example of _navControl_ definitions can be found in the [example](example/src/App.tsx) provided by this repo. Carouschnell includes a configurable implementation for each controller.
 
-The pointer navigation controller registers for *wheel* and *mousemove* events of the configured elementId and associates the events with a navigation action. Scrolling up & down and right & left (if supported by the user's mouse) the corresponding navigation action will be triggered. The user can hover over the individual items in the active area of the carousel to select items directly.
+The keyboard navigation controller registers to _keydown_ and _keyup_ events and associates keypresses with a navigation action, i.e.: LEFT, RIGHT, UP, DOWN, ENTER. In order to realise this a keymapping must be provided through the CarouselConfig. A default keymapping is provided by the navigation controller for ease of use. This default keymapping maps the **L**eft **R**ight **U**p, **D**own, **W A S D** and the **E**nter keys to the associated navigation actions in Carouschnell. See the [example](example/src/App.tsx) in this repo which demonstrates how to use the default keymapping. Naturally, a custom keymapping can be provided. Long keypresses are handled by injecting a navigation action every 300ms, enabling the user to press down on a supported key and navigating continously.
 
-The touch navigation controller registers for the *touchstart*, *touchmove* and *touchend* events of the configured elementId and associates swipes with a navigation action. For each swipe the dominant direction is computed and the associated navigation on the carousel gets fired. An example for the support of swipes is shown in the gif below.
+The pointer navigation controller registers for _wheel_ and _mousemove_ events of the configured elementId and associates the events with a navigation action. Scrolling up & down and right & left (if supported by the user's mouse) the corresponding navigation action will be triggered. The user can hover over the individual items in the active area of the carousel to select items directly.
+
+The touch navigation controller registers for the _touchstart_, _touchmove_ and _touchend_ events of the configured elementId and associates swipes with a navigation action. For each swipe the dominant direction is computed and the associated navigation on the carousel gets fired. An example for the support of swipes is shown in the gif below.
 
 <div align="center"><img src="doc/img/mobileswipe.gif" alt="mobileswipe"
 	title="Swipe support of Carouschnell"/></div>
