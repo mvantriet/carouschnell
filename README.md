@@ -12,7 +12,7 @@ I was in need of a component that could serve kind of like a navigable homescree
 # Installation
 
 ```bash
-npm install carouschnell
+TODO
 ```
 
 # Usage
@@ -134,7 +134,40 @@ Carouschnell provides an option to enable 2D navigation. This means overrun exis
 <div align="center"><img src="doc/img/2dnav.gif" alt="2Dnav"
 	title="2D Navigation with Carouschnell"/></div>
 
-### Style
+## Style
+The style for every aspect of the carousels can be configured through the CarouselConfig. Please consult the See the type definitions related to the style attribute of the See [CarouselConfig](src/config/CarouselConfig.ts) of this repo.
+
+### Responsive
+Carouschell responsiveness is based on three breakpoints: small (767), desktop (1024) and large (1366). Using the JS-CSS config definitions of the CarouselConfig you can define the item and border sizes that are applicable for a particular breakpoint.
+
+<div align="center"><img src="doc/img/responsive.gif" alt="responsiveness"
+	title="Responsiveness of Carouschnell"/></div>
+
+For example, you can define the item sizes that should be applied on each of the three breakpoints individually. Below you can find a code snippet that does this. For examples of full configurations of the CarouselStyleConfig please have a look at the [default styles](src/styles/defaultStyles.ts) that are provided by this package.
+
+```typescript
+const defaultItemSizeSmall: CarouselStyleConfigItemSize = {
+    size: {
+        x: 100,
+        y: 75,
+    },
+    margin: {
+        x: 10,
+        y: 10,
+    },
+};
+
+const defaultItemSizeDesktop: CarouselStyleConfigItemSize = {
+    size: {
+        x: 200,
+        y: 150,
+    },
+    margin: {
+        x: 20,
+        y: 20,
+    },
+};
+```
 
 # Examples
 
@@ -146,16 +179,6 @@ npm run start:example
 ```
 
 This will use react-app-rewired to wire the example with the carouschnell source code that is checked out locally on your machine. As such, changes you make locally will be automatically reflected in the example.
-
-In the subsections below you can find some examples of configurations showing what behaviour can be configured with carouschnell.
-
-# Device support
-
-## Responsive
-
-Carouschell responsiveness is based on three breakpoints: small (767), desktop (1024) and large (1366). Using the JS-CSS config definitions of the CarouselConfig you can define the item and border sizes that are applicable for a particular breakpoint.
-
-![](doc/img/responsive.gif)
 
 # TODOs
 
