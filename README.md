@@ -94,7 +94,7 @@ export default App;
 
 ## CarouselConfig
 
-The Carousel component can be instantiated by passing a config object that conforms to the CarouselConfig type. The CarouselConfig defines:
+The Carousel component can be instantiated by passing a config object that conforms to the [CarouselConfig type](src/config/CarouselConfig.ts). The CarouselConfig defines:
 
 1. The items that must be displayed
 2. The way to to display the items (how many rows/columns)
@@ -103,7 +103,7 @@ The Carousel component can be instantiated by passing a config object that confo
 5. The style of the Carousel (colors, sizes etc)
 6. Abstract item actions all the way up to the config, enabling the user to specify what should happen when an item is hit. Could consider an optional callback. At the moment only a redirect is supported.
 
-Carouschnell offers a versatile and customisable Carousel component. In order to create an instance of the Carousel component that satisfies your needs it is important to fully understand the CarouselConfig. Below you can find some details of the individual properties of the CarouselConfig. The CarouselConfig is a POJO configuring, JS users of this lib have to be aware to ensure no mandatory properties are missing. TS users can use the CarouselConfig type definition to ensure a valid instance of the config is passed to the Carousel component when rendering.
+Carouschnell offers a versatile and customisable Carousel component. In order to create an instance of the Carousel component that satisfies your needs it is important to fully understand the CarouselConfig. Below you can find some details of the individual properties of the CarouselConfig. The CarouselConfig is a POJO configuring, JS users of this lib have to be aware to ensure no mandatory properties are missing. TS users can use the [CarouselConfig type](src/config/CarouselConfig.ts) definition to ensure a valid instance of the config is passed to the Carousel component when rendering.
 
 ### Active/Overrun
 
