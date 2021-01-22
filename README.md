@@ -169,7 +169,19 @@ const defaultItemSizeDesktop: CarouselStyleConfigItemSize = {
 };
 ```
 
-# Examples
+## Device support
+Carouschnell currently three controllers to support navigation: keyboard, pointer and swiping. Each can be individually configured through the CarouselConfig. An example of *navControl* definitions can be found in the [example](example/src/App.tsx) provided by this repo. Carouschnell includes a configurable implementation for each controller.  
+
+The keyboard navigation controller registers to *keydown* and *keyup* events and associates keypresses with a navigation action, i.e.: LEFT, RIGHT, UP, DOWN, ENTER. In order to realise this a keymapping must be provided through the CarouselConfig. A default keymapping is provided by the navigation controller for ease of use. This default keymapping maps the **L**eft **R**ight **U**p, **D**own, **W A S D** and the **E**nter keys to the associated navigation actions in Carouschnell. See the [example](example/src/App.tsx) in this repo which demonstrates how to use the default keymapping. Naturally, a custom keymapping can be provided. Long keypresses are handled by injecting a navigation action every 300ms, enabling the user to press down on a supported key and navigating continously.
+
+The pointer navigation controller registers for *wheel* and *mousemove* events of the configured elementId and associates the events with a navigation action. Scrolling up & down and right & left (if supported by the user's mouse) the corresponding navigation action will be triggered. The user can hover over the individual items in the active area of the carousel to select items directly.
+
+The touch navigation controller registers for the *touchstart*, *touchmove* and *touchend* events of the configured elementId and associates swipes with a navigation action. For each swipe the dominant direction is computed and the associated navigation on the carousel gets fired. An example for the support of swipes is shown in the gif below.
+
+<div align="center"><img src="doc/img/mobileswipe.gif" alt="mobileswipe"
+	title="Swipe support of Carouschnell"/></div>
+
+## Examples
 
 An example of an instantiation of carouschnell can be found in the example directory of this repo. You can run the example by cloning this repo and calling:
 
@@ -180,7 +192,7 @@ npm run start:example
 
 This will use react-app-rewired to wire the example with the carouschnell source code that is checked out locally on your machine. As such, changes you make locally will be automatically reflected in the example.
 
-# TODOs
+## TODOs
 
 1. Add more default styles that are ready to be used.
 2. Optionally visualize the label as assigned for a row in the component config on top of the row.
@@ -188,7 +200,7 @@ This will use react-app-rewired to wire the example with the carouschnell source
 4. Publish @types package to support strong-typed instantiation of Carousels in TS.
 5. Lazy loading for thumbnails (define offset parameters when to load also in config)
 
-# Contributing
+## Contributing
 
 All contributions to this project are welcome and I hope you'd like to get involved. Any contributions you make are greatly appreciated.
 
