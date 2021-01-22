@@ -124,7 +124,7 @@ type CarouselDisplayConfig = {
 
 Using the example values as provided in comment in the code block above would render a carousel grid as shown in the picture below. The active view uses a green background color, the overrun uses a blue background color. Note that a sufficient amount of carousel items must be provided through the config. It would not make sense to define row or column ranges that do not match the provided amount of items.
 
-<div align="center"><img src="doc/img/displayconfig.gif" alt="displayconfig"
+<div align="center"><img src="doc/img/displayconfig.png" alt="displayconfig"
 	title="DisplayConfig explanation of Carouschnell"/></div>
 
 ### 2D Nav
