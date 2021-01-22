@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import * as carouschnell from "../../../src/index";
-import { string } from "prop-types";
 
 function App() {
     const [itemWidth, itemHeight] = _getMaxItemDimensions();
