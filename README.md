@@ -201,7 +201,8 @@ This will use react-app-rewired to wire the example with the carouschnell source
 2. Optionally visualize the label as assigned for a row in the component config on top of the row.
 3. Fix bug where active border is shifted when the rowStart and rowOverrun violate eachother.
 4. Publish @types package to support strong-typed instantiation of Carousels in TS.
-5. Lazy loading for thumbnails (define offset parameters when to load also in config)
+5. Lazy loading for thumbnails (define offset parameters when to load also in config).
+6. Add support for mouse navigation by clicking in overrun area to enable navigation action in any direction (left, right, up or down).
 
 ## Contributing
 
