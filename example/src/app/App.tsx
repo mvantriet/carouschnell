@@ -180,7 +180,7 @@ function App() {
             },
             touch: {
                 enabled: true,
-                eventBindElementId: "root",
+                eventBindElementId: "carousel",
             },
         },
         styleConfig: carouschnell.defaultStyles.darkStyle,
