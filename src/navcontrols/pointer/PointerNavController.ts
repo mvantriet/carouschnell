@@ -77,9 +77,12 @@ export class PointerNavController extends NavController implements INavItemActio
         this._handleMouseMoveEvent(event);
     }
 
-    handleItemOnClick(event: MouseEvent, row: number, column: number): void {
-        console.log("item onclick: ", event);
-        this.handler.handleNavControlEnterSelectionAction(row, column);
+    handleItemOnClick(_event: MouseEvent, row: number, column: number): void {
+        // Check if click in overrun
+        if (!this.handler.handleNavControlOverrunDirectionAction(row, column)) {
+            // No action in overrun was carried out so perform the enter selection
+            this.handler.handleNavControlEnterSelectionAction(row, column);
+        }
     }
 
     private _handleMouseMoveEvent(evt: any): void {
