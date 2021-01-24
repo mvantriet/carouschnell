@@ -17,7 +17,7 @@ import {
 } from "../../navcontrols/keyboard/KeyboardNavController";
 import { PointerNavController } from "../../navcontrols/pointer/PointerNavController";
 import { TouchNavController } from "../../navcontrols/touch/TouchNavController";
-import { CarouselUtils } from "../../utils/CarouselUtils";
+import { CarouselUtils, NavDirectionResult } from "../../utils/CarouselUtils";
 
 export type ItemState = {
     config: CarouselItemConfig;
@@ -78,22 +78,7 @@ export class Carousel
     }
 
     handleNavControlDirectionAction(direction: NAV_DIRECTION, offset: number): void {
-        switch (direction) {
-            case NAV_DIRECTION.LEFT:
-                this.handleNavLeft(offset);
-                break;
-            case NAV_DIRECTION.RIGHT:
-                this.handleNavRight(offset);
-                break;
-            case NAV_DIRECTION.UP:
-                this.handleNavUp(offset);
-                break;
-            case NAV_DIRECTION.DOWN:
-                this.handleNavDown(offset);
-                break;
-            default:
-                throw new Error("Unsupported NAV_DIRECTION action: " + direction.toString());
-        }
+        this.performNavControlAction(this.state.activeDisplayRow, this.state.activeDisplayColumn, direction, offset);
     }
 
     handleNavControlEnterCurrentSelectionAction(): void {
@@ -111,6 +96,46 @@ export class Carousel
     handleNavControlDeselect(): void {
         // TODO: Infer deselection based on dedicated flag rather than unreal values
         this.setState({ activeDisplayColumn: -1, activeDisplayRow: -1 });
+    }
+
+    handleNavControlOverrunDirectionAction(row: number, column: number): boolean {
+        const activeItems: Array<ItemState> = this.state.itemStates.filter(
+            (itemState: ItemState) => {
+                return (
+                    itemState.xOffset === column &&
+                    itemState.yOffset === row
+                );
+            }
+        );
+        if (activeItems.length === 1) {
+            const itemInOverrun: NavDirectionResult = CarouselUtils.isItemInOverrun(activeItems[0], this.displayConfig);
+            if (itemInOverrun.result && itemInOverrun.direction !== undefined) {
+                //this.handleNavControlDirectionAction(itemInOverrun.direction, 1);
+                
+                this.performNavControlAction(row, column, itemInOverrun.direction, 1);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private performNavControlAction(row: number, column: number, direction: NAV_DIRECTION, offset: number): void {
+        switch (direction) {
+            case NAV_DIRECTION.LEFT:
+                this.handleNavLeft(row, this.state.activeDisplayColumn, offset);
+                break;
+            case NAV_DIRECTION.RIGHT:
+                this.handleNavRight(row, this.state.activeDisplayColumn, offset);
+                break;
+            case NAV_DIRECTION.UP:
+                this.handleNavUp(this.state.activeDisplayRow, column, offset);
+                break;
+            case NAV_DIRECTION.DOWN:
+                this.handleNavDown(this.state.activeDisplayRow, column, offset);
+                break;
+            default:
+                throw new Error("Unsupported NAV_DIRECTION action: " + direction.toString());
+        }
     }
 
     private handleItemAction(row: number, column: number): void {
@@ -138,91 +163,90 @@ export class Carousel
         }
     }
 
-    private handleNavDown(offset: number) {
+    private handleNavDown(row: number, column: number, offset: number) {
         // TODO: Support offset > 1
         if (offset !== 1) {
             throw new Error("Nav offsets other than 1 are not yet supported");
         }
         const nofItemsInColumn = CarouselUtils.getItemsBelowRowInColumn(
             this.state.itemStates,
-            this.state.activeDisplayColumn,
-            this.state.activeDisplayRow
+            column,
+            row
         );
         if (nofItemsInColumn === 0) {
             return;
         } else if (
             this.enable2dNav &&
-            this.displayConfig.rowEnd - this.state.activeDisplayRow < nofItemsInColumn
+            this.displayConfig.rowEnd - row < nofItemsInColumn
         ) {
-            this.moveCurrentColumn(-1);
+            this.moveColumn(column, -1);
         } else {
-            this.setState({ activeDisplayRow: this.state.activeDisplayRow + 1 });
+            this.setState({ activeDisplayRow: row + 1 });
             this.scrollSelected();
         }
     }
 
-    private handleNavUp(offset: number) {
+    private handleNavUp(row: number, column: number, offset: number) {
         // TODO: Support offset > 1
         if (offset !== 1) {
             throw new Error("Nav offsets other than 1 are not yet supported");
         }
         const nofItemsInColumn = CarouselUtils.getItemsAboveRowInColumn(
             this.state.itemStates,
-            this.state.activeDisplayColumn,
-            this.state.activeDisplayRow
+            column,
+            row
         );
         if (nofItemsInColumn === 0) {
             return;
         } else if (
             this.enable2dNav &&
-            nofItemsInColumn > this.state.activeDisplayRow - this.displayConfig.rowStart
+            nofItemsInColumn > row - this.displayConfig.rowStart
         ) {
-            this.moveCurrentColumn(1);
+            this.moveColumn(column, 1);
         } else {
-            this.setState({ activeDisplayRow: this.state.activeDisplayRow - 1 });
+            this.setState({ activeDisplayRow: row - 1 });
             this.scrollSelected();
         }
     }
 
-    private handleNavLeft(offset: number) {
+    private handleNavLeft(row: number, column: number, offset: number) {
         // TODO: Support offset > 1
         if (offset !== 1) {
             throw new Error("Nav offsets other than 1 are not yet supported");
         }
         const nofItemsInRow = CarouselUtils.getItemsBeforeColumnInRow(
             this.state.itemStates,
-            this.state.activeDisplayColumn,
-            this.state.activeDisplayRow
+            column,
+            row
         );
         if (nofItemsInRow === 0) {
             return;
         } else if (
-            nofItemsInRow >
-            this.state.activeDisplayColumn - this.displayConfig.columnStart
+            nofItemsInRow > column - this.displayConfig.columnStart
         ) {
-            this.moveCurrentRow(1);
+            this.moveRow(row, 1);
         } else {
-            this.setState({ activeDisplayColumn: this.state.activeDisplayColumn - 1 });
+            this.setState({ activeDisplayColumn: column - 1 });
             this.scrollSelected();
         }
     }
 
-    private handleNavRight(offset: number) {
+    private handleNavRight(row: number, column: number, offset: number) {
         // TODO: Support offset > 1
         if (offset !== 1) {
             throw new Error("Nav offsets other than 1 are not yet supported");
         }
         const nofItemsInRow = CarouselUtils.getItemsAfterColumnInRow(
             this.state.itemStates,
-            this.state.activeDisplayColumn,
-            this.state.activeDisplayRow
+            column,
+            row
         );
         if (nofItemsInRow === 0) {
             return;
-        } else if (this.displayConfig.columnEnd - this.state.activeDisplayColumn < nofItemsInRow) {
-            this.moveCurrentRow(-1);
+        } else if (this.displayConfig.columnEnd - column < nofItemsInRow) {
+            this.moveRow(row, -1);
         } else {
-            this.setState({ activeDisplayColumn: this.state.activeDisplayColumn + 1 });
+            this.setState({ activeDisplayColumn: column + 1 });
             this.scrollSelected();
         }
     }
@@ -273,17 +297,17 @@ export class Carousel
         }
     }
 
-    private moveCurrentColumn(offset: number) {
+    private moveColumn(column: number, offset: number) {
         const itemStates: Array<ItemState> = this.state.itemStates;
-        CarouselUtils.getItemIndicesInColumn(itemStates, this.state.activeDisplayColumn).forEach(
+        CarouselUtils.getItemIndicesInColumn(itemStates, column).forEach(
             (i: number) => (itemStates[i].yOffset += offset)
         );
         this.setState({ itemStates: itemStates });
     }
 
-    private moveCurrentRow(offset: number) {
+    private moveRow(row: number, offset: number) {
         const itemStates: Array<ItemState> = this.state.itemStates;
-        CarouselUtils.getItemIndicesInRow(itemStates, this.state.activeDisplayRow).forEach(
+        CarouselUtils.getItemIndicesInRow(itemStates, row).forEach(
             (i: number) => (itemStates[i].xOffset += offset)
         );
         this.setState({ itemStates: itemStates });
