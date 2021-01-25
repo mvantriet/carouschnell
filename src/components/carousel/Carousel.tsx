@@ -25,10 +25,17 @@ export type ItemState = {
     yOffset: number;
 };
 
+export type OverrunDirectionDisplay = {
+    xOffset: number;
+    yOffset: number;
+    direction: NAV_DIRECTION;
+}
+
 interface CarouselState {
     activeDisplayRow: number;
     activeDisplayColumn: number;
     itemStates: Array<ItemState>;
+    overrunDirectionDisplayState: Array<OverrunDirectionDisplay>;
 }
 
 export type CarouselProps = {
@@ -58,6 +65,7 @@ export class Carousel
             activeDisplayColumn: props.config.displayConfig.initialDisplayColumn,
             activeDisplayRow: props.config.displayConfig.initialDisplayRow,
             itemStates: this.initialiseItemStates(props),
+            overrunDirectionDisplayState: []
         };
     }
 
@@ -99,25 +107,27 @@ export class Carousel
     }
 
     handleNavControlOverrunDirectionAction(row: number, column: number): boolean {
-        const activeItems: Array<ItemState> = this.state.itemStates.filter(
-            (itemState: ItemState) => {
-                return (
-                    itemState.xOffset === column &&
-                    itemState.yOffset === row
-                );
-            }
-        );
-        if (activeItems.length === 1) {
-            const itemInOverrun: NavDirectionResult = CarouselUtils.isItemInOverrun(activeItems[0], this.displayConfig);
-            if (itemInOverrun.result && itemInOverrun.direction !== undefined) {
-                //this.handleNavControlDirectionAction(itemInOverrun.direction, 1);
-                
-                this.performNavControlAction(row, column, itemInOverrun.direction, 1);
-                return true;
-            }
+        const itemInOverrun: NavDirectionResult = CarouselUtils.isItemInOverrun(row, column, this.displayConfig);
+        if (itemInOverrun.result && itemInOverrun.direction !== undefined) {
+            this.performNavControlAction(row, column, itemInOverrun.direction, 1);
+            return true;
         }
         return false;
     }
+
+    handleShowOverrunDirectionLabel(row: number, column: number): void {
+        const itemInOverrun: NavDirectionResult = CarouselUtils.isItemInOverrun(row, column, this.displayConfig);
+        if (itemInOverrun.result && itemInOverrun.direction !== undefined) {
+            this.setState({overrunDirectionDisplayState: this.state.overrunDirectionDisplayState.concat([{yOffset: row, xOffset: column, direction: itemInOverrun.direction}])})
+        }            
+    }
+
+    clearShowOverrunDirectionLabel(row: number, column: number): void {
+        this.setState({overrunDirectionDisplayState: this.state.overrunDirectionDisplayState.filter((overrunDirDisplay: OverrunDirectionDisplay) => {
+            return overrunDirDisplay.yOffset != row || overrunDirDisplay.xOffset != column
+        })});
+    }
+
 
     private performNavControlAction(row: number, column: number, direction: NAV_DIRECTION, offset: number): void {
         switch (direction) {
@@ -338,9 +348,10 @@ export class Carousel
                                     this.displayConfig
                                 )}
                                 inOverrun={
-                                    CarouselUtils.isItemInOverrun(itemState, this.displayConfig)
+                                    CarouselUtils.isItemInOverrun(itemState.yOffset, itemState.xOffset, this.displayConfig)
                                         .result
                                 }
+                                overrunDirection={CarouselUtils.getOverrunDirectionDisplay(itemState, this.state.overrunDirectionDisplayState)}
                                 selected={CarouselUtils.isItemSelected(
                                     itemState,
                                     this.state.activeDisplayRow,
