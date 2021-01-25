@@ -1,5 +1,6 @@
 import * as styled from "styled-components";
 import { CarouselItemStyleConfig, CAROUSEL_STYLE_MEDIA_TYPE } from "../../config/CarouselConfig";
+import { NAV_DIRECTION } from "../../navcontrols/common/INavActionHandler";
 
 export type CarouselItemStyledProps = {
     selected: boolean;
@@ -15,6 +16,12 @@ export type CarouselItemSelectedOverlayStyledProps = {
     // TODO: Split into separate config
     style: CarouselItemStyleConfig;
 };
+
+export type CarouselItemOverrunOverlayStyledProps = {
+    // TODO: Split into separate config
+    style: CarouselItemStyleConfig;
+    direction: NAV_DIRECTION
+}
 
 export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
     display: ${(props) => (props.inView || props.inOverrun ? "inline-block" : "none")};
@@ -312,5 +319,121 @@ export const CarouselItemSelectedOverlayStyled = styled.default
         -webkit-transform: translateY(-20%);
         -ms-transform: translateY(-20%);
         transform: translateY(-20%);
+    }
+`;
+
+function getOverrunDirectionDisplayAngle(direction: NAV_DIRECTION): number {
+    switch(direction) {
+        case NAV_DIRECTION.UP:
+            return 135;
+        case NAV_DIRECTION.DOWN:
+            return -45;
+        case NAV_DIRECTION.LEFT:
+            return 45;
+        case NAV_DIRECTION.RIGHT:
+            return 225;
+        default:
+            return 0;
+    }
+}
+
+function getInitialXRatio(direction: NAV_DIRECTION): number {
+    switch(direction) {
+        case NAV_DIRECTION.UP:
+            return -50;
+        case NAV_DIRECTION.DOWN:
+            return -50;
+        case NAV_DIRECTION.LEFT:
+            return 0;
+        case NAV_DIRECTION.RIGHT:
+            return -100;
+        default:
+            return 0;
+    }
+}
+
+function getInitialYRatio(direction: NAV_DIRECTION): number {
+    switch(direction) {
+        case NAV_DIRECTION.UP:
+            return 0;
+        case NAV_DIRECTION.DOWN:
+            return -100;
+        case NAV_DIRECTION.LEFT:
+            return -50;
+        case NAV_DIRECTION.RIGHT:
+            return -50;
+        default:
+            return 0;
+    }
+}
+
+function getEnterDoneXRatio(direction: NAV_DIRECTION): number {
+    switch(direction) {
+        case NAV_DIRECTION.UP:
+            return -50;
+        case NAV_DIRECTION.DOWN:
+            return -50;
+        case NAV_DIRECTION.LEFT:
+            return -100;
+        case NAV_DIRECTION.RIGHT:
+            return 0;
+        default:
+            return 0;
+    }
+}
+
+function getEnterDoneYRatio(direction: NAV_DIRECTION): number {
+    switch(direction) {
+        case NAV_DIRECTION.UP:
+            return -100;
+        case NAV_DIRECTION.DOWN:
+            return 0;
+        case NAV_DIRECTION.LEFT:
+            return -50;
+        case NAV_DIRECTION.RIGHT:
+            return -50;
+        default:
+            return 0;
+    }
+}
+
+
+
+export const CarouselItemOverrunOverlayStyled = styled.default.div<CarouselItemOverrunOverlayStyledProps>
+    `
+    display: block;
+    position: absolute;
+    border-style: solid;
+    color: green;
+    border-width: 0px 0px 15px 15px;
+    height: 17px;
+    width: 17px;
+    top: 50%;
+    left: 50%;
+    transform: translate(${(props) => getInitialXRatio(props.direction)}%, ${(props) => getInitialYRatio(props.direction)}%) rotate(${(props) => getOverrunDirectionDisplayAngle(props.direction)}deg);
+    transition-duration: 300ms;
+
+    @media (min-width: 1024px) {
+        border-width: 0px 0px 30px 30px;
+        height: 35px;
+        width: 35px;
+    }
+
+    @media (min-width: 1366px) {
+        border-width: 0px 0px 30px 30px;
+        height: 35px;
+        width: 35px;
+    }
+
+    &.overrundir-enter {
+        opacity: 0.7;
+    }
+    
+    &.overrundir-enter-done {
+        opacity: 0;
+        transform: translate(${(props) => getEnterDoneXRatio(props.direction)}%, ${(props) => getEnterDoneYRatio(props.direction)}%) rotate(${(props) => getOverrunDirectionDisplayAngle(props.direction)}deg);
+    }        
+    &.overrundir-exit {
+        display: none;
     }
 `;
