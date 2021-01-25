@@ -1,14 +1,16 @@
 import * as React from "react";
 import { CSSTransition } from "react-transition-group";
-import { CarouselItemStyled, CarouselItemSelectedOverlayStyled } from "./CarouselItem.styled";
+import { CarouselItemStyled, CarouselItemSelectedOverlayStyled, CarouselItemOverrunOverlayStyled } from "./CarouselItem.styled";
 import { CarouselItemConfig, CarouselItemStyleConfig } from "../../config/CarouselConfig";
 import { INavItemActionHandler } from "../../navcontrols/common/INavItemActionHandler";
+import { NavDirectionResult } from "../../utils/CarouselUtils";
 
 export type CarouselItemProps = {
     config: CarouselItemConfig;
     selected: boolean;
     inView: boolean;
     inOverrun: boolean;
+    overrunDirection: NavDirectionResult;
     xNavOffset: number;
     yNavOffset: number;
     navActionHandlers: Array<INavItemActionHandler>;
@@ -18,6 +20,11 @@ export type CarouselItemProps = {
 export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
     props: CarouselItemProps
 ) => {
+    if (props.inOverrun && props.overrunDirection.result) {
+
+        console.log(props.yNavOffset, props.xNavOffset, props.overrunDirection)
+    }
+
     return (
         <CarouselItemStyled
             className={props.selected ? "selected" : ""}
@@ -68,6 +75,15 @@ export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
                                 <span>{props.config.caption}</span>
                             </CarouselItemSelectedOverlayStyled>
                         )}
+                            <CSSTransition 
+                                in={props.inOverrun && props.overrunDirection.result} 
+                                timeout={300} 
+                                classNames="overrundir"
+                                unmountOnExit>
+                                {() => <CarouselItemOverrunOverlayStyled style={props.style} direction={props.overrunDirection.direction}/>}
+                            </CSSTransition>
+                            
+                        
                     </div>
                 ) : (
                     <div className="item">
@@ -77,6 +93,13 @@ export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
                                 <span>{props.config.caption}</span>
                             </CarouselItemSelectedOverlayStyled>
                         )}
+                        <CSSTransition 
+                            in={props.inOverrun && props.overrunDirection.result} 
+                            timeout={300} 
+                            classNames="overrundir"
+                            unmountOnExit>
+                            {() => <CarouselItemOverrunOverlayStyled style={props.style} direction={props.overrunDirection.direction}/>}
+                        </CSSTransition>
                     </div>
                 )}
             </CSSTransition>
