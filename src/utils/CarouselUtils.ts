@@ -1,10 +1,10 @@
-import { ItemState } from "../components/carousel/Carousel";
+import { ItemState, OverrunDirectionDisplay } from "../components/carousel/Carousel";
 import { CarouselDisplayConfig } from "../config/CarouselConfig";
 import { NAV_DIRECTION } from "../navcontrols/common/INavActionHandler";
 
 export type NavDirectionResult = {
     result: boolean;
-    direction?: NAV_DIRECTION;
+    direction: NAV_DIRECTION;
 };
 
 export class CarouselUtils {
@@ -96,7 +96,8 @@ export class CarouselUtils {
 
     /**
      *
-     * @param item
+     * @param row
+     * @param column
      * @param displayConfig
      */
     static isItemInView(
@@ -118,40 +119,60 @@ export class CarouselUtils {
      * @param displayConfig
      */
     static isItemInOverrun(
-        item: ItemState,
+        row: number,
+        column: number,
         displayConfig: CarouselDisplayConfig
     ): NavDirectionResult {
         if (
-            item.yOffset < displayConfig.rowStart &&
-            item.yOffset >= displayConfig.rowStart - displayConfig.rowOverrun &&
-            item.xOffset >= displayConfig.columnStart &&
-            item.xOffset <= displayConfig.columnEnd
+            row < displayConfig.rowStart &&
+            row >= displayConfig.rowStart - displayConfig.rowOverrun &&
+            column >= displayConfig.columnStart &&
+            column <= displayConfig.columnEnd
         ) {
             return { result: true, direction: NAV_DIRECTION.UP };
         } else if (
-            item.yOffset > displayConfig.rowEnd &&
-            item.yOffset <= displayConfig.rowEnd + displayConfig.rowOverrun &&
-            item.xOffset >= displayConfig.columnStart &&
-            item.xOffset <= displayConfig.columnEnd
+            row > displayConfig.rowEnd &&
+            row <= displayConfig.rowEnd + displayConfig.rowOverrun &&
+            column >= displayConfig.columnStart &&
+            column <= displayConfig.columnEnd
         ) {
             return { result: true, direction: NAV_DIRECTION.DOWN };
         } else if (
-            item.xOffset < displayConfig.columnStart &&
-            item.xOffset >= displayConfig.columnStart - displayConfig.columnOverrun &&
-            item.yOffset >= displayConfig.rowStart &&
-            item.yOffset <= displayConfig.rowEnd
+            column < displayConfig.columnStart &&
+            column >= displayConfig.columnStart - displayConfig.columnOverrun &&
+            row >= displayConfig.rowStart &&
+            row <= displayConfig.rowEnd
         ) {
             return { result: true, direction: NAV_DIRECTION.LEFT };
         } else if (
-            item.xOffset > displayConfig.columnEnd &&
-            item.xOffset <= displayConfig.columnEnd + displayConfig.columnOverrun &&
-            item.yOffset >= displayConfig.rowStart &&
-            item.yOffset <= displayConfig.rowEnd
+            column > displayConfig.columnEnd &&
+            column <= displayConfig.columnEnd + displayConfig.columnOverrun &&
+            row >= displayConfig.rowStart &&
+            row <= displayConfig.rowEnd
         ) {
             return { result: true, direction: NAV_DIRECTION.RIGHT };
         } else {
-            return { result: false };
+            return { result: false, direction: NAV_DIRECTION.NA };
         }
+    }
+
+    /**
+     *
+     * @param item
+     * @param dirDisplays
+     */
+    static getOverrunDirectionDisplay(
+        item: ItemState,
+        dirDisplays: Array<OverrunDirectionDisplay>
+    ): NavDirectionResult {
+        const matches: Array<OverrunDirectionDisplay> = dirDisplays.filter(
+            (dirDisplay: OverrunDirectionDisplay) => {
+                return dirDisplay.xOffset === item.xOffset && dirDisplay.yOffset === item.yOffset;
+            }
+        );
+        return matches.length === 1
+            ? { result: true, direction: matches[0].direction }
+            : { result: false, direction: NAV_DIRECTION.NA };
     }
 
     /**
