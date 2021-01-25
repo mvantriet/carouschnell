@@ -8,6 +8,8 @@ import { INavItemActionHandler } from "../../../navcontrols/common/INavItemActio
 import { mock } from "jest-mock-extended";
 import { ReactElement } from "react";
 import { itemInView, getSelectedItem } from "../../../../test/testUtils";
+import { NavDirectionResult } from "../../utils/CarouselUtils";
+import { NAV_DIRECTION } from "../../../navcontrols/common/INavActionHandler";
 
 let container: HTMLDivElement;
 
@@ -42,6 +44,7 @@ function createCarouselItem(
             yNavOffset={0}
             inView={inView}
             inOverrun={inOverrun}
+            overrunDirection={{result: false, direction: NAV_DIRECTION.NA}}
             selected={isSelected}
             config={itemConfig}
         />
