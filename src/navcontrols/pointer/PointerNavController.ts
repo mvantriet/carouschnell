@@ -65,13 +65,16 @@ export class PointerNavController extends NavController implements INavItemActio
         // Prevent the situation where nav controls get mixed up due to
         // grid change or scroll events without pointer moves involved
         if (!this.lastMouseMove.equalTo(this.lastSelectTriggeredMouseMove)) {
+            this.handler.handleShowOverrunDirectionLabel(row, column);
             this.handler.handleNavControlSelect(row, column);
             this.lastSelectTriggeredMouseMove.x = this.lastMouseMove.x;
             this.lastSelectTriggeredMouseMove.y = this.lastMouseMove.y;
         }
     }
 
-    handleItemHoverExit(_event: MouseEvent, _row: number, _column: number): void {}
+    handleItemHoverExit(_event: MouseEvent, row: number, column: number): void {
+        this.handler.clearShowOverrunDirectionLabel(row, column);
+    }
 
     handleItemHover(event: any, _row: number, _column: number): void {
         this._handleMouseMoveEvent(event);
@@ -82,6 +85,8 @@ export class PointerNavController extends NavController implements INavItemActio
         if (!this.handler.handleNavControlOverrunDirectionAction(row, column)) {
             // No action in overrun was carried out so perform the enter selection
             this.handler.handleNavControlEnterSelectionAction(row, column);
+        } else {
+            this.handler.clearShowOverrunDirectionLabel(row, column);
         }
     }
 
