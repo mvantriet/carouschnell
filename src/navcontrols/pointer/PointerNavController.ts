@@ -35,13 +35,15 @@ export class PointerNavController extends NavController implements INavItemActio
     private wheelMinDeltaY: number = 80;
     private wheelMinDeltaX: number = this.wheelMinDeltaY;
     private eventBindElementId: string;
+    private scrollLock: boolean;
 
-    constructor(handler: INavActionHandler, eventBindElementId: string) {
+    constructor(handler: INavActionHandler, eventBindElementId: string, scrollLock: boolean) {
         super(handler);
         this.lastMouseMove = new PointerRecord();
         this.lastSelectTriggeredMouseMove = new PointerRecord();
         this.mouseEventsRegistered = false;
         this.eventBindElementId = eventBindElementId;
+        this.scrollLock = scrollLock;
         /* TODO: Design and implement mouse click navigation, e.g:
             Click left: move left
             Double click left: enter
@@ -58,7 +60,9 @@ export class PointerNavController extends NavController implements INavItemActio
             );
             this.mouseEventsRegistered = true;
         }
-        bsl.disableBodyScroll(document.getElementById(this.eventBindElementId));
+        if (this.scrollLock) {
+            bsl.disableBodyScroll(document.getElementById(this.eventBindElementId));
+        }
     }
 
     handleItemHoverEnter(_event: MouseEvent, row: number, column: number): void {
