@@ -12,8 +12,9 @@ export class TouchNavController extends NavController {
     private nofTouchSequencesWithoutSwipe: number;
     private lastTouchEndTimestamp: number;
     private eventBindElementId: string;
+    private scrollLock: boolean;
 
-    constructor(handler: INavActionHandler, eventBindElementId: string) {
+    constructor(handler: INavActionHandler, eventBindElementId: string, scrollLock: boolean) {
         super(handler);
         this.xDown = 0;
         this.yDown = 0;
@@ -23,6 +24,7 @@ export class TouchNavController extends NavController {
         this.swipeInTouchSequence = false;
         this.touchEventsRegistered = false;
         this.eventBindElementId = eventBindElementId;
+        this.scrollLock = scrollLock;
     }
 
     init() {
@@ -30,7 +32,9 @@ export class TouchNavController extends NavController {
             this.registerTouchEvents();
             this.touchEventsRegistered = true;
         }
-        bsl.disableBodyScroll(document.getElementById(this.eventBindElementId));
+        if (this.scrollLock) {
+            bsl.disableBodyScroll(document.getElementById(this.eventBindElementId));
+        }
     }
 
     private registerTouchEvents(): void {
