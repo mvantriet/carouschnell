@@ -79,6 +79,7 @@ export type CarouselItemStyleConfigTheme = {
     itemSelectionBackgroundColor: string;
     itemSelectionForegroundColor: string;
     itemInOverrunOpacity: number; // percentage
+    initialOpacityOverrunDirectionDisplay: number; //0 - 1.0
 };
 
 export type CarouselStyleConfigMediaType = {
@@ -101,6 +102,7 @@ export type CarouselItemStyleConfigMediaType = {
     itemSelectedBorderSize: number; // pxs
     borderRadius: number; // pxs
     selectionStyleConfig: CarouselItemSelectionOverlayMediaTypeConfig;
+    overrunDirectionDisplay: CarouselItemOverrunDisplayMediaTypeConfig;
 };
 
 export type CarouselItemStyleConfigMediaTypes = {
@@ -121,6 +123,10 @@ export type CarouselItemSelectionOverlayMediaTypeConfig = {
     bottomRadiusSize: number;
     fontSize: number;
     topBorderShadowSize: number;
+};
+
+export type CarouselItemOverrunDisplayMediaTypeConfig = {
+    size: number; //pxs = square
 };
 
 export type CarouselItemStyleConfig = {
