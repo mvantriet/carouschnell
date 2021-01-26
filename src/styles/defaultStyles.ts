@@ -102,6 +102,9 @@ defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
         fontSize: 10,
         topBorderShadowSize: 20,
     },
+    overrunDirectionDisplay: {
+        size: 17
+    }
 };
 defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
     itemSelectionFontSize: 14,
@@ -124,6 +127,9 @@ defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
         fontSize: 16,
         topBorderShadowSize: 20,
     },
+    overrunDirectionDisplay: {
+        size: 35
+    }
 };
 defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP] = {
     itemSelectionFontSize: 14,
@@ -146,6 +152,9 @@ defaultStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP] = {
         fontSize: 16,
         topBorderShadowSize: 20,
     },
+    overrunDirectionDisplay: {
+        size: 35
+    }
 };
 
 /**
@@ -162,6 +171,7 @@ export const darkStyle: CarouselStyleConfig = {
             itemSelectionBackgroundColor: "black",
             itemSelectionForegroundColor: "white",
             itemInOverrunOpacity: 60,
+            initialOpacityOverrunDirectionDisplay: 0.7
         },
         mediaTypes: defaultStyleItemMediaTypes,
     },
