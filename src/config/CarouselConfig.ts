@@ -37,11 +37,13 @@ export type NavControlKeyBoardConfig = {
 export type NavControlPointerConfig = {
     enabled: boolean;
     eventBindElementId: string;
+    scrollLock: boolean;
 };
 
 export type NavControlTouchConfig = {
     enabled: boolean;
     eventBindElementId: string;
+    scrollLock: boolean;
 };
 
 export type NavControlsConfig = {
