@@ -110,6 +110,7 @@ const carouselTestConfig: CarouselConfig = {
     },
     navControls: {
         enable2dNav: true,
+        autoScroll: true,
         keyboard: {
             enabled: true,
             keyMapping: DEVICE_NAV_KEYCODES_DEFAULT,
@@ -117,10 +118,12 @@ const carouselTestConfig: CarouselConfig = {
         pointer: {
             enabled: false,
             eventBindElementId: "",
+            scrollLock: true,
         },
         touch: {
             enabled: false,
             eventBindElementId: "",
+            scrollLock: true,
         },
     },
     styleConfig: darkStyle,
