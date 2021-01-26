@@ -48,6 +48,7 @@ export type NavControlTouchConfig = {
 
 export type NavControlsConfig = {
     enable2dNav: boolean;
+    autoScroll: boolean;
     keyboard: NavControlKeyBoardConfig;
     pointer: NavControlPointerConfig;
     touch: NavControlTouchConfig;
