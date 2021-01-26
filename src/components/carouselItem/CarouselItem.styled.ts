@@ -325,13 +325,13 @@ export const CarouselItemSelectedOverlayStyled = styled.default
 function getOverrunDirectionDisplayAngle(direction: NAV_DIRECTION): number {
     switch(direction) {
         case NAV_DIRECTION.UP:
-            return 135;
-        case NAV_DIRECTION.DOWN:
             return -45;
+        case NAV_DIRECTION.DOWN:
+            return 135;
         case NAV_DIRECTION.LEFT:
-            return 45;
-        case NAV_DIRECTION.RIGHT:
             return 225;
+        case NAV_DIRECTION.RIGHT:
+            return 45;
         default:
             return 0;
     }
@@ -344,9 +344,9 @@ function getInitialXRatio(direction: NAV_DIRECTION): number {
         case NAV_DIRECTION.DOWN:
             return -50;
         case NAV_DIRECTION.LEFT:
-            return 0;
-        case NAV_DIRECTION.RIGHT:
             return -100;
+        case NAV_DIRECTION.RIGHT:
+            return 0;
         default:
             return 0;
     }
@@ -355,9 +355,9 @@ function getInitialXRatio(direction: NAV_DIRECTION): number {
 function getInitialYRatio(direction: NAV_DIRECTION): number {
     switch(direction) {
         case NAV_DIRECTION.UP:
-            return 0;
-        case NAV_DIRECTION.DOWN:
             return -100;
+        case NAV_DIRECTION.DOWN:
+            return 0;
         case NAV_DIRECTION.LEFT:
             return -50;
         case NAV_DIRECTION.RIGHT:
@@ -374,9 +374,9 @@ function getEnterDoneXRatio(direction: NAV_DIRECTION): number {
         case NAV_DIRECTION.DOWN:
             return -50;
         case NAV_DIRECTION.LEFT:
-            return -100;
-        case NAV_DIRECTION.RIGHT:
             return 0;
+        case NAV_DIRECTION.RIGHT:
+            return -100;
         default:
             return 0;
     }
@@ -385,9 +385,9 @@ function getEnterDoneXRatio(direction: NAV_DIRECTION): number {
 function getEnterDoneYRatio(direction: NAV_DIRECTION): number {
     switch(direction) {
         case NAV_DIRECTION.UP:
-            return -100;
-        case NAV_DIRECTION.DOWN:
             return 0;
+        case NAV_DIRECTION.DOWN:
+            return -100;
         case NAV_DIRECTION.LEFT:
             return -50;
         case NAV_DIRECTION.RIGHT:
@@ -405,28 +405,53 @@ export const CarouselItemOverrunOverlayStyled = styled.default.div<CarouselItemO
     position: absolute;
     border-style: solid;
     color: green;
-    border-width: 0px 0px 15px 15px;
-    height: 17px;
-    width: 17px;
+    border-width: 0px 0px ${(props) =>
+        props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].overrunDirectionDisplay
+            .size}px ${(props) =>
+        props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].overrunDirectionDisplay
+            .size}px;
+    height: ${(props) =>
+        props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].overrunDirectionDisplay
+            .size}px;
+    width: ${(props) =>
+        props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].overrunDirectionDisplay
+            .size}px;
     top: 50%;
     left: 50%;
     transform: translate(${(props) => getInitialXRatio(props.direction)}%, ${(props) => getInitialYRatio(props.direction)}%) rotate(${(props) => getOverrunDirectionDisplayAngle(props.direction)}deg);
     transition-duration: 300ms;
 
     @media (min-width: 1024px) {
-        border-width: 0px 0px 30px 30px;
-        height: 35px;
-        width: 35px;
+        border-width: 0px 0px ${(props) =>
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].overrunDirectionDisplay
+                .size}px ${(props) =>
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].overrunDirectionDisplay
+                .size}px;
+        height: ${(props) =>
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].overrunDirectionDisplay
+                .size}px;
+        width: ${(props) =>
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].overrunDirectionDisplay
+                .size}px;
     }
 
     @media (min-width: 1366px) {
-        border-width: 0px 0px 30px 30px;
-        height: 35px;
-        width: 35px;
+        border-width: 0px 0px ${(props) =>
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].overrunDirectionDisplay
+                .size}px ${(props) =>
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].overrunDirectionDisplay
+                .size}px;
+        height: ${(props) =>
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].overrunDirectionDisplay
+                .size}px;
+        width: ${(props) =>
+            props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].overrunDirectionDisplay
+                .size}px;
     }
 
     &.overrundir-enter {
-        opacity: 0.7;
+        opacity: ${(props) =>
+            props.theme.initialOpacityOverrunDirectionDisplay};
     }
     
     &.overrundir-enter-done {
