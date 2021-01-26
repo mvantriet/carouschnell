@@ -274,13 +274,16 @@ export class Carousel
         }
         if (props.config.navControls.touch.enabled) {
             this.navControllers.push(
-                new TouchNavController(this, props.config.navControls.touch.eventBindElementId)
+                new TouchNavController(this,
+                    props.config.navControls.touch.eventBindElementId,
+                    props.config.navControls.touch.scrollLock)
             );
         }
         if (props.config.navControls.pointer.enabled) {
             const pointerNavController: PointerNavController = new PointerNavController(
                 this,
-                props.config.navControls.pointer.eventBindElementId
+                props.config.navControls.pointer.eventBindElementId,
+                props.config.navControls.pointer.scrollLock
             );
             this.navControllers.push(pointerNavController);
             this.itemNavActionHandlers.push(pointerNavController);
