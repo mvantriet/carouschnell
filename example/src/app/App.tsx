@@ -170,6 +170,7 @@ function App() {
         },
         navControls: {
             enable2dNav: true,
+            autoScroll: true,
             keyboard: {
                 enabled: true,
                 keyMapping: carouschnell.DEVICE_NAV_KEYCODES_DEFAULT,
