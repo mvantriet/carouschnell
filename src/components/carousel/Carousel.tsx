@@ -300,13 +300,15 @@ export class Carousel
     private scrollSelected() {
         // Refs are not well suppored in type strong typed styled components
         // Alternative is to use a forward ref or a query selection as is done below
-        const selectedItemDiv = document.querySelector(".selected > .item");
-        if (selectedItemDiv) {
-            selectedItemDiv.scrollIntoView({
-                block: "center",
-                inline: "center",
-                behavior: "smooth",
-            });
+        if (this.props.config.navControls.autoScroll) {
+            const selectedItemDiv = document.querySelector(".selected > .item");
+            if (selectedItemDiv) {
+                selectedItemDiv.scrollIntoView({
+                    block: "center",
+                    inline: "center",
+                    behavior: "smooth",
+                });
+            }          
         }
     }
 
