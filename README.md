@@ -63,6 +63,7 @@ function App() {
         },
         navControls: {
             enable2dNav: true,
+            autoScroll: true,
             keyboard: {
                 enabled: true,
                 keyMapping: carouschnell.DEVICE_NAV_KEYCODES_DEFAULT,
@@ -70,10 +71,12 @@ function App() {
             pointer: {
                 enabled: true,
                 eventBindElementId: "carousel",
+                scrollLock: true,
             },
             touch: {
                 enabled: true,
                 eventBindElementId: "root",
+                scrollLock: true,
             },
         },
         styleConfig: carouschnell.defaultStyles.darkStyle,
@@ -171,7 +174,7 @@ const defaultItemSizeDesktop: CarouselStyleConfigItemSize = {
 };
 ```
 
-## Device support
+## Nav Controls
 
 Carouschnell currently three controllers to support navigation: keyboard, pointer and swiping. Each can be individually configured through the CarouselConfig. An example of _navControl_ definitions can be found in the [example](example/src/App.tsx) provided by this repo. Carouschnell includes a configurable implementation for each controller.
 
@@ -183,6 +186,14 @@ The touch navigation controller registers for the _touchstart_, _touchmove_ and 
 
 <div align="center"><img src="doc/img/mobileswipe.gif" alt="mobileswipe"
 	title="Swipe support of Carouschnell"/></div>
+
+## Scrolling Behaviour
+
+Carouschnell is designed to provide a quick way to create Carousels for various devices, including devices for which scrolling is not always desirable. As such, Carouschnell can be configured to automatically scroll the selected Item in the Carousel into view. See the _autoScroll_ property of the CarouselConfig.
+
+As mentioned above, Carouschnell supports various navigation controllers: keyboard, pointer and touch. Carouschnell adds the option to disable scrolling for configurable HTML elements in order to support smooth operation of the pointer and touch navigation controller. This prevents the situation when for example a mobile device triggers a scroll event whenever a swipe is carried out on the Carousel.
+
+Note that configuring the _scrollLock_ option in the CarouselConfig for the pointer and touch navigation controller does not impact the scrolling behaviour of the entire page. As the navigation controller can be bound to a specific HTML element. For example, the developer could enable the touch navigation controller only for a _div_ within the page wherein the Carousel is used. This way the _scrollLock_ option can be set to true without breaking the scrolling options of the rest of the page.
 
 ## Examples
 
