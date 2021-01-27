@@ -1,6 +1,6 @@
 {
-    "short_name": "CarouschnellExample",
-    "name": "Carouschnell Example",
+    "short_name": "CarouschnellDemo2DExample",
+    "name": "Carouschnell Demo2D Example",
     "icons": [],
     "start_url": ".",
     "display": "standalone"
