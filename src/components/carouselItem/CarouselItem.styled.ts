@@ -265,12 +265,14 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
 export const CarouselItemSelectedOverlayStyled = styled.default
     .div<CarouselItemSelectedOverlayStyledProps>`
     width: 100%;
-    height: 20%;
+    height: ${(props) => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].selectionStyleConfig
+        .relativeHeight}%;
     position: absolute;
     box-shadow: 0px 0px 20px 5px ${(props) =>
         props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].selectionStyleConfig
             .topBorderShadowSize}px; 
-    top: 80%;
+    top: ${(props) => 100 - props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].selectionStyleConfig
+        .relativeHeight}%;
     left: 0;
     color: ${(props) => props.style.theme.itemSelectionFontColor};
     background-color: ${(props) => props.style.theme.itemSelectionBackgroundColor};
@@ -284,6 +286,10 @@ export const CarouselItemSelectedOverlayStyled = styled.default
         props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].selectionStyleConfig.fontSize}px;
 
     @media (min-width: 1024px) {
+        height: ${(props) => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].selectionStyleConfig
+            .relativeHeight}%;
+        top: ${(props) => 100 - props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].selectionStyleConfig
+            .relativeHeight}%;
         box-shadow: 0px 0px 20px 5px ${(props) =>
             props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].selectionStyleConfig
                 .topBorderShadowSize}px; 
@@ -299,6 +305,10 @@ export const CarouselItemSelectedOverlayStyled = styled.default
     }
 
     @media (min-width: 1366px) {
+        height: ${(props) => props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].selectionStyleConfig
+            .relativeHeight}%;
+        top: ${(props) => 100 - props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].selectionStyleConfig
+            .relativeHeight}%;
         box-shadow: 0px 0px 20px 5px ${(props) =>
             props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].selectionStyleConfig
                 .topBorderShadowSize}px; 
