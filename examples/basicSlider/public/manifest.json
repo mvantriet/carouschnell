@@ -1,0 +1,7 @@
+{
+    "short_name": "CarouschnellSliderExample",
+    "name": "CarouschnellSliderExample",
+    "icons": [],
+    "start_url": ".",
+    "display": "standalone"
+}
