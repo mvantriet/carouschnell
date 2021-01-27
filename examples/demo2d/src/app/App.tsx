@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import * as carouschnell from "../../../src/index";
+import * as carouschnell from "../../../../src/index";
 
 function App() {
     const [itemWidth, itemHeight] = _getMaxItemDimensions();
