@@ -192,7 +192,7 @@ function App() {
     return (
         <div className="App">
             <h1>Welcome!</h1>
-            <p>Navigation controls: LRUD | WASD | Mouse | Swipe Up and Down</p>
+            <p>Navigation controls: LRUD | WASD | Mouse | Swipe Up, Down, Left and Right</p>
             <div className="content" id="carousel">
                 <carouschnell.Carousel config={config} />
             </div>
