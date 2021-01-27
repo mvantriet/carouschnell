@@ -3,7 +3,7 @@ const fs = require("fs");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 
 const exampleAppDir = fs.realpathSync(process.cwd());
-const rootProjectPath = path.resolve(exampleAppDir, "../");
+const rootProjectPath = path.resolve(exampleAppDir, "../../");
 
 const exampleAppBabelConfig = {
     test: /\.(js|jsx|ts|tsx)$/,
