@@ -11,6 +11,7 @@ build
 dist
 .rpt2_cache
 index*.js*
+!examples/**/index*.js*
 
 # misc
 .DS_Store
