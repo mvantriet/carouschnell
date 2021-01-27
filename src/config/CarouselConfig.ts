@@ -123,6 +123,7 @@ export enum CAROUSEL_STYLE_MEDIA_TYPE {
 }
 
 export type CarouselItemSelectionOverlayMediaTypeConfig = {
+    relativeHeight: number; // percentage of item height
     bottomRadiusSize: number;
     fontSize: number;
     topBorderShadowSize: number;
