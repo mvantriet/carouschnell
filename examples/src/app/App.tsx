@@ -178,12 +178,12 @@ function App() {
             pointer: {
                 enabled: true,
                 eventBindElementId: "carousel",
-                scrollLock: true
+                scrollLock: true,
             },
             touch: {
                 enabled: true,
                 eventBindElementId: "carousel",
-                scrollLock: true
+                scrollLock: true,
             },
         },
         styleConfig: carouschnell.defaultStyles.darkStyle,

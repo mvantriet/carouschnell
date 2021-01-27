@@ -1,7 +1,0 @@
-{
-  "short_name": "CarouschnellExample",
-  "name": "Carouschnell Example",
-  "icons": [],
-  "start_url": ".",
-  "display": "standalone"
-}
