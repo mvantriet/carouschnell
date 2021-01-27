@@ -75,7 +75,7 @@ function App() {
             },
             touch: {
                 enabled: true,
-                eventBindElementId: "root",
+                eventBindElementId: "carousel",
                 scrollLock: true,
             },
         },
@@ -85,7 +85,7 @@ function App() {
     return (
         <div className="App">
             <h1>Welcome!</h1>
-            <p>Navigation controls: LRUD | WASD | Mouse | Swipe Up and Down</p>
+            <p>Navigation controls: LRUD | WASD | Mouse | Swipe Up, Down, Left and Right</p>
             <div className="content" id="carousel">
                 <carouschnell.Carousel config={config} />
             </div>
@@ -197,7 +197,7 @@ Note that configuring the _scrollLock_ option in the CarouselConfig for the poin
 
 ## Examples
 
-An example of an instantiation of carouschnell can be found in the example directory of this repo. You can run the example by cloning this repo and calling:
+Examples of carouschnell can be found in the example directory of this repo. The main example (demo2d) can be run by cloning this repo and calling:
 
 ```bash
 npm install
