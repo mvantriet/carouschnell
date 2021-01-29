@@ -174,7 +174,8 @@ export const darkStyle: CarouselStyleConfig = {
             itemSelectionBackgroundColor: "black",
             itemSelectionForegroundColor: "white",
             itemInOverrunOpacity: 60,
-            initialOpacityOverrunDirectionDisplay: 0.7
+            initialOpacityOverrunDirectionDisplay: 0.7,
+            overrunDirectionDisplayColor: "green"
         },
         mediaTypes: defaultStyleItemMediaTypes,
     },
@@ -313,7 +314,8 @@ export const lightStyle: CarouselStyleConfig = {
             itemSelectionBackgroundColor: "#6699ff",
             itemSelectionForegroundColor: "white",
             itemInOverrunOpacity: 60,
-            initialOpacityOverrunDirectionDisplay: 0.7
+            initialOpacityOverrunDirectionDisplay: 0.7,
+            overrunDirectionDisplayColor: "blue"
         },
         mediaTypes: lightStyleItemMediaTypes,
     },
