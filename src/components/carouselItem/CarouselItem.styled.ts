@@ -414,7 +414,7 @@ export const CarouselItemOverrunOverlayStyled = styled.default.div<CarouselItemO
     display: block;
     position: absolute;
     border-style: solid;
-    color: green;
+    color: ${(props) => props.style.theme.overrunDirectionDisplayColor};
     border-width: 0px 0px ${(props) =>
         props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].overrunDirectionDisplay
             .size}px ${(props) =>
@@ -461,7 +461,7 @@ export const CarouselItemOverrunOverlayStyled = styled.default.div<CarouselItemO
 
     &.overrundir-enter {
         opacity: ${(props) =>
-            props.theme.initialOpacityOverrunDirectionDisplay};
+            props.style.theme.initialOpacityOverrunDirectionDisplay};
     }
     
     &.overrundir-enter-done {
