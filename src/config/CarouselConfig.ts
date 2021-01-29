@@ -83,6 +83,7 @@ export type CarouselItemStyleConfigTheme = {
     itemSelectionForegroundColor: string;
     itemInOverrunOpacity: number; // percentage
     initialOpacityOverrunDirectionDisplay: number; //0 - 1.0
+    overrunDirectionDisplayColor: string
 };
 
 export type CarouselStyleConfigMediaType = {
