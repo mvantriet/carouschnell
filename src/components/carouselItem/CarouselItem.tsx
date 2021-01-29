@@ -18,13 +18,7 @@ export type CarouselItemProps = {
 };
 
 export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
-    props: CarouselItemProps
-) => {
-    if (props.inOverrun && props.overrunDirection.result) {
-
-        console.log(props.yNavOffset, props.xNavOffset, props.overrunDirection)
-    }
-
+    props: CarouselItemProps) => {
     return (
         <CarouselItemStyled
             className={props.selected ? "selected" : ""}
