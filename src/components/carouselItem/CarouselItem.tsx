@@ -2,7 +2,7 @@ import * as React from "react";
 import { CSSTransition } from "react-transition-group";
 import { CarouselItemStyled, CarouselItemSelectedOverlayStyled, CarouselItemOverrunOverlayStyled } from "./CarouselItem.styled";
 import { CarouselItemConfig, CarouselItemStyleConfig } from "../../config/CarouselConfig";
-import { INavItemActionHandler } from "../../navcontrols/common/INavItemActionHandler";
+import { IMouseNavItemActionHandler, ITouchNavItemActionHandler} from "../../navcontrols/common/INavItemActionHandler";
 import { NavDirectionResult } from "../../utils/CarouselUtils";
 
 export type CarouselItemProps = {
@@ -13,12 +13,12 @@ export type CarouselItemProps = {
     overrunDirection: NavDirectionResult;
     xNavOffset: number;
     yNavOffset: number;
-    navActionHandlers: Array<INavItemActionHandler>;
+    mouseNavActionHandlers: Array<IMouseNavItemActionHandler>;
+    touchNavActionHandlers: Array<ITouchNavItemActionHandler>;
     style: CarouselItemStyleConfig;
 };
 
-export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
-    props: CarouselItemProps) => {
+export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (props: CarouselItemProps) => {
     return (
         <CarouselItemStyled
             className={props.selected ? "selected" : ""}
@@ -31,10 +31,9 @@ export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
             style={props.style}
         >
             <CSSTransition in={false} timeout={0} className="item">
-                {props.navActionHandlers.length > 0 ? (
                     <div
                         onMouseEnter={(event: any) =>
-                            props.navActionHandlers.forEach((handler: INavItemActionHandler) =>
+                            props.mouseNavActionHandlers.forEach((handler: IMouseNavItemActionHandler) =>
                                 handler.handleItemHoverEnter(
                                     event,
                                     props.yNavOffset,
@@ -43,7 +42,7 @@ export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
                             )
                         }
                         onMouseLeave={(event: any) =>
-                            props.navActionHandlers.forEach((handler: INavItemActionHandler) =>
+                            props.mouseNavActionHandlers.forEach((handler: IMouseNavItemActionHandler) =>
                                 handler.handleItemHoverExit(
                                     event,
                                     props.yNavOffset,
@@ -52,12 +51,27 @@ export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
                             )
                         }
                         onMouseMove={(event: any) =>
-                            props.navActionHandlers.forEach((handler: INavItemActionHandler) =>
+                            props.mouseNavActionHandlers.forEach((handler: IMouseNavItemActionHandler) =>
                                 handler.handleItemHover(event, props.yNavOffset, props.xNavOffset)
                             )
                         }
+                        onTouchStart={(event: any) =>
+                            props.touchNavActionHandlers.forEach((handler: ITouchNavItemActionHandler) =>
+                                handler.handleItemOnTouchStart(event, props.yNavOffset, props.xNavOffset)
+                            )
+                        }
+                        onTouchMove={(event: any) =>
+                            props.touchNavActionHandlers.forEach((handler: ITouchNavItemActionHandler) =>
+                                handler.handleItemOnTouchMove(event, props.yNavOffset, props.xNavOffset)
+                            )
+                        }
+                        onTouchEnd={(event: any) =>
+                            props.touchNavActionHandlers.forEach((handler: ITouchNavItemActionHandler) =>
+                                handler.handleItemOnTouchEnd(event, props.yNavOffset, props.xNavOffset)
+                            )
+                        }
                         onClick={(event: any) =>
-                            props.navActionHandlers.forEach((handler: INavItemActionHandler) =>
+                            props.mouseNavActionHandlers.forEach((handler: IMouseNavItemActionHandler) =>
                                 handler.handleItemOnClick(event, props.yNavOffset, props.xNavOffset)
                             )
                         }
@@ -76,26 +90,7 @@ export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
                                 unmountOnExit>
                                 {() => <CarouselItemOverrunOverlayStyled style={props.style} direction={props.overrunDirection.direction}/>}
                             </CSSTransition>
-                            
-                        
                     </div>
-                ) : (
-                    <div className="item">
-                        <img src={props.config.thumbnail} alt={props.config.caption}></img>
-                        {props.selected && (
-                            <CarouselItemSelectedOverlayStyled style={props.style}>
-                                <span>{props.config.caption}</span>
-                            </CarouselItemSelectedOverlayStyled>
-                        )}
-                        <CSSTransition 
-                            in={props.inOverrun && props.overrunDirection.result} 
-                            timeout={300} 
-                            classNames="overrundir"
-                            unmountOnExit>
-                            {() => <CarouselItemOverrunOverlayStyled style={props.style} direction={props.overrunDirection.direction}/>}
-                        </CSSTransition>
-                    </div>
-                )}
             </CSSTransition>
         </CarouselItemStyled>
     );
