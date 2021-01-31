@@ -216,13 +216,4 @@ This will use react-app-rewired to wire the example with the carouschnell source
 6. <del>Add support for mouse navigation by clicking in overrun area to enable navigation action in any direction (left, right, up or down).</del>
 
 ## Contributing
-
-All contributions to this project are welcome and I hope you'd like to get involved. Any contributions you make are greatly appreciated.
-
-1. Clone this Project
-2. Create a Feature Branch (git checkout -b my-new-feature)
-3. Commit your Changes (git commit -m 'My contribution')
-    1. Prettier will format the code files
-    2. Husky will force all tests to pass before the commit is accepted
-4. Push to the Branch (git push)
-5. Open a Pull Request
+See [CONTRIBUTING](CONTRIBUTING.md).
