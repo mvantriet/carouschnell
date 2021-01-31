@@ -4,11 +4,10 @@ import "@testing-library/jest-dom/extend-expect";
 import { CarouselItem } from "../CarouselItem";
 import { CarouselItemConfig } from "../../../config/CarouselConfig";
 import { darkStyle } from "../../../styles/defaultStyles";
-import { INavItemActionHandler } from "../../../navcontrols/common/INavItemActionHandler";
+import { IMouseNavItemActionHandler } from "../../../navcontrols/common/INavItemActionHandler";
 import { mock } from "jest-mock-extended";
 import { ReactElement } from "react";
 import { itemInView, getSelectedItem } from "../../../../test/testUtils";
-import { NavDirectionResult } from "../../utils/CarouselUtils";
 import { NAV_DIRECTION } from "../../../navcontrols/common/INavActionHandler";
 
 let container: HTMLDivElement;
@@ -24,11 +23,11 @@ afterEach(() => {
 });
 
 function createCarouselItem(
-    navActionHandler: INavItemActionHandler,
     inView: boolean,
     inOverrun: boolean,
     isSelected: boolean,
-    caption: string
+    caption: string,
+    navActionHandler?: IMouseNavItemActionHandler
 ): ReactElement {
     const itemConfig: CarouselItemConfig = {
         thumbnail: "",
@@ -39,7 +38,8 @@ function createCarouselItem(
     return (
         <CarouselItem
             style={darkStyle.itemStyleConfig}
-            navActionHandlers={[navActionHandler]}
+            mouseNavActionHandlers={navActionHandler ? [navActionHandler] : []}
+            touchNavActionHandlers={[]}
             xNavOffset={0}
             yNavOffset={0}
             inView={inView}
@@ -53,7 +53,7 @@ function createCarouselItem(
 
 test("test in view", async () => {
     ReactDOM.render(
-        createCarouselItem(mock<INavItemActionHandler>(), true, false, false, "1"),
+        createCarouselItem(true, false, false, "1"),
         container
     );
     expect(itemInView("1")).toEqual(true);
@@ -62,7 +62,7 @@ test("test in view", async () => {
 
 test("test out view", async () => {
     ReactDOM.render(
-        createCarouselItem(mock<INavItemActionHandler>(), false, false, false, "1"),
+        createCarouselItem(false, false, false, "1"),
         container
     );
     expect(itemInView("1")).toEqual(false);
@@ -71,7 +71,7 @@ test("test out view", async () => {
 
 test("test selected", async () => {
     ReactDOM.render(
-        createCarouselItem(mock<INavItemActionHandler>(), true, false, true, "1"),
+        createCarouselItem(true, false, true, "1"),
         container
     );
     expect(itemInView("1")).toEqual(true);
@@ -80,7 +80,7 @@ test("test selected", async () => {
 
 test("test in overrun", async () => {
     ReactDOM.render(
-        createCarouselItem(mock<INavItemActionHandler>(), false, true, false, "1"),
+        createCarouselItem(false, true, false, "1"),
         container
     );
     expect(itemInView("1")).toEqual(true);
@@ -88,8 +88,8 @@ test("test in overrun", async () => {
 });
 
 test("test click nav action", async () => {
-    const navActionHandler = mock<INavItemActionHandler>();
-    ReactDOM.render(createCarouselItem(navActionHandler, true, false, true, "1"), container);
+    const navActionHandler = mock<IMouseNavItemActionHandler>();
+    ReactDOM.render(createCarouselItem(true, false, true, "1", navActionHandler), container);
     expect(itemInView("1")).toEqual(true);
     const el: HTMLElement | null = screen.getByRole("img", { name: "1" }).closest(".item");
     if (el !== null) {
@@ -105,8 +105,8 @@ test("test click nav action", async () => {
 });
 
 test("test hover nav actions", async () => {
-    const navActionHandler = mock<INavItemActionHandler>();
-    ReactDOM.render(createCarouselItem(navActionHandler, true, false, true, "1"), container);
+    const navActionHandler = mock<IMouseNavItemActionHandler>();
+    ReactDOM.render(createCarouselItem(true, false, true, "1", navActionHandler), container);
     expect(itemInView("1")).toEqual(true);
     const el: HTMLElement | null = screen.getByRole("img", { name: "1" }).closest(".item");
     if (el !== null) {
