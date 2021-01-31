@@ -9,7 +9,8 @@ import {
     CarouselRowConfig,
 } from "../../config/CarouselConfig";
 import { INavActionHandler, NAV_DIRECTION } from "../../navcontrols/common/INavActionHandler";
-import { INavItemActionHandler } from "../../navcontrols/common/INavItemActionHandler";
+import { INavItemActionHandler, IMouseNavItemActionHandler, 
+    ITouchNavItemActionHandler } from "../../navcontrols/common/INavItemActionHandler";
 import { NavController } from "../../navcontrols/common/NavController";
 import {
     KeyboardNavController,
@@ -49,7 +50,8 @@ export class Carousel
     private enable2dNav: boolean;
     private styleConfig: CarouselStyleConfig;
     private navControllers: Array<NavController>;
-    private itemNavActionHandlers: Array<INavItemActionHandler>;
+    private itemMouseNavActionHandlers: Array<IMouseNavItemActionHandler>;
+    private itemTouchNavActionHandlers: Array<ITouchNavItemActionHandler>;
 
     constructor(props: CarouselProps) {
         super(props);
@@ -57,7 +59,8 @@ export class Carousel
         this.displayConfig = props.config.displayConfig;
         this.styleConfig = props.config.styleConfig;
         this.navControllers = [];
-        this.itemNavActionHandlers = [];
+        this.itemMouseNavActionHandlers = [];
+        this.itemTouchNavActionHandlers = [];
 
         this.initialiseNavControls(this.props);
 
@@ -273,11 +276,11 @@ export class Carousel
             );
         }
         if (props.config.navControls.touch.enabled) {
-            this.navControllers.push(
-                new TouchNavController(this,
-                    props.config.navControls.touch.eventBindElementId,
-                    props.config.navControls.touch.scrollLock)
-            );
+            const touchNavController: TouchNavController = new TouchNavController(this,
+                props.config.navControls.touch.eventBindElementId,
+                props.config.navControls.touch.scrollLock);
+            this.navControllers.push(touchNavController);
+            this.itemTouchNavActionHandlers.push(touchNavController);
         }
         if (props.config.navControls.pointer.enabled) {
             const pointerNavController: PointerNavController = new PointerNavController(
@@ -286,7 +289,7 @@ export class Carousel
                 props.config.navControls.pointer.scrollLock
             );
             this.navControllers.push(pointerNavController);
-            this.itemNavActionHandlers.push(pointerNavController);
+            this.itemMouseNavActionHandlers.push(pointerNavController);
         }
     }
 
@@ -330,7 +333,10 @@ export class Carousel
 
     componentDidMount() {
         this.navControllers.forEach((navController: NavController) => navController.init());
-        this.itemNavActionHandlers.forEach((navController: INavItemActionHandler) =>
+        this.itemMouseNavActionHandlers.forEach((navController: INavItemActionHandler) =>
+            navController.init()
+        );
+        this.itemTouchNavActionHandlers.forEach((navController: INavItemActionHandler) =>
             navController.init()
         );
     }
@@ -344,7 +350,8 @@ export class Carousel
                             <CarouselItem
                                 key={index.toString()}
                                 style={this.styleConfig.itemStyleConfig}
-                                navActionHandlers={this.itemNavActionHandlers}
+                                mouseNavActionHandlers={this.itemMouseNavActionHandlers}
+                                touchNavActionHandlers={this.itemTouchNavActionHandlers}
                                 xNavOffset={itemState.xOffset}
                                 yNavOffset={itemState.yOffset}
                                 inView={CarouselUtils.isItemInView(
