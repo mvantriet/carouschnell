@@ -4,6 +4,8 @@
     "description": "Responsive and Configurable Typescript based React component to make carousels schneller",
     "keywords": [
         "carousel",
+        "slider",
+        "react",
         "component",
         "library",
         "typescript"
