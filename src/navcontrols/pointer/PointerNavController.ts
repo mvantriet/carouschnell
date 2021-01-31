@@ -2,7 +2,7 @@ import { MouseEvent } from "react";
 import { NavController } from "../common/NavController";
 import { NAV_DIRECTION } from "../common/INavActionHandler";
 import { INavActionHandler } from "../common/INavActionHandler";
-import { INavItemActionHandler } from "../common/INavItemActionHandler";
+import { IMouseNavItemActionHandler } from "../common/INavItemActionHandler";
 import { debounce } from "lodash";
 const bsl = require("body-scroll-lock");
 
@@ -28,7 +28,7 @@ class PointerRecord {
     }
 }
 
-export class PointerNavController extends NavController implements INavItemActionHandler {
+export class PointerNavController extends NavController implements IMouseNavItemActionHandler {
     private lastMouseMove: PointerRecord;
     private lastSelectTriggeredMouseMove: PointerRecord;
     private mouseEventsRegistered: boolean;
