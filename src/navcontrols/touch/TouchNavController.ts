@@ -1,9 +1,11 @@
 import { NavController } from "../common/NavController";
 import { INavActionHandler } from "../common/INavActionHandler";
+import { ITouchNavItemActionHandler } from "../common/INavItemActionHandler";
 import { NAV_DIRECTION } from "../common/INavActionHandler";
+import { TouchEvent } from "react";
 const bsl = require("body-scroll-lock");
 
-export class TouchNavController extends NavController {
+export class TouchNavController extends NavController implements ITouchNavItemActionHandler {
     private xDown: number;
     private yDown: number;
     private waitForStart: boolean;
@@ -37,44 +39,57 @@ export class TouchNavController extends NavController {
         }
     }
 
+    handleItemOnTouchStart(event: TouchEvent, _row: number, _column: number): void {
+        event.preventDefault();
+        event.stopPropagation();
+        this.xDown = event.touches[0].clientX;
+        this.yDown = event.touches[0].clientY;
+        this.waitForStart = false;
+        this.swipeInTouchSequence = false;
+    }
+    
+    handleItemOnTouchMove(event: TouchEvent, row: number, column: number): void {
+        event.preventDefault();
+        event.stopPropagation();
+        this.processSwipe(
+            this.xDown,
+            this.yDown,
+            event.touches[0].clientX,
+            event.touches[0].clientY
+        );
+        this.swipeInTouchSequence = true;
+    }
+
+    handleItemOnTouchEnd(event: TouchEvent, row: number, column: number): void {
+        event.preventDefault();
+        event.stopPropagation();
+        this.waitForStart = true;
+        // Touch end without swipe
+        if (!this.swipeInTouchSequence) {
+            this.nofTouchSequencesWithoutSwipe++;
+        } else {
+            this.nofTouchSequencesWithoutSwipe = 0;
+        }
+        if (this.nofTouchSequencesWithoutSwipe > 1) {
+            const timeDiff = new Date().getTime() - this.lastTouchEndTimestamp;
+            if (timeDiff < 800) {
+                this.handler.handleNavControlEnterCurrentSelectionAction();
+            }
+        }
+        this.lastTouchEndTimestamp = new Date().getTime();
+    }
+
+    private wrapHandler(handler: (event: TouchEvent, row: number, column: number) => void): (evt: any) => void {
+        return (evt: any) : void => {
+            const event: TouchEvent = evt as TouchEvent;
+            handler(event, -1 , -1);
+        }
+    }
+
     private registerTouchEvents(): void {
-        document.addEventListener("touchstart", (evt: TouchEvent) => {
-            evt.preventDefault();
-            evt.stopPropagation();
-            this.xDown = evt.touches[0].clientX;
-            this.yDown = evt.touches[0].clientY;
-            this.waitForStart = false;
-            this.swipeInTouchSequence = false;
-        });
-        document.addEventListener("touchmove", (evt: TouchEvent) => {
-            evt.preventDefault();
-            evt.stopPropagation();
-            this.processSwipe(
-                this.xDown,
-                this.yDown,
-                evt.touches[0].clientX,
-                evt.touches[0].clientY
-            );
-            this.swipeInTouchSequence = true;
-        });
-        document.addEventListener("touchend", (evt: TouchEvent) => {
-            evt.preventDefault();
-            evt.stopPropagation();
-            this.waitForStart = true;
-            // Touch end without swipe
-            if (!this.swipeInTouchSequence) {
-                this.nofTouchSequencesWithoutSwipe++;
-            } else {
-                this.nofTouchSequencesWithoutSwipe = 0;
-            }
-            if (this.nofTouchSequencesWithoutSwipe > 1) {
-                const timeDiff = new Date().getTime() - this.lastTouchEndTimestamp;
-                if (timeDiff < 800) {
-                    this.handler.handleNavControlEnterCurrentSelectionAction();
-                }
-            }
-            this.lastTouchEndTimestamp = new Date().getTime();
-        });
+        document.addEventListener("touchstart", this.wrapHandler(this.handleItemOnTouchStart.bind(this)));
+        document.addEventListener("touchmove", this.wrapHandler(this.handleItemOnTouchMove.bind(this)));
+        document.addEventListener("touchend", this.wrapHandler(this.handleItemOnTouchEnd.bind(this)));
     }
 
     private processSwipe(xStart: number, yStart: number, xMove: number, yMove: number): void {
