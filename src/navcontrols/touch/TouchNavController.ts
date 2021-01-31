@@ -47,8 +47,8 @@ export class TouchNavController extends NavController implements ITouchNavItemAc
         this.waitForStart = false;
         this.swipeInTouchSequence = false;
     }
-    
-    handleItemOnTouchMove(event: TouchEvent, row: number, column: number): void {
+
+    handleItemOnTouchMove(event: TouchEvent, _row: number, _column: number): void {
         event.preventDefault();
         event.stopPropagation();
         this.processSwipe(
@@ -60,7 +60,7 @@ export class TouchNavController extends NavController implements ITouchNavItemAc
         this.swipeInTouchSequence = true;
     }
 
-    handleItemOnTouchEnd(event: TouchEvent, row: number, column: number): void {
+    handleItemOnTouchEnd(event: TouchEvent, _row: number, _column: number): void {
         event.preventDefault();
         event.stopPropagation();
         this.waitForStart = true;
@@ -79,17 +79,28 @@ export class TouchNavController extends NavController implements ITouchNavItemAc
         this.lastTouchEndTimestamp = new Date().getTime();
     }
 
-    private wrapHandler(handler: (event: TouchEvent, row: number, column: number) => void): (evt: any) => void {
-        return (evt: any) : void => {
+    private wrapHandler(
+        handler: (event: TouchEvent, row: number, column: number) => void
+    ): (evt: any) => void {
+        return (evt: any): void => {
             const event: TouchEvent = evt as TouchEvent;
-            handler(event, -1 , -1);
-        }
+            handler(event, -1, -1);
+        };
     }
 
     private registerTouchEvents(): void {
-        document.addEventListener("touchstart", this.wrapHandler(this.handleItemOnTouchStart.bind(this)));
-        document.addEventListener("touchmove", this.wrapHandler(this.handleItemOnTouchMove.bind(this)));
-        document.addEventListener("touchend", this.wrapHandler(this.handleItemOnTouchEnd.bind(this)));
+        document.addEventListener(
+            "touchstart",
+            this.wrapHandler(this.handleItemOnTouchStart.bind(this))
+        );
+        document.addEventListener(
+            "touchmove",
+            this.wrapHandler(this.handleItemOnTouchMove.bind(this))
+        );
+        document.addEventListener(
+            "touchend",
+            this.wrapHandler(this.handleItemOnTouchEnd.bind(this))
+        );
     }
 
     private processSwipe(xStart: number, yStart: number, xMove: number, yMove: number): void {
