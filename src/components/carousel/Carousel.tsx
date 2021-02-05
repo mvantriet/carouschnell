@@ -7,6 +7,7 @@ import {
     CarouselDisplayConfig,
     CarouselStyleConfig,
     CarouselRowConfig,
+    NavControlCustomConfig
 } from "../../config/CarouselConfig";
 import { INavActionHandler, NAV_DIRECTION } from "../../navcontrols/common/INavActionHandler";
 import { INavItemActionHandler, IMouseNavItemActionHandler, 
@@ -70,6 +71,13 @@ export class Carousel
             itemStates: this.initialiseItemStates(props),
             overrunDirectionDisplayState: []
         };
+        if (props.config.navControls.customNavControllers) {
+            props.config.navControls.customNavControllers
+                .filter((acceptor: NavControlCustomConfig) => acceptor.enabled)
+                .forEach((acceptor: NavControlCustomConfig) => {
+                    acceptor.acceptorCb(this);
+            })
+        }
     }
 
     private initialiseItemStates(props: CarouselProps): Array<ItemState> {
