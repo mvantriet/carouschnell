@@ -1,3 +1,5 @@
+import { INavActionHandler } from "../navcontrols/common/INavActionHandler";
+
 export type CarouselItemConfig = {
     thumbnail: string;
     caption: string;
@@ -46,12 +48,20 @@ export type NavControlTouchConfig = {
     scrollLock: boolean;
 };
 
+export type NavControlCustomHandlerAcceptor = (handler: INavActionHandler) => void;
+
+export type NavControlCustomConfig = {
+    enabled: boolean;
+    acceptorCb: NavControlCustomHandlerAcceptor;
+};
+
 export type NavControlsConfig = {
     enable2dNav: boolean;
     autoScroll: boolean;
     keyboard: NavControlKeyBoardConfig;
     pointer: NavControlPointerConfig;
     touch: NavControlTouchConfig;
+    customNavControllers?: Array<NavControlCustomConfig>;
 };
 
 export type CarouselItemStyleConfigItemSize = {
@@ -83,7 +93,7 @@ export type CarouselItemStyleConfigTheme = {
     itemSelectionForegroundColor: string;
     itemInOverrunOpacity: number; // percentage
     initialOpacityOverrunDirectionDisplay: number; //0 - 1.0
-    overrunDirectionDisplayColor: string
+    overrunDirectionDisplayColor: string;
 };
 
 export type CarouselStyleConfigMediaType = {
