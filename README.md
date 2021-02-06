@@ -77,7 +77,14 @@ function App() {
                 enabled: true,
                 eventBindElementId: "carousel",
                 scrollLock: true,
-            },
+            } /*,
+            customNavControllers: [{
+                enabled: true,
+                acceptorCb: (carousel) => {
+                    carousel.handleNavControlDirectionAction(carouschnell.NAV_DIRECTION.LEFT, 1)
+                }
+            }]
+            */,
         },
         styleConfig: carouschnell.defaultStyles.darkStyle,
     };
@@ -216,4 +223,5 @@ This will use react-app-rewired to wire the example with the carouschnell source
 6. <del>Add support for mouse navigation by clicking in overrun area to enable navigation action in any direction (left, right, up or down).</del>
 
 ## Contributing
+
 See [CONTRIBUTING](CONTRIBUTING.md).
