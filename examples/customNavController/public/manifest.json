@@ -1,0 +1,7 @@
+{
+    "short_name": "CarouschnellCustomNavControllerExample",
+    "name": "CarouschnellCustomNavControllerExample",
+    "icons": [],
+    "start_url": ".",
+    "display": "standalone"
+}
