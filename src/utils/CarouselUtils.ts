@@ -94,6 +94,18 @@ export class CarouselUtils {
             .filter((i: number) => i > -1);
     }
 
+    static isItemInRange(
+        row: number,
+        column: number,
+        targetRow: number,
+        targetColumn: number,
+        maxRowOffset: number,
+        maxColumnOffset: number
+    ): boolean {
+        return Math.abs(row - targetRow) <= maxRowOffset &&
+            Math.abs(column - targetColumn) <= maxColumnOffset;
+    }
+
     /**
      *
      * @param row
