@@ -200,7 +200,7 @@ lightStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
     itemSelectionFontSize: 14,
     itemBorderSize: 1,
     itemSelectedBorderSize: 4,
-    borderRadius: 15,
+    borderRadius: 20,
     itemSize: {
         size: {
             x: 200,
@@ -235,21 +235,21 @@ lightStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
     itemSelectionFontSize: 14,
     itemBorderSize: 2,
     itemSelectedBorderSize: 6,
-    borderRadius: 25,
+    borderRadius: 35,
     itemSize: {
         size: {
             x: 400,
             y: 300,
         },
         margin: {
-            x: 40,
-            y: 40,
+            x: 30,
+            y: 30,
         },
     },
     itemSizeOverrun: {
         size: {
-            x: 300,
-            y: 200,
+            x: 250,
+            y: 187,
         },
         margin: {
             x: 20,
