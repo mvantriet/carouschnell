@@ -21,6 +21,8 @@ export type CarouselDisplayConfig = {
     columnOverrun: number;
     initialDisplayRow: number;
     initialDisplayColumn: number;
+    enableLazyLoading?: boolean;
+    lazyLoadingRelativeOffset?: number;
 };
 
 export type DEVICE_NAV_KEYCODES = {
