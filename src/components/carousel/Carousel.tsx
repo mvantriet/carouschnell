@@ -23,6 +23,7 @@ import { CarouselUtils, NavDirectionResult } from "../../utils/CarouselUtils";
 
 export type ItemState = {
     config: CarouselItemConfig;
+    loadSrc: boolean;
     xOffset: number;
     yOffset: number;
 };
@@ -89,6 +90,12 @@ export class Carousel
                         config: item,
                         xOffset: row.initialColumn - itemIndex,
                         yOffset: rowIndex,
+                        loadSrc: this.props.config.displayConfig.enableLazyLoading ? (
+                                    CarouselUtils.isItemInView(rowIndex, row.initialColumn - itemIndex, props.config.displayConfig) ||
+                                    CarouselUtils.isItemInOverrun(rowIndex, row.initialColumn - itemIndex, props.config.displayConfig).result)
+                                :
+                                 true // load all if lazy loading is off
+                                 
                     };
                 })
             );
@@ -328,7 +335,7 @@ export class Carousel
         CarouselUtils.getItemIndicesInColumn(itemStates, column).forEach(
             (i: number) => (itemStates[i].yOffset += offset)
         );
-        this.setState({ itemStates: itemStates });
+        this.updateItemStates(itemStates);
     }
 
     private moveRow(row: number, offset: number) {
@@ -336,7 +343,27 @@ export class Carousel
         CarouselUtils.getItemIndicesInRow(itemStates, row).forEach(
             (i: number) => (itemStates[i].xOffset += offset)
         );
-        this.setState({ itemStates: itemStates });
+        this.updateItemStates(itemStates);
+    }
+
+    private updateItemStates(newItemStates: Array<ItemState>): void {
+        if (this.props.config.displayConfig.enableLazyLoading) {
+            // Default accepted relative offset is 1 (used if not configured)
+            const acceptedRelativeOffset: number = this.props.config.displayConfig.lazyLoadingRelativeOffset ?
+                this.props.config.displayConfig.lazyLoadingRelativeOffset : 1;
+            newItemStates.forEach((newItemState: ItemState) => {
+                // Once loaded, keep state
+                newItemState.loadSrc = newItemState.loadSrc ? newItemState.loadSrc :
+                    CarouselUtils.isItemInView(newItemState.yOffset, 
+                        newItemState.xOffset, this.props.config.displayConfig) ||
+                    CarouselUtils.isItemInOverrun(newItemState.yOffset, newItemState.xOffset, 
+                        this.props.config.displayConfig).result ||
+                    CarouselUtils.isItemInRange(this.state.activeDisplayRow, 
+                        this.state.activeDisplayColumn, newItemState.yOffset, newItemState.xOffset,
+                        acceptedRelativeOffset, acceptedRelativeOffset);
+            });    
+        }
+        this.setState({ itemStates: newItemStates });
     }
 
     componentDidMount() {
@@ -347,6 +374,7 @@ export class Carousel
         this.itemTouchNavActionHandlers.forEach((navController: INavItemActionHandler) =>
             navController.init()
         );
+        // for each item in view: set loadSrc: true
     }
 
     render() {
@@ -367,6 +395,7 @@ export class Carousel
                                     itemState.xOffset,
                                     this.displayConfig
                                 )}
+                                loadSrc={itemState.loadSrc}
                                 inOverrun={
                                     CarouselUtils.isItemInOverrun(itemState.yOffset, itemState.xOffset, this.displayConfig)
                                         .result
