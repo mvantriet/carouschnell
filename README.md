@@ -59,7 +59,9 @@ function App() {
             columnEnd: 2,
             columnOverrun: 1,
             initialDisplayRow: 0,
-            initialDisplayColumn: 0,
+            initialDisplayColumn: 0 /*,
+            enableLazyLoading: true, // <-- enable lazy loading
+            lazyLoadingRelativeOffset: 2 */,
         },
         navControls: {
             enable2dNav: true,
@@ -130,7 +132,7 @@ type CarouselDisplayConfig = {
     initialDisplayRow: number; // 1
     initialDisplayColumn: number; // 0
     enableLazyLoading?: boolean; // false if not defined
-    lazyLoadingRelativeOffset?: number // 0 if not defined
+    lazyLoadingRelativeOffset?: number; // 0 if not defined
 };
 ```
 
@@ -147,7 +149,8 @@ Carouschnell provides an option to enable 2D navigation. This means overrun exis
 	title="2D Navigation with Carouschnell"/></div>
 
 ### Lazy Loading
-Lazy loading of images on the invidividual carousel items can be configured through the [DisplayConfig](src/config/CarouselConfig.ts). Lazy loading is enabled when setting *enableLazyLoading* to true. Carouschnell will load all the item images at initialisation that are in the active and overrun area of the grid. Additionally, Carouschnell can be configured to load item images when the user is 'close' in terms of navigation. This can be defined through the *lazyLoadingRelativeOffset* property in the [DisplayConfig](src/config/CarouselConfig.ts). If *lazyLoadingRelativeOffset* is specified and *>0* will be used to load item images for the items that fall within a 2D boundary offset from the currently selected position in the grid.
+
+Lazy loading of images on the invidividual carousel items can be configured through the [DisplayConfig](src/config/CarouselConfig.ts). Lazy loading is enabled when setting _enableLazyLoading_ to true. Carouschnell will load all the item images at initialisation that are in the active and overrun area of the grid. Additionally, Carouschnell can be configured to load item images when the user is 'close' in terms of navigation. This can be defined through the _lazyLoadingRelativeOffset_ property in the [DisplayConfig](src/config/CarouselConfig.ts). If _lazyLoadingRelativeOffset_ is specified and _>0_ it will be used to load item images for the items that fall within a 2D boundary offset from the currently selected position in the grid.
 
 An demo showing the Lazy Loading behaviour can be found in the [Lazy Loading Example](examples/demoLazyLoading) directory of this repo.
 
@@ -155,12 +158,12 @@ An demo showing the Lazy Loading behaviour can be found in the [Lazy Loading Exa
 
 The style for every aspect of the carousels can be configured through the CarouselConfig. Please consult the See the type definitions related to the style attribute of the See [CarouselConfig](src/config/CarouselConfig.ts) of this repo.
 
-Carouschnell is shipped with default styles. The default styles can be found in the [styles](src/styles) directory of this repo, and can be used in an application directly by assigning the *styleConfig* property of the [CarouselConfig](src/config/CarouselConfig.ts) to any default style provided by Carouschnell. 
+Carouschnell is shipped with default styles. The default styles can be found in the [styles](src/styles) directory of this repo, and can be used in an application directly by assigning the _styleConfig_ property of the [CarouselConfig](src/config/CarouselConfig.ts) to any default style provided by Carouschnell.
 
-| Style        | Example           | Cool  |
-| ------------- |-------------| -----|
-| Dark Style |  [demo2d](examples/demo2d) |*carouschnell.defaultStyles.darkStyle*|
-| Light Style | [basicSlider](examples/basicSlider) |*carouschnell.defaultStyles.lightStyle*|
+| Style       | Example                             | Import                                  |
+| ----------- | ----------------------------------- | --------------------------------------- |
+| Dark Style  | [demo2d](examples/demo2d)           | _carouschnell.defaultStyles.darkStyle_  |
+| Light Style | [basicSlider](examples/basicSlider) | _carouschnell.defaultStyles.lightStyle_ |
 
 Naturally the user of this lib can use the default styles as a starting point; assign bits to new variables when constructing a [CarouselConfig](src/config/CarouselConfig.ts) and override the bits that require changes.
 
