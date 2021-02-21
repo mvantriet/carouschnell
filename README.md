@@ -129,6 +129,8 @@ type CarouselDisplayConfig = {
     columnOverrun: number; // 1
     initialDisplayRow: number; // 1
     initialDisplayColumn: number; // 0
+    enableLazyLoading?: boolean; // false if not defined
+    lazyLoadingRelativeOffset?: number // 0 if not defined
 };
 ```
 
@@ -144,9 +146,23 @@ Carouschnell provides an option to enable 2D navigation. This means overrun exis
 <div align="center"><img src="doc/img/2dnav.gif" alt="2Dnav"
 	title="2D Navigation with Carouschnell"/></div>
 
+### Lazy Loading
+Lazy loading of images on the invidividual carousel items can be configured through the [DisplayConfig](src/config/CarouselConfig.ts). Lazy loading is enabled when setting *enableLazyLoading* to true. Carouschnell will load all the item images at initialisation that are in the active and overrun area of the grid. Additionally, Carouschnell can be configured to load item images when the user is 'close' in terms of navigation. This can be defined through the *lazyLoadingRelativeOffset* property in the [DisplayConfig](src/config/CarouselConfig.ts). If *lazyLoadingRelativeOffset* is specified and *>0* will be used to load item images for the items that fall within a 2D boundary offset from the currently selected position in the grid.
+
+An demo showing the Lazy Loading behaviour can be found in the [Lazy Loading Example](examples/demoLazyLoading) directory of this repo.
+
 ## Style
 
 The style for every aspect of the carousels can be configured through the CarouselConfig. Please consult the See the type definitions related to the style attribute of the See [CarouselConfig](src/config/CarouselConfig.ts) of this repo.
+
+Carouschnell is shipped with default styles. The default styles can be found in the [styles](src/styles) directory of this repo, and can be used in an application directly by assigning the *styleConfig* property of the [CarouselConfig](src/config/CarouselConfig.ts) to any default style provided by Carouschnell. 
+
+| Style        | Example           | Cool  |
+| ------------- |-------------| -----|
+| Dark Style |  [demo2d](examples/demo2d) |*carouschnell.defaultStyles.darkStyle*|
+| Light Style | [basicSlider](examples/basicSlider) |*carouschnell.defaultStyles.lightStyle*|
+
+Naturally the user of this lib can use the default styles as a starting point; assign bits to new variables when constructing a [CarouselConfig](src/config/CarouselConfig.ts) and override the bits that require changes.
 
 ### Responsive
 
@@ -183,9 +199,9 @@ const defaultItemSizeDesktop: CarouselStyleConfigItemSize = {
 
 ## Nav Controls
 
-Carouschnell currently three controllers to support navigation: keyboard, pointer and swiping. Each can be individually configured through the CarouselConfig. An example of _navControl_ definitions can be found in the [example](example/src/App.tsx) provided by this repo. Carouschnell includes a configurable implementation for each controller.
+Carouschnell currently three controllers to support navigation: keyboard, pointer and swiping. Each can be individually configured through the CarouselConfig. An example of _navControl_ definitions can be found in the [example](examples/demo2d/src/App.tsx) provided by this repo. Carouschnell includes a configurable implementation for each controller.
 
-The keyboard navigation controller registers to _keydown_ and _keyup_ events and associates keypresses with a navigation action, i.e.: LEFT, RIGHT, UP, DOWN, ENTER. In order to realise this a keymapping must be provided through the CarouselConfig. A default keymapping is provided by the navigation controller for ease of use. This default keymapping maps the **L**eft **R**ight **U**p, **D**own, **W A S D** and the **E**nter keys to the associated navigation actions in Carouschnell. See the [example](example/src/App.tsx) in this repo which demonstrates how to use the default keymapping. Naturally, a custom keymapping can be provided. Long keypresses are handled by injecting a navigation action every 300ms, enabling the user to press down on a supported key and navigating continously.
+The keyboard navigation controller registers to _keydown_ and _keyup_ events and associates keypresses with a navigation action, i.e.: LEFT, RIGHT, UP, DOWN, ENTER. In order to realise this a keymapping must be provided through the CarouselConfig. A default keymapping is provided by the navigation controller for ease of use. This default keymapping maps the **L**eft **R**ight **U**p, **D**own, **W A S D** and the **E**nter keys to the associated navigation actions in Carouschnell. See the [example](examples/demo2d/src/App.tsx) in this repo which demonstrates how to use the default keymapping. Naturally, a custom keymapping can be provided. Long keypresses are handled by injecting a navigation action every 300ms, enabling the user to press down on a supported key and navigating continously.
 
 The pointer navigation controller registers for _wheel_ and _mousemove_ events of the configured elementId and associates the events with a navigation action. Scrolling up & down and right & left (if supported by the user's mouse) the corresponding navigation action will be triggered. The user can hover over the individual items in the active area of the carousel to select items directly.
 
@@ -204,7 +220,7 @@ Note that configuring the _scrollLock_ option in the CarouselConfig for the poin
 
 ## Examples
 
-Examples of carouschnell can be found in the example directory of this repo. The main example (demo2d) can be run by cloning this repo and calling:
+Examples of carouschnell can be found in the [examples](examples/) directory of this repo. The main example (demo2d) can be run by cloning this repo and calling:
 
 ```bash
 npm install
@@ -215,11 +231,11 @@ This will use react-app-rewired to wire the example with the carouschnell source
 
 ## TODOs
 
-1. Add more default styles that are ready to be used.
+1. <del>Add more default styles that are ready to be used.</del>
 2. Optionally visualize the label as assigned for a row in the component config on top of the row.
-3. Fix bug where active border is shifted when the rowStart and rowOverrun violate eachother.
+3. <del>Fix bug where active border is shifted when the rowStart and rowOverrun violate eachother.</del>
 4. Publish @types package to support strong-typed instantiation of Carousels in TS.
-5. Lazy loading for thumbnails (define offset parameters when to load also in config).
+5. <del>Lazy loading for thumbnails (define offset parameters when to load also in config).</del>
 6. <del>Add support for mouse navigation by clicking in overrun area to enable navigation action in any direction (left, right, up or down).</del>
 
 ## Contributing
