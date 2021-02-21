@@ -1,6 +1,6 @@
 {
     "name": "carouschnell",
-    "version": "0.7.0",
+    "version": "1.0.1",
     "description": "Responsive and Configurable Typescript based React component to make carousels schneller",
     "keywords": [
         "carousel",
@@ -38,7 +38,8 @@
         "build:example": "(cd examples/demo2d && npm ci && npm run build)",
         "start": "rollup -c -w",
         "start:example": "(cd examples/demo2d && npm ci && npm start)",
-        "prepare": "npm run build"
+        "prepare": "npm run build",
+        "dev": "nodemon"
     },
     "dependencies": {
         "body-scroll-lock": "^3.1.5",
@@ -75,6 +76,7 @@
         "husky": "^4.3.0",
         "jest-mock-extended": "^1.0.10",
         "lint-staged": "^10.4.2",
+        "nodemon": "^2.0.7",
         "prettier": "^2.1.2",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
