@@ -10,152 +10,27 @@ function App() {
             {
                 initialColumn: 3,
                 label: "Row1",
-                items: [
-                    {
-                        caption: "4",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "4"),
-                        url: "",
-                    },
-                    {
-                        caption: "3",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "3"),
-                        url: "",
-                    },
-                    {
-                        caption: "2",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "2"),
-                        url: "",
-                    },
-                    {
-                        caption: "1",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "1"),
-                        url: "",
-                    },
-                ],
+                items: _genItems(1,4, itemWidth, itemHeight)
             },
             {
                 initialColumn: 4,
                 label: "Row2",
-                items: [
-                    {
-                        caption: "10",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "10"),
-                        url: "",
-                    },
-                    {
-                        caption: "9",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "9"),
-                        url: "",
-                    },
-                    {
-                        caption: "8",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "8"),
-                        url: "",
-                    },
-                    {
-                        caption: "7",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "7"),
-                        url: "",
-                    },
-                    {
-                        caption: "6",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "6"),
-                        url: "",
-                    },
-                    {
-                        caption: "5",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "5"),
-                        url: "",
-                    },
-                ],
+                items: _genItems(5,10, itemWidth, itemHeight)
             },
             {
                 initialColumn: 4,
                 label: "Row3",
-                items: [
-                    {
-                        caption: "16",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "16"),
-                        url: "",
-                    },
-                    {
-                        caption: "15",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "15"),
-                        url: "",
-                    },
-                    {
-                        caption: "14",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "14"),
-                        url: "",
-                    },
-                    {
-                        caption: "13",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "13"),
-                        url: "",
-                    },
-                    {
-                        caption: "12",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "12"),
-                        url: "",
-                    },
-                    {
-                        caption: "11",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "11"),
-                        url: "",
-                    },
-                ],
+                items: _genItems(11,16, itemWidth, itemHeight)
             },
             {
                 initialColumn: 3,
                 label: "Row4",
-                items: [
-                    {
-                        caption: "20",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "20"),
-                        url: "",
-                    },
-                    {
-                        caption: "19",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "19"),
-                        url: "",
-                    },
-                    {
-                        caption: "18",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "18"),
-                        url: "",
-                    },
-                    {
-                        caption: "17",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "17"),
-                        url: "",
-                    },
-                ],
+                items: _genItems(17,20, itemWidth, itemHeight)
             },
             {
                 initialColumn: 3,
                 label: "Row5",
-                items: [
-                    {
-                        caption: "24",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "24"),
-                        url: "",
-                    },
-                    {
-                        caption: "23",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "23"),
-                        url: "",
-                    },
-                    {
-                        caption: "22",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "22"),
-                        url: "",
-                    },
-                    {
-                        caption: "21",
-                        thumbnail: _randomthumbnail(itemWidth, itemHeight, "21"),
-                        url: "",
-                    },
-                ],
+                items: _genItems(21,24, itemWidth, itemHeight)
             },
         ],
         displayConfig: {
@@ -220,6 +95,16 @@ function _getMaxItemDimensions(): Array<number> {
     maxHeight = maxHeight !== 0 ? maxHeight : defaultHeight;
 
     return [maxWidth, maxHeight];
+}
+
+function _genItems(start: number, end: number, itemWidth: number, itemHeight: number): Array<any> {
+    return Array.from(Array((end+1) - start).keys()).map((n: number) => n + start).reverse().map((i: number) => {
+        return {
+            caption: i.toString(),
+            thumbnail: _randomthumbnail(itemWidth, itemHeight, i.toString()),
+            url: "",
+        };
+    })
 }
 
 function _randomthumbnail(width: number, height: number, label: string): string {
