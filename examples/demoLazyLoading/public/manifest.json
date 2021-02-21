@@ -1,0 +1,7 @@
+{
+    "short_name": "CarouschnellLazyLoadingExample",
+    "name": "CarouschnellLazyLoadingExample",
+    "icons": [],
+    "start_url": ".",
+    "display": "standalone"
+}
