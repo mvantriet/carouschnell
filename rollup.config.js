@@ -5,7 +5,7 @@ import url from "@rollup/plugin-url";
 import postcss from "rollup-plugin-postcss";
 import external from "rollup-plugin-peer-deps-external";
 import svgr from "@svgr/rollup";
-
+import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 
 export default {
@@ -15,13 +15,13 @@ export default {
             file: pkg.main,
             format: "cjs",
             exports: "named",
-            sourcemap: true,
+            sourcemap: false,
         },
         {
             file: pkg.module,
             format: "es",
             exports: "named",
-            sourcemap: true,
+            sourcemap: false,
         },
     ],
     plugins: [
@@ -38,5 +38,6 @@ export default {
             useTsconfigDeclarationDir: true,
         }),
         commonjs(),
+        terser()
     ],
 };
