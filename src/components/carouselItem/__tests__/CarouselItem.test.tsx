@@ -43,8 +43,9 @@ function createCarouselItem(
             xNavOffset={0}
             yNavOffset={0}
             inView={inView}
+            loadSrc={false}
             inOverrun={inOverrun}
-            overrunDirection={{result: false, direction: NAV_DIRECTION.NA}}
+            overrunDirection={{ result: false, direction: NAV_DIRECTION.NA }}
             selected={isSelected}
             config={itemConfig}
         />
@@ -52,37 +53,25 @@ function createCarouselItem(
 }
 
 test("test in view", async () => {
-    ReactDOM.render(
-        createCarouselItem(true, false, false, "1"),
-        container
-    );
+    ReactDOM.render(createCarouselItem(true, false, false, "1"), container);
     expect(itemInView("1")).toEqual(true);
     expect(getSelectedItem(container)).toEqual("");
 });
 
 test("test out view", async () => {
-    ReactDOM.render(
-        createCarouselItem(false, false, false, "1"),
-        container
-    );
+    ReactDOM.render(createCarouselItem(false, false, false, "1"), container);
     expect(itemInView("1")).toEqual(false);
     expect(getSelectedItem(container)).toEqual("");
 });
 
 test("test selected", async () => {
-    ReactDOM.render(
-        createCarouselItem(true, false, true, "1"),
-        container
-    );
+    ReactDOM.render(createCarouselItem(true, false, true, "1"), container);
     expect(itemInView("1")).toEqual(true);
     expect(getSelectedItem(container)).toEqual("1");
 });
 
 test("test in overrun", async () => {
-    ReactDOM.render(
-        createCarouselItem(false, true, false, "1"),
-        container
-    );
+    ReactDOM.render(createCarouselItem(false, true, false, "1"), container);
     expect(itemInView("1")).toEqual(true);
     expect(getSelectedItem(container)).toEqual("");
 });
