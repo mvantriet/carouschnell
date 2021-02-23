@@ -1,6 +1,6 @@
 {
     "name": "carouschnell",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "description": "Responsive and Configurable Typescript based React component to make carousels schneller",
     "keywords": [
         "carousel",
