@@ -20,11 +20,12 @@
         "url": "https://github.com/mvantriet/carouschnell/issues"
     },
     "homepage": "https://github.com/mvantriet/carouschnell",
-    "main": "index.js",
-    "module": "index.es.js",
-    "jsnext:main": "index.es.js",
+    "main": "dist/index.js",
+    "module": "dist/index.es.js",
+    "jsnext:main": "dist/index.es.js",
+    "types": "dist/index.d.ts",
     "files": [
-        "index*.js"
+        "dist/**/*"
     ],
     "engines": {
         "node": ">=8",
@@ -34,7 +35,12 @@
         "test": "react-scripts test",
         "test:ci": "CI=true react-scripts test",
         "coverage": "npm test -- --coverage",
-        "build": "rollup -c",
+        "build": "npm run build:ts && npm run build:types && npm run build:bundle",
+        "build:types": "tsc --declaration --allowJs --emitDeclarationOnly --project tsconfig.export.json --outDir build",
+        "build:ts": "tsc --allowJs",
+        "build:bundle": "npm run build:bundle:libs && npm run build:bundle:types",
+        "build:bundle:types": "dts-bundle --name carouschnell --main build/index.d.ts && mv build/carouschnell.d.ts dist/index.d.ts",
+        "build:bundle:libs": "rollup -c",
         "build:example": "(cd examples/demo2d && npm ci && npm run build)",
         "start": "rollup -c -w",
         "start:example": "(cd examples/demo2d && npm ci && npm start)",
@@ -73,6 +79,7 @@
         "@types/styled-components": "^5.1.7",
         "babel-core": "^6.26.3",
         "babel-runtime": "^6.26.0",
+        "dts-bundle": "^0.7.3",
         "husky": "^4.3.0",
         "jest-mock-extended": "^1.0.10",
         "lint-staged": "^10.4.2",
@@ -85,6 +92,7 @@
         "rollup-plugin-babel": "^4.4.0",
         "rollup-plugin-peer-deps-external": "^2.2.4",
         "rollup-plugin-postcss": "^3.1.8",
+        "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-typescript2": "^0.28.0",
         "semantic-release": "^17.2.1",
         "typescript": "~4.0.3"
