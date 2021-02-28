@@ -98,6 +98,11 @@ export type CarouselItemStyleConfigTheme = {
     overrunDirectionDisplayColor: string;
 };
 
+export type CarouselRowLabelStyleConfigTheme = {
+    fontFamily: string;
+    fontColor: string;
+}
+
 export type CarouselStyleConfigMediaType = {
     borderSizeActive: number; // pxs
     borderRadiusSizeActive: number; // pxs
@@ -121,9 +126,20 @@ export type CarouselItemStyleConfigMediaType = {
     overrunDirectionDisplay: CarouselItemOverrunDisplayMediaTypeConfig;
 };
 
+export type CarouselRowLabelStyleConfigMediaType = {
+    fontSize: number; // pts
+    paddingTop: number; // pxs
+    paddingBottom: number; // pxs
+    paddingLeft: number; // pxs
+}
+
 export type CarouselItemStyleConfigMediaTypes = {
     [mediaType: number]: CarouselItemStyleConfigMediaType;
 };
+
+export type CarouselRowLabelStyleConfigMediaTypes = {
+    [mediaType: number]: CarouselRowLabelStyleConfigMediaType;
+}
 
 export type CarouselStyleConfigMediaTypes = {
     [mediaType: number]: CarouselStyleConfigMediaType;
@@ -151,10 +167,16 @@ export type CarouselItemStyleConfig = {
     mediaTypes: CarouselItemStyleConfigMediaTypes;
 };
 
+export type CarouselRowLabelConfig = {
+    theme: CarouselRowLabelStyleConfigTheme;
+    mediaTypes: CarouselRowLabelStyleConfigMediaTypes;   
+}
+
 export type CarouselStyleConfig = {
     theme: CarouselStyleConfigTheme;
     mediaTypes: CarouselStyleConfigMediaTypes;
     itemStyleConfig: CarouselItemStyleConfig;
+    rowLabelStyleConfig?: CarouselRowLabelConfig;
 };
 
 export type CarouselConfig = {
