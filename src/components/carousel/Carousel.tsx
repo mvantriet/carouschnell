@@ -20,6 +20,7 @@ import {
 import { PointerNavController } from "../../navcontrols/pointer/PointerNavController";
 import { TouchNavController } from "../../navcontrols/touch/TouchNavController";
 import { CarouselUtils, NavDirectionResult } from "../../utils/CarouselUtils";
+import { CarouselRowLabel } from "../carouselRowLabel/CarouselRowLabel";
 
 export type ItemState = {
     config: CarouselItemConfig;
@@ -378,6 +379,7 @@ export class Carousel
     }
 
     render() {
+
         return (
             <CarouselStyled style={this.styleConfig} display={this.displayConfig}>
                 <div className="grid">
@@ -386,6 +388,7 @@ export class Carousel
                             <CarouselItem
                                 key={index.toString()}
                                 style={this.styleConfig.itemStyleConfig}
+                                rowLabelStyleConfig={this.styleConfig.rowLabelStyleConfig}
                                 mouseNavActionHandlers={this.itemMouseNavActionHandlers}
                                 touchNavActionHandlers={this.itemTouchNavActionHandlers}
                                 xNavOffset={itemState.xOffset}
@@ -410,7 +413,18 @@ export class Carousel
                             />
                         );
                     })}
-                    <div id="grid-inner" className="grid-inner" />
+                    <div id="grid-inner" className="grid-inner">
+                        {this.props.config.styleConfig.rowLabelStyleConfig && 
+                            this.props.config.rows.map((row: CarouselRowConfig, index: number) => {
+                                return <CarouselRowLabel
+                                    label={row.label}
+                                    yNavOffset={index}
+                                    style={this.props.config.styleConfig.rowLabelStyleConfig}
+                                    itemStyleConfig={this.props.config.styleConfig.itemStyleConfig}
+                                />
+                        })
+                        }
+                    </div>
                 </div>
             </CarouselStyled>
         );
