@@ -1,6 +1,7 @@
 import * as styled from "styled-components";
-import { CarouselItemStyleConfig, CAROUSEL_STYLE_MEDIA_TYPE } from "../../config/CarouselConfig";
+import { CarouselItemStyleConfig, CarouselRowLabelConfig, CAROUSEL_STYLE_MEDIA_TYPE } from "../../config/CarouselConfig";
 import { NAV_DIRECTION } from "../../navcontrols/common/INavActionHandler";
+import { StyleUtils } from "../../utils/StyleUtils";
 
 export type CarouselItemStyledProps = {
     selected: boolean;
@@ -10,6 +11,7 @@ export type CarouselItemStyledProps = {
     yNavOffset: number;
     thumbnailUrl: string;
     style: CarouselItemStyleConfig;
+    rowLabelStyleConfig: CarouselRowLabelConfig | undefined;
 };
 
 export type CarouselItemSelectedOverlayStyledProps = {
@@ -80,7 +82,7 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
             ).toString()}px,
             ${(props) =>
                 (
-                    props.yNavOffset *
+                    ((props.yNavOffset+1) * StyleUtils.calcRowLabelYSpace(props.rowLabelStyleConfig, CAROUSEL_STYLE_MEDIA_TYPE.SMALL))  + props.yNavOffset *
                     (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.size.y +
                         props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].itemSize.margin.y)
                 ).toString()}px);
@@ -147,7 +149,7 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
                 ).toString()}px,
                 ${(props) =>
                     (
-                        props.yNavOffset *
+                        ((props.yNavOffset+1) * StyleUtils.calcRowLabelYSpace(props.rowLabelStyleConfig, CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP))  + props.yNavOffset *
                         (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize.size.y +
                             props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP].itemSize
                                 .margin.y)
@@ -221,7 +223,7 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
                 ).toString()}px,
                 ${(props) =>
                     (
-                        props.yNavOffset *
+                        ((props.yNavOffset+1) * StyleUtils.calcRowLabelYSpace(props.rowLabelStyleConfig, CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN)) + props.yNavOffset *
                         (props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize.size
                             .y +
                             props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN].itemSize
