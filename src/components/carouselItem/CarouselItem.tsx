@@ -5,7 +5,10 @@ import {
     CarouselItemSelectedOverlayStyled,
     CarouselItemOverrunOverlayStyled,
 } from "./CarouselItem.styled";
-import { CarouselItemConfig, CarouselItemStyleConfig } from "../../config/CarouselConfig";
+import { CarouselItemConfig, 
+    CarouselItemStyleConfig, 
+    CarouselRowLabelConfig
+} from "../../config/CarouselConfig";
 import {
     IMouseNavItemActionHandler,
     ITouchNavItemActionHandler,
@@ -24,6 +27,7 @@ export type CarouselItemProps = {
     mouseNavActionHandlers: Array<IMouseNavItemActionHandler>;
     touchNavActionHandlers: Array<ITouchNavItemActionHandler>;
     style: CarouselItemStyleConfig;
+    rowLabelStyleConfig: CarouselRowLabelConfig | undefined;
 };
 
 export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
@@ -39,6 +43,7 @@ export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
             xNavOffset={props.xNavOffset}
             yNavOffset={props.yNavOffset}
             style={props.style}
+            rowLabelStyleConfig={props.rowLabelStyleConfig}
         >
             <CSSTransition in={false} timeout={0} className="item">
                 <div
