@@ -36,6 +36,7 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
     height: ${(props) =>
         StyleUtils.calcYSpace(
             props.style.itemStyleConfig,
+            props.style.rowLabelStyleConfig,
             props.display,
             CAROUSEL_STYLE_MEDIA_TYPE.SMALL
         )}px;
@@ -62,6 +63,7 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
         height: ${(props) =>
             StyleUtils.calcYSpace(
                 props.style.itemStyleConfig,
+                props.style.rowLabelStyleConfig,
                 props.display,
                 CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP
             )}px;
@@ -89,6 +91,7 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
         height: ${(props) =>
             StyleUtils.calcYSpace(
                 props.style.itemStyleConfig,
+                props.style.rowLabelStyleConfig,
                 props.display,
                 CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN
             )}px;    
@@ -112,7 +115,7 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
                 props.style.itemStyleConfig,
                 props.display,
                 CAROUSEL_STYLE_MEDIA_TYPE.SMALL
-            ) - props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].activeExtraPaddingTop}px;
+            ) - props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].activeExtraPaddingTop}px;  
         margin-left: ${(props) =>
             props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].activeExtraPaddingX * -1}px;
         width: ${(props) =>
@@ -124,6 +127,7 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
         height: ${(props) =>
             StyleUtils.calcActiveYSpace(
                 props.style.itemStyleConfig,
+                props.style.rowLabelStyleConfig,
                 props.display,
                 CAROUSEL_STYLE_MEDIA_TYPE.SMALL
             ) + props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].activeExtraPaddingBottom}px;
@@ -147,6 +151,7 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
             height: ${(props) =>
                 StyleUtils.calcActiveYSpace(
                     props.style.itemStyleConfig,
+                    props.style.rowLabelStyleConfig,
                     props.display,
                     CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP
                 ) +
@@ -155,7 +160,7 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
         }
         
         @media (min-width: 1366px) {
-            margin-top: ${(props) =>
+            margin-top: ${(props) =>  
                 StyleUtils.calcOverrunYSpace(
                     props.style.itemStyleConfig,
                     props.display,
@@ -173,6 +178,7 @@ const CarouselStyled = styled.default.div<CarouselStyledProps>`
             height: ${(props) =>
                 StyleUtils.calcActiveYSpace(
                     props.style.itemStyleConfig,
+                    props.style.rowLabelStyleConfig,
                     props.display,
                     CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN
                 ) +
