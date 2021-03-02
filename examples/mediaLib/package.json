@@ -1,0 +1,45 @@
+{
+    "name": "carouschnell-media-lib-example",
+    "version": "0.1.0",
+    "description": "Example Media Lib using Carouschnell",
+    "keywords": [
+        "carousel",
+        "component",
+        "library",
+        "typescript"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mvantriet/carouschnell"
+    },
+    "author": "mvantriet",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/mvantriet/carouschnell/issues"
+    },
+    "homepage": "https://github.com/mvantriet/carouschnell",
+    "main": "src/index.tsx",
+    "scripts": {
+        "build": "react-app-rewired build",
+        "start": "react-app-rewired start"
+    },
+    "engines": {
+        "node": ">=8",
+        "npm": ">=5"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "react-app-rewired": "^2.1.8"
+    }
+}
