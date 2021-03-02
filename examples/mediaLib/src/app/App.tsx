@@ -25,8 +25,8 @@ function App() {
             },
             {
                 initialColumn: 9,
-                label: "\u2023 Premier League",
-                items: _genItems(40,50, itemWidth, itemHeight, 'premierleague')
+                label: "\u2023 NHL Matches",
+                items: _genItems(40,50, itemWidth, itemHeight, 'nhl')
             },
         ],
         displayConfig: {
