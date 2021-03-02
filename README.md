@@ -3,7 +3,7 @@
 Responsive and Configurable Typescript based React component to make carousels schnell (=quickly in German)
 
 <div align="center"><img src="doc/img/medialibcarouschnell.gif" alt="medialibcarouschnell"
-	title="Media Library with Carouschnell" width="600" height="596" /></div>
+	title="Media Library with Carouschnell" width="300" height="298" /></div>
 
 ## Motivation
 
