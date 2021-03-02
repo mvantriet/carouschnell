@@ -362,7 +362,7 @@ const mediaLibStyleItemMediaTypes: CarouselItemStyleConfigMediaTypes = [];
 
 mediaLibStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
     itemSelectionFontSize: 14,
-    itemBorderSize: 1,
+    itemBorderSize: 0,
     itemSelectedBorderSize: 2,
     borderRadius: 5,
     itemSize: {
@@ -398,7 +398,7 @@ mediaLibStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
 mediaLibStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP] = mediaLibStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN];
 mediaLibStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
     itemSelectionFontSize: 14,
-    itemBorderSize: 1,
+    itemBorderSize: 0,
     itemSelectedBorderSize: 2,
     borderRadius: 5,
     itemSize: {
