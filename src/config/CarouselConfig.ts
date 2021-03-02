@@ -62,7 +62,7 @@ export type NavControlsConfig = {
     enable2dNav: boolean;
     autoScroll: boolean;
     autoScrollAlignment: "start" | "end" | "center";
-    eventBindElementId: string;
+    eventBindElementId?: string;
     keyboard: NavControlKeyBoardConfig;
     pointer: NavControlPointerConfig;
     touch: NavControlTouchConfig;

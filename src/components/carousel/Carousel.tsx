@@ -294,7 +294,7 @@ export class Carousel
         }
         if (props.config.navControls.touch.enabled) {
             const touchNavController: TouchNavController = new TouchNavController(this,
-                props.config.navControls.eventBindElementId,
+                props.config.navControls.touch.eventBindElementId,
                 props.config.navControls.touch.scrollLock);
             this.navControllers.push(touchNavController);
             this.itemTouchNavActionHandlers.push(touchNavController);
@@ -302,7 +302,7 @@ export class Carousel
         if (props.config.navControls.pointer.enabled) {
             const pointerNavController: PointerNavController = new PointerNavController(
                 this,
-                props.config.navControls.eventBindElementId,
+                props.config.navControls.pointer.eventBindElementId,
                 props.config.navControls.pointer.scrollLock
             );
             this.navControllers.push(pointerNavController);
@@ -321,7 +321,9 @@ export class Carousel
         // Refs are not well suppored in type strong typed styled components
         // Alternative is to use a forward ref or a query selection as is done below
         if (this.props.config.navControls.autoScroll) {
-            const carouselEl: HTMLElement | null = document.getElementById(this.props.config.navControls.eventBindElementId);
+            const carouselEl: any = (this.props.config.navControls.eventBindElementId) ? 
+                        document.getElementById(this.props.config.navControls.eventBindElementId):
+                        document;
             const selectedItemDiv = carouselEl !== null ? carouselEl.querySelector(".selected > .item") : undefined;
             if (selectedItemDiv) {
                 selectedItemDiv.scrollIntoView({
