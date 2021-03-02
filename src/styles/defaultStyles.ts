@@ -4,6 +4,7 @@ import {
     CarouselStyleConfigMediaTypes,
     CarouselStyleConfigItemSize,
     CAROUSEL_STYLE_MEDIA_TYPE,
+    CarouselRowLabelStyleConfigMediaTypes,
 } from "../config/CarouselConfig";
 
 /**
@@ -171,6 +172,7 @@ export const darkStyle: CarouselStyleConfig = {
             itemSelectedBorderColor: "green",
             itemBorderShadowColor: "black",
             itemSelectionFontColor: "white",
+            itemSelectionOpacity: 60,
             itemSelectionBackgroundColor: "black",
             itemSelectionForegroundColor: "white",
             itemInOverrunOpacity: 60,
@@ -311,6 +313,7 @@ export const lightStyle: CarouselStyleConfig = {
             itemSelectedBorderColor: "#6699ff",
             itemBorderShadowColor: "black",
             itemSelectionFontColor: "white",
+            itemSelectionOpacity: 60,
             itemSelectionBackgroundColor: "#6699ff",
             itemSelectionForegroundColor: "white",
             itemInOverrunOpacity: 60,
@@ -330,8 +333,143 @@ export const lightStyle: CarouselStyleConfig = {
     mediaTypes: defaultStyleMediaTypes,
 };
 
+/**
+ * mediaLib style
+ */
+const mediaLibStyleRowLabelMediaType: CarouselRowLabelStyleConfigMediaTypes = [];
+mediaLibStyleRowLabelMediaType[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
+    fontSize: 14,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingTop: 10
+}
+mediaLibStyleRowLabelMediaType[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP] = {
+    fontSize: 20,
+    paddingBottom: 5,
+    paddingLeft: 30,
+    paddingTop: 10
+}
+mediaLibStyleRowLabelMediaType[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
+    fontSize: 20,
+    paddingBottom: 5,
+    paddingLeft: 30,
+    paddingTop: 10
+}
+
+
+
+const mediaLibStyleItemMediaTypes: CarouselItemStyleConfigMediaTypes = [];
+
+mediaLibStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN] = {
+    itemSelectionFontSize: 14,
+    itemBorderSize: 1,
+    itemSelectedBorderSize: 2,
+    borderRadius: 5,
+    itemSize: {
+        size: {
+            x: 150,
+            y: 260,
+        },
+        margin: {
+            x: 15,
+            y: 15,
+        },
+    },
+    itemSizeOverrun: {
+        size: {
+            x: 40,
+            y: 110,
+        },
+        margin: {
+            x: 15,
+            y: 15,
+        },
+    },
+    selectionStyleConfig: {
+        relativeHeight: 20, 
+        bottomRadiusSize: 5,
+        fontSize: 20,
+        topBorderShadowSize: 10,
+    },
+    overrunDirectionDisplay: {
+        size: 8
+    }
+};
+mediaLibStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.DESKTOP] = mediaLibStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.BIGSCREEN];
+mediaLibStyleItemMediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL] = {
+    itemSelectionFontSize: 14,
+    itemBorderSize: 1,
+    itemSelectedBorderSize: 2,
+    borderRadius: 5,
+    itemSize: {
+        size: {
+            x: 75,
+            y: 130,
+        },
+        margin: {
+            x: 8,
+            y: 8,
+        },
+    },
+    itemSizeOverrun: {
+        size: {
+            x: 40,
+            y: 110,
+        },
+        margin: {
+            x: 15,
+            y: 15,
+        },
+    },
+    selectionStyleConfig: {
+        relativeHeight: 60, 
+        bottomRadiusSize: 5,
+        fontSize: 14,
+        topBorderShadowSize: 10,
+    },
+    overrunDirectionDisplay: {
+        size: 8
+    }
+};
+
+export const mediaLibStyle: CarouselStyleConfig = {
+    itemStyleConfig: {
+        theme: {
+            itemBorderColor: "#3b4351",
+            itemBackgroundColor: "transparent",
+            itemSelectedBorderColor: "white",
+            itemBorderShadowColor: "#3b4351",
+            itemSelectionFontColor: "white",
+            itemSelectionOpacity: 80,
+            itemSelectionBackgroundColor: "#6B6462",
+            itemSelectionForegroundColor: "white",
+            itemInOverrunOpacity: 60,
+            initialOpacityOverrunDirectionDisplay: 0.7,
+            overrunDirectionDisplayColor: "3b4351"
+        },
+        mediaTypes: mediaLibStyleItemMediaTypes,
+    },
+    theme: {
+        backgroundColorActive: "#212020",
+        borderColorActive: "#212020",
+        backgroundColorOverrun: "#212020",
+        borderColorOverrun: "#212020",
+        fontFamily: "'PT Sans', sans-serif",
+        fontWeight: 300,
+    },
+    mediaTypes: defaultStyleMediaTypes,
+    rowLabelStyleConfig: {
+        mediaTypes: mediaLibStyleRowLabelMediaType,
+        theme: {
+            fontColor: "white",
+            fontFamily: "Helvetica, sans-serif"
+        }
+    }
+};
+
 export const defaultStyles = {
     darkStyle: darkStyle,
-    lightStyle: lightStyle
+    lightStyle: lightStyle,
+    mediaLibStyle: mediaLibStyle
     // Add new default styles here
 };
