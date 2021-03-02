@@ -3,7 +3,9 @@
 Responsive and Configurable Typescript based React component to make carousels schnell (=quickly in German)
 
 <div align="center"><img src="doc/img/medialibcarouschnell.gif" alt="medialibcarouschnell"
-	title="Media Library with Carouschnell" width="300" height="298" /></div>
+	title="Media Library with Carouschnell" width="300" height="298" />
+    <p><i><sub>The header image used in the gif demo is owned by <a href="https://staticflickr.com">staticflickr</a> and the carousel item photos are owned by <a href="https://loremflickr.com">loremflickr</a></sub></i></p></div>
+
 
 ## Motivation
 
@@ -66,6 +68,7 @@ function App() {
         navControls: {
             enable2dNav: true,
             autoScroll: true,
+            autoScrollAlignment: "end",
             keyboard: {
                 enabled: true,
                 keyMapping: carouschnell.DEVICE_NAV_KEYCODES_DEFAULT,
