@@ -6,6 +6,7 @@ import postcss from "rollup-plugin-postcss";
 import external from "rollup-plugin-peer-deps-external";
 import svgr from "@svgr/rollup";
 import { terser } from "rollup-plugin-terser";
+import json from '@rollup/plugin-json';
 import pkg from "./package.json";
 
 export default {
@@ -38,6 +39,7 @@ export default {
             useTsconfigDeclarationDir: true,
         }),
         commonjs(),
-        terser()
+        terser(),
+        json()
     ],
 };
