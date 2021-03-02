@@ -1,0 +1,32 @@
+#root {
+    background-color: #212020;
+    color: white;
+}
+
+.header {
+    height: 400px;
+    margin-bottom: 40px;
+}
+@media (max-width: 1024px) {
+    .header {
+        height: 200px;
+        margin-bottom: 20px;
+    }
+}
+
+.App {
+    height: 100%;
+    width: 670px;
+    background-color: #212020;
+    text-align: center;
+    margin: 0 auto;
+}
+@media (min-width: 1024px) {
+    .App {
+        width: 1200px;
+    }
+}
+
+.App > p {
+    font-style: italic;
+}
