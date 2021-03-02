@@ -7,7 +7,8 @@ import {
     CarouselDisplayConfig,
     CarouselStyleConfig,
     CarouselRowConfig,
-    NavControlCustomConfig
+    NavControlCustomConfig,
+    CarouselRowLabelConfig
 } from "../../config/CarouselConfig";
 import { INavActionHandler, NAV_DIRECTION } from "../../navcontrols/common/INavActionHandler";
 import { INavItemActionHandler, IMouseNavItemActionHandler, 
@@ -293,7 +294,7 @@ export class Carousel
         }
         if (props.config.navControls.touch.enabled) {
             const touchNavController: TouchNavController = new TouchNavController(this,
-                props.config.navControls.touch.eventBindElementId,
+                props.config.navControls.eventBindElementId,
                 props.config.navControls.touch.scrollLock);
             this.navControllers.push(touchNavController);
             this.itemTouchNavActionHandlers.push(touchNavController);
@@ -301,7 +302,7 @@ export class Carousel
         if (props.config.navControls.pointer.enabled) {
             const pointerNavController: PointerNavController = new PointerNavController(
                 this,
-                props.config.navControls.pointer.eventBindElementId,
+                props.config.navControls.eventBindElementId,
                 props.config.navControls.pointer.scrollLock
             );
             this.navControllers.push(pointerNavController);
@@ -320,11 +321,12 @@ export class Carousel
         // Refs are not well suppored in type strong typed styled components
         // Alternative is to use a forward ref or a query selection as is done below
         if (this.props.config.navControls.autoScroll) {
-            const selectedItemDiv = document.querySelector(".selected > .item");
+            const carouselEl: HTMLElement | null = document.getElementById(this.props.config.navControls.eventBindElementId);
+            const selectedItemDiv = carouselEl !== null ? carouselEl.querySelector(".selected > .item") : undefined;
             if (selectedItemDiv) {
                 selectedItemDiv.scrollIntoView({
-                    block: "center",
-                    inline: "center",
+                    block: this.props.config.navControls.autoScrollAlignment,
+                    inline: this.props.config.navControls.autoScrollAlignment,
                     behavior: "smooth",
                 });
             }          
@@ -419,7 +421,7 @@ export class Carousel
                                 return <CarouselRowLabel
                                     label={row.label}
                                     yNavOffset={index}
-                                    style={this.props.config.styleConfig.rowLabelStyleConfig}
+                                    style={this.props.config.styleConfig.rowLabelStyleConfig as CarouselRowLabelConfig}
                                     itemStyleConfig={this.props.config.styleConfig.itemStyleConfig}
                                 />
                         })
