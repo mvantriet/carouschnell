@@ -1,0 +1,7 @@
+{
+    "short_name": "CarouschnellMediaLibExample",
+    "name": "Carouschnell Media Lib Example",
+    "icons": [],
+    "start_url": ".",
+    "display": "standalone"
+}
