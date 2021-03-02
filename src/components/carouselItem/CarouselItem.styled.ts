@@ -17,6 +17,7 @@ export type CarouselItemStyledProps = {
 export type CarouselItemSelectedOverlayStyledProps = {
     // TODO: Split into separate config
     style: CarouselItemStyleConfig;
+    hasInnerHtml: boolean;
 };
 
 export type CarouselItemOverrunOverlayStyledProps = {
@@ -34,7 +35,7 @@ export const CarouselItemStyled = styled.default.div<CarouselItemStyledProps>`
         background-size: cover;
         background-position: center; 
         background-repeat: no-repeat;
-        box-shadow: 0px 1vh 2vh #000;      
+        box-shadow: 0px 1vh 2vh ${props => props.style.theme.itemBorderShadowColor};  
         text-align: center;
         position: absolute;
         height: ${(props) =>
@@ -276,6 +277,7 @@ export const CarouselItemSelectedOverlayStyled = styled.default
     top: ${(props) => 100 - props.style.mediaTypes[CAROUSEL_STYLE_MEDIA_TYPE.SMALL].selectionStyleConfig
         .relativeHeight}%;
     left: 0;
+    opacity: ${(props) => props.style.theme.itemSelectionOpacity.toString()}%;
     color: ${(props) => props.style.theme.itemSelectionFontColor};
     background-color: ${(props) => props.style.theme.itemSelectionBackgroundColor};
     border-bottom-left-radius: ${(props) =>
@@ -327,10 +329,7 @@ export const CarouselItemSelectedOverlayStyled = styled.default
 
     span {
         position: relative;
-        top: 20%;
-        -webkit-transform: translateY(-20%);
-        -ms-transform: translateY(-20%);
-        transform: translateY(-20%);
+        top: 0%;
     }
 `;
 
