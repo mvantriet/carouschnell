@@ -2,8 +2,8 @@
 
 Responsive and Configurable Typescript based React component to make carousels schnell (=quickly in German)
 
-<div align="center"><img src="doc/img/1dnav.gif" alt="1dnav"
-	title="1D Navigation with Carouschnell" width="500" height="266" /></div>
+<div align="center"><img src="doc/img/medialibcarouschnell.gif" alt="medialibcarouschnell"
+	title="Media Library with Carouschnell" width="600" height="596" /></div>
 
 ## Motivation
 
@@ -199,6 +199,12 @@ const defaultItemSizeDesktop: CarouselStyleConfigItemSize = {
     },
 };
 ```
+
+### Row Labels
+Optionally Carouschnell will add labels for each row in your Carousel according to the rows as part of the [CarouselConfig](src/config/CarouselConfig.ts). The *rowLabelStyleConfig* property of the [CarouselConfig](src/config/CarouselConfig.ts) can be used for this purpose. Check out the [Media Library example](examples/mediaLib/src/App.tsx) in the examples folder how to use row label styling.
+
+### Item Selection custom HTML
+Instead of submitting mere a caption for each item in the [CarouselConfig](src/config/CarouselConfig.ts) you can optionally override the default styling and submit custom HTML to customise the look and feel when an item is selected. See the *innerHtml* property within the [CarouselConfig](src/config/CarouselConfig.ts) and check out the [Media Library example](examples/mediaLib/src/App.tsx) in the examples folder how to use custom styling that is displayed when an item is selected by the user.
 
 ## Nav Controls
 
