@@ -72,7 +72,7 @@ export class TouchNavController extends NavController implements ITouchNavItemAc
         }
         if (this.nofTouchSequencesWithoutSwipe > 1) {
             const timeDiff = new Date().getTime() - this.lastTouchEndTimestamp;
-            if (timeDiff < 800) {
+            if (timeDiff < 600) {
                 this.handler.handleNavControlEnterCurrentSelectionAction();
             }
         }
