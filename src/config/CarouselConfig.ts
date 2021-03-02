@@ -4,6 +4,7 @@ export type CarouselItemConfig = {
     thumbnail: string;
     caption: string;
     url: string;
+    innerHtml? : string;
 };
 
 export type CarouselRowConfig = {
@@ -40,14 +41,14 @@ export type NavControlKeyBoardConfig = {
 
 export type NavControlPointerConfig = {
     enabled: boolean;
-    eventBindElementId: string;
     scrollLock: boolean;
+    eventBindElementId: string;
 };
 
 export type NavControlTouchConfig = {
     enabled: boolean;
-    eventBindElementId: string;
     scrollLock: boolean;
+    eventBindElementId: string;
 };
 
 export type NavControlCustomHandlerAcceptor = (handler: INavActionHandler) => void;
@@ -60,6 +61,8 @@ export type NavControlCustomConfig = {
 export type NavControlsConfig = {
     enable2dNav: boolean;
     autoScroll: boolean;
+    autoScrollAlignment: "start" | "end" | "center";
+    eventBindElementId: string;
     keyboard: NavControlKeyBoardConfig;
     pointer: NavControlPointerConfig;
     touch: NavControlTouchConfig;
@@ -96,6 +99,7 @@ export type CarouselItemStyleConfigTheme = {
     itemInOverrunOpacity: number; // percentage
     initialOpacityOverrunDirectionDisplay: number; //0 - 1.0
     overrunDirectionDisplayColor: string;
+    itemSelectionOpacity: number; // percentage
 };
 
 export type CarouselRowLabelStyleConfigTheme = {
