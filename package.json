@@ -41,14 +41,15 @@
         "build:bundle": "npm run build:bundle:libs && npm run build:bundle:types",
         "build:bundle:types": "dts-bundle --name carouschnell --main build/index.d.ts && mv build/carouschnell.d.ts dist/index.d.ts",
         "build:bundle:libs": "rollup -c",
-        "build:example": "(cd examples/demo2d && npm ci && npm run build)",
+        "build:example": "(cd examples/basicSlider && npm ci && npm run build)",
         "start": "rollup -c -w",
-        "start:example": "(cd examples/demo2d && npm ci && npm start)",
+        "start:example": "(cd examples/basicSlider && npm ci && npm start)",
         "prepare": "npm run build",
         "dev": "nodemon"
     },
     "dependencies": {
         "body-scroll-lock": "^3.1.5",
+        "html-react-parser": "^1.2.4",
         "lodash": "^4.17.20",
         "react-transition-group": "^4.4.1",
         "styled-components": "^5.2.1"
@@ -61,6 +62,7 @@
         "@commitlint/cli": "^11.0.0",
         "@commitlint/config-conventional": "^11.0.0",
         "@rollup/plugin-commonjs": "^15.1.0",
+        "@rollup/plugin-json": "^4.1.0",
         "@rollup/plugin-node-resolve": "^9.0.0",
         "@rollup/plugin-url": "^5.0.1",
         "@semantic-release/changelog": "^5.0.1",
