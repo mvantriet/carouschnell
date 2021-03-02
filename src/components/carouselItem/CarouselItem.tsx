@@ -1,5 +1,6 @@
 import * as React from "react";
 import { CSSTransition } from "react-transition-group";
+import parseHtml from 'html-react-parser';
 import {
     CarouselItemStyled,
     CarouselItemSelectedOverlayStyled,
@@ -30,9 +31,11 @@ export type CarouselItemProps = {
     rowLabelStyleConfig: CarouselRowLabelConfig | undefined;
 };
 
+
 export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
     props: CarouselItemProps
 ) => {
+
     return (
         <CarouselItemStyled
             className={props.selected ? "selected" : ""}
@@ -117,8 +120,11 @@ export const CarouselItem: React.FunctionComponent<CarouselItemProps> = (
                         <img alt={props.config.caption}></img>
                     )}
                     {props.selected && (
-                        <CarouselItemSelectedOverlayStyled style={props.style}>
-                            <span>{props.config.caption}</span>
+                        <CarouselItemSelectedOverlayStyled style={props.style} hasInnerHtml={props.config.innerHtml !== undefined}>
+                            {props.config.innerHtml ?
+                                <span>{parseHtml(props.config.innerHtml)}</span> :
+                                <span>{props.config.caption}</span>
+                            }
                         </CarouselItemSelectedOverlayStyled>
                     )}
                     <CSSTransition
